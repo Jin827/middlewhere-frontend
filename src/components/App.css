@@ -14,32 +14,16 @@ a {
   display: flex;
   flex-flow: column;
   align-items: center;
-  background: papayawhip;
+  background: #fff;
   height: 100vh
 }
 
-.App-navbar {
-  color: DarkSeaGreen;
-  padding: 1.5rem;
-  width: 100%;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.App-navbar__title {
-  margin: 0;
-  color: DarkSeaGreen;
-  font-size: 1.5rem;
-  text-decoration: none;
-}
-
-.settings-icon, .menu-icon, .App-navbar__title {
+.settings-icon, .menu-icon {
   transition: 0.5s;
   cursor: pointer;
 }
 
-.settings-icon:hover, .menu-icon:hover, .App-navbar__title:hover {
+.settings-icon:hover, .menu-icon:hover {
   color: DarkOliveGreen;
 }
