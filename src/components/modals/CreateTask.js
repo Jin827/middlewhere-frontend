@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './CreateBoookmark.css';
+import './CreateTask.css';
 
-export default class CreateBoookmark extends Component {
+export default class CreateTask extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -12,7 +12,10 @@ export default class CreateBoookmark extends Component {
       <div>
         <h1>Title</h1>
       </div>
+
     );
   }
 
 }
+
+//create project or task input (take form from dashboardly but change to be more fitting)

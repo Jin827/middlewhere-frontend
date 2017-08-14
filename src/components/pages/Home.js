@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../../api';
-import BoardCard from '../elements/BoardCard';
+import ProjectCard from '../elements/ProjectCard';
 import AddButton from '../elements/AddButton';
 import auth from '../../auth';
 import './Home.css';
@@ -13,11 +13,11 @@ export default class Home extends Component {
       boards: []
     };
   }
-  
+
   componentDidMount() {
     this._fetchBoards();
   }
-  
+
   _fetchBoards = () => {
     api.getBoardsList()
     .then(res => {
@@ -31,7 +31,7 @@ export default class Home extends Component {
     return (
       <div className="home">
         { boards.map(b =>
-          <BoardCard
+          <ProjectCard
             key={b.id}
             id={b.id}
             title={b.title}
@@ -45,3 +45,5 @@ export default class Home extends Component {
   }
 
 }
+//isAdmin then you can add a project for example
+// add delete, assign tasks

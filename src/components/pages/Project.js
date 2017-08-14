@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import api from '../../api';
 import BookmarkCard from '../elements/BookmarkCard';
 import auth from '../../auth';
-import './Board.css';
+import './Project.css';
 
-export default class Board extends Component {
+export default class Project extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,24 +14,25 @@ export default class Board extends Component {
       updatedAt: ""
     };
   }
-  
+
   componentDidMount() {
     this.fetchBoardData()
   }
-  
+
   fetchBoardData = () => {
-      Promise.all([
-        api.getBoard(this.props.params.id),
-        api.getBookmarks(this.props.params.id)
-      ])
-      .then(res => {
-        this.setState({
-          title: res[0].body.title,
-          description: res[0].body.description,
-          bookmarks: res[1].body.bookmarks
-        })
-      })
-      .catch(console.error)
+      // Promise.all([
+      //   api.getBoard(this.props.params.id),
+      //   api.getBookmarks(this.props.params.id)
+      // ])
+      // .then(res => {
+      //   this.setState({
+      //     title: res[0].body.title,
+      //     description: res[0].body.description,
+      //     bookmarks: res[1].body.bookmarks
+      //   })
+      // })
+      // .catch(console.error)
+      //put fake data here to test
   }
 
   render() {
@@ -39,7 +40,7 @@ export default class Board extends Component {
     return (
       <div className="board">
         { bookmarks.map(b =>
-          <BookmarkCard
+          <TaskCard
             key={b.id}
             id={b.id}
             title={b.title}
