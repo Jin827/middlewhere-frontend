@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import api from '../../api';
-import BookmarkCard from '../elements/BookmarkCard';
+import TaskCard from '../elements/TaskCard';
 import auth from '../../auth';
 import './Project.css';
 
