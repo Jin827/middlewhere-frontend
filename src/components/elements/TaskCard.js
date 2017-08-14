@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './BookmarkCard.css';
+import './TaskCard.css';
 
-export default class BookmarkCard extends Component {
+export default class TaskCard extends Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -10,7 +10,7 @@ export default class BookmarkCard extends Component {
   render() {
     let { title, description, url } = this.props
     return (
-      <a className="bookmark-card" href={url}>
+      <a className="task-card" href={url}>
         <div>
           <h2>{ title }</h2>
           <p>{ description }</p>

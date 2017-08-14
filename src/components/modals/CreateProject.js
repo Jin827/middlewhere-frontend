@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './CreateBoard.css';
+import './CreateProject.css';
 
-export default class CreateBoard extends Component {
+export default class CreateProject extends Component {
   constructor(props) {
     super(props);
     this.state = {};
