@@ -10,7 +10,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      boards: []
+      projects: []
     };
   }
 
@@ -19,27 +19,29 @@ export default class Home extends Component {
   }
 
   _fetchBoards = () => {
-    api.getBoardsList()
-    .then(res => {
-      this.setState({ boards: res.body.boards })
+    this.setState({
+      projects: [
+        {id:1,title:"first project", progress: "20%", description:"project about web development"},
+        {id:2,title:"second project",progress:"12%", description:"project about food"},
+        {id:3,title:"third project",progress:"52%", description:"project about sleep"}
+      ]
     })
-    .catch(console.error)
   }
 
   render() {
-    let { boards } = this.state
+    let { projects } = this.state
     return (
       <div className="home">
-        { boards.map(b =>
+        <h1>I EXIST</h1>
+        { projects.map(p =>
           <ProjectCard
-            key={b.id}
-            id={b.id}
-            title={b.title}
-            description={b.description}
-            updatedAt={b.updatedAt}
+            key={p.id}
+            id={p.id}
+            title={p.title}
+            progress={p.progress}
+            description={p.description}
           />
         )}
-        {auth.isLoggedIn() ? <AddButton /> : null}
       </div>
     );
   }
@@ -47,3 +49,6 @@ export default class Home extends Component {
 }
 //isAdmin then you can add a project for example
 // add delete, assign tasks
+
+
+// {auth.isLoggedIn() ? <AddButton /> : null}
