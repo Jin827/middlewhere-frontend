@@ -9,8 +9,10 @@ export default class CreateTask extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Title</h1>
+      <div className="task-card">
+          <h2>{ title }</h2>
+          <p>{ description }</p>
+          <p>{ deadline }</p>
       </div>
 
     );

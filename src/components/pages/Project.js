@@ -8,10 +8,7 @@ export default class Project extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      description: "",
-      bookmarks: [],
-      updatedAt: ""
+      tasks: []
     };
   }
 
@@ -21,33 +18,57 @@ export default class Project extends Component {
 
   fetchBoardData = () => {
       // Promise.all([
-      //   api.getBoard(this.props.params.id),
-      //   api.getBookmarks(this.props.params.id)
+      //   api.getTasks(this.props.params.id)
+        
       // ])
       // .then(res => {
-      //   this.setState({
-      //     title: res[0].body.title,
-      //     description: res[0].body.description,
-      //     bookmarks: res[1].body.bookmarks
-      //   })
+        this.setState({
+          tasks: [
+            {
+              id: 1,
+              title: "Make TaskCard",
+              description: "middlewhere???? wowowowowowowowowo HYOJIN hyojin jin JIN JIN",
+              deadline: "2017-08-30",
+              updatedAt: "in secs" 
+            },
+            {
+              id: 2,
+              title: "Made it",
+              description: "wowowowowowowow",
+              deadline: "2017-08-20",
+              updatedAt: "in secs" 
+            },
+            {
+              id: 3,
+              title: "yayy",
+              description: "getting there",
+              deadline: "2017-08-14",
+              updatedAt: "2017-08-14" 
+            }
+          ]
+          
+        })
       // })
-      // .catch(console.error)
-      //put fake data here to test
+      .catch(console.error)
+     
   }
 
   render() {
-    let { bookmarks } = this.state
+    let { tasks } = this.state
     return (
-      <div className="board">
-        { bookmarks.map(b =>
+      <div className="tasks">
+        <h1>where am i?</h1>
+         { tasks.map(b =>
           <TaskCard
             key={b.id}
             id={b.id}
             title={b.title}
             description={b.description}
-            url={b.url}
+            deadline={b.deadline}
+            updatedAt={b.updatedAt}
           />
-        )}
+        )} 
+        
       </div>
     );
   }

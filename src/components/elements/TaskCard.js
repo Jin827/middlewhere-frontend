@@ -8,15 +8,17 @@ export default class TaskCard extends Component {
   }
 
   render() {
-    let { title, description, url } = this.props
+    let { id, title, description, deadline } = this.props
     return (
-      <a className="task-card" href={url}>
-        <div>
-          <h2>{ title }</h2>
-          <p>{ description }</p>
+        
+        <div> 
+          <h2 className="task-card">{ title }</h2>
+          <div className="info">
+            <p>description: { description }</p>
+            <p className="deadline">deadline: { deadline }</p>
+          </div>
+          <br/>
         </div>
-        <img src={""} alt={title}/>
-      </a>
     );
   }
 
