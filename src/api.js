@@ -2,6 +2,12 @@ import superagent from 'superagent'
 import { API_HOST } from './config'
 
 class Api {
+  requestSignup = (email, password) => (
+
+    superagent
+    .post(`${API_HOST}/auth/users`)
+    .send({email, password})
+  )
 
   requestLogin = (email, password) => (
     superagent
@@ -33,11 +39,11 @@ class Api {
   )
 
 
-  
+
   getTasks = (boardId) => (
     superagent
     .get(`${API_HOST}/boards/${boardId}/bookmarks`)
-    
+
   )
 
   // getMe = (token) => (

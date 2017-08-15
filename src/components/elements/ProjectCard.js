@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import '../App.css';
+import {Card, CardHeader, CardText, LinearProgress} from 'material-ui';
 
 export default class ProjectCard extends Component {
   constructor(props) {
@@ -9,18 +10,13 @@ export default class ProjectCard extends Component {
   }
 
   render() {
-    let { progress, title, id } = this.props
+    let { progress, title, description, id } = this.props
     return (
-      <div className="project col-small-4">
-        <div className="project-card">
-        <Link to={`/projects/${id}`}>
-          <div className="project-card-text">
-            <h1>{ progress }%</h1>
-            <h2>{ title }</h2>
-          </div>
-        </Link>
-        </div>
-      </div>
+      <Card className='project-card'>
+        <CardHeader title={title} />
+        <CardText>{description}</CardText>
+        <LinearProgress mode="determinate" value={progress} />
+      </Card>
     );
   }
 
