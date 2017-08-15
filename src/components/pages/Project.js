@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import api from '../../api';
+// import api from '../../api';
 import TaskCard from '../elements/TaskCard';
+import CreateTask from '../modals/CreateTask';
 import auth from '../../auth';
+import AddButton from '../elements/AddButton';
 import './Project.css';
 
 export default class Project extends Component {
@@ -17,47 +19,41 @@ export default class Project extends Component {
   }
 
   fetchBoardData = () => {
-      // Promise.all([
-      //   api.getTasks(this.props.params.id)
-        
-      // ])
-      // .then(res => {
+      fetch('https://private-a5484-middlewhere.apiary-mock.com/projects/id/tasks')
+      .then(res=> res.json())
+      .then(res => {
+        console.log(res)
+        let resultTasks = res.tasks
+
         this.setState({
-          tasks: [
-            {
-              id: 1,
-              title: "Make TaskCard",
-              description: "middlewhere???? wowowowowowowowowo HYOJIN hyojin jin JIN JIN",
-              deadline: "2017-08-30",
-              updatedAt: "in secs" 
-            },
-            {
-              id: 2,
-              title: "Made it",
-              description: "wowowowowowowow",
-              deadline: "2017-08-20",
-              updatedAt: "in secs" 
-            },
-            {
-              id: 3,
-              title: "yayy",
-              description: "getting there",
-              deadline: "2017-08-14",
-              updatedAt: "2017-08-14" 
-            }
-          ]
-          
+          tasks: resultTasks 
+      })
         })
-      // })
       .catch(console.error)
      
   }
 
+  _createTaskForm = () =>{
+    this.setState({
+      createTask: true
+
+    })
+  }
+
   render() {
-    let { tasks } = this.state
+    let { tasks } = this.state;
+
+    if(!tasks) {
+      return (
+        <div>
+          <h1> LOADING tasks </h1>
+        </div>
+      )
+    }
+
     return (
       <div className="tasks">
-        <h1>where am i?</h1>
+        <h1>Project.js</h1>
          { tasks.map(b =>
           <TaskCard
             key={b.id}
@@ -65,10 +61,14 @@ export default class Project extends Component {
             title={b.title}
             description={b.description}
             deadline={b.deadline}
-            updatedAt={b.updatedAt}
+            priority={b.priority}
           />
         )} 
         
+        <AddButton addButtonClick={this._createTaskForm} />
+        {/* {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createTaskForm} /> : null}
+        {this.state.createTask ? <CreateTask taskId= {this.props.params.id}/> : null}
+          */}
       </div>
     );
   }
