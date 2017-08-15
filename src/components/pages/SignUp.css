@@ -1,0 +1,33 @@
+.login, .signup{
+  min-width:20%;
+  min-height:8%;
+  display:flex;
+  flex-direction:column;
+  font-family: 'Roboto', sans-serif;
+}
+
+.auth {
+  min-width:50%;
+  min-height:2%;
+  margin: 4%;
+  padding:6%;
+  border-radius: 10px;
+  font-weight:bold;
+  color:#757575;
+}
+button {
+  min-width:50%;
+  min-height:2%;
+  font-weight: bold;
+  color: #fff;
+  background-color: #2ecc71;
+  border-radius: 10px;
+  border-style: none;
+  padding: 1rem 2rem;
+  transition: all .2s ease-in-out;
+}
+
+button:hover{
+  background-color: #98f2be;
+  transform: scale(1.1);
+}

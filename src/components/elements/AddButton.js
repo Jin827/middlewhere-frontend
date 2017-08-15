@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../App'
 
 export default class AddButton extends Component {
   constructor(props){
@@ -19,7 +20,9 @@ export default class AddButton extends Component {
 
     return (
       <div className="add-button">
-        <button className="fa fa-plus fa-2x" onClick={this.props.addButtonClick}></button>
+
+        <button className="fa fa-plus fa-1x add-board-button" onClick={this.props.addButtonClick}></button>
+
       </div>
     )
   }
