@@ -65,10 +65,10 @@ export default class Project extends Component {
           />
         )} 
         
-        <AddButton addButtonClick={this._createTaskForm} />
-        {/* {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createTaskForm} /> : null}
+        
+        {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask taskId= {this.props.params.id}/> : null}
-          */}
+          
       </div>
     );
   }

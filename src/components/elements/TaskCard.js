@@ -17,7 +17,7 @@ export default class TaskCard extends Component {
           <h1>TaskCard ? where are you?</h1>
           <h2 className="task-card">{ title }</h2>
           <div className="info">
-            <p>description  { description }</p>
+            <p>{ description }</p>
             <p className="deadline">deadline  { deadline }</p>
           </div>
           <br/>
