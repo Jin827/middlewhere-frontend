@@ -19,8 +19,8 @@ a {
 
 .App {
   display: flex;
-  flex-wrap: wrap;
   flex-flow: row;
+  flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   background: #fff;
@@ -31,18 +31,15 @@ a {
 
 .header {
   background-color: #00acc1 ;
-  min-height: 30vh;
-  min-width:100%;
   display:flex;
-  flex-wrap: wrap;
-
+  padding: 1em;
 }
 .home {
-  min-width: 100%;
-  min-height: 70vh;
-  display:flex;
-  flex-flow: row;
-  justify-content: center;
+  flex: 1;
+  margin: 1em
+  /*display:flex;*/
+  /*flex-flow: row;*/
+  /*justify-content: center;*/
 
 }
 
@@ -52,38 +49,13 @@ a {
   align-items: center;
 }
 
-/*.project {
-  display:flex;
-  border-radius:50%;
-  background-color: orange;
-
-  justify-content: center;
-
-  margin: 3%;
-}*/
-
-.project-card {
-  max-width:50%;
-  max-height: 50%;
-  background-color: #FA9999;
-  border-radius:50%;
-  text-align:center;
-  color: #fff;
-  transition: all .2s ease-in-out;
-  padding:20px;
-  text-shadow: 2px 2px 4px #e57272;
-  box-shadow: 3px 3px 50px 3px #e57272 inset;
-  /*padding:2%;
-  margin: 3%*/
-}
-
 .add-button{
   display: flex;
   align-items: center;
 }
-.project-card:hover{
+/*.project-card:hover{
   transform: scale(1.1);
-}
+}*/
 
 
 .add-board-button{
@@ -103,7 +75,6 @@ a {
   transition: 0.5s;
   cursor: pointer;
   color: #fff;
-  margin: 5rem 8rem;
   transition: all .2s ease-in-out;
 
 }
@@ -176,13 +147,7 @@ a {
 
 /* Medium and up screen sizes */
 @media only screen and (min-width: 641px) {
-  .section-one{
-    min-height:10vh;
-    padding:2%
-  }
-  .section-two{
-    flex-direction: row-reverse;
-  }
+
   .col-medium-12 {
       width: 100%;
   }
@@ -227,17 +192,8 @@ a {
 
 }
 
-
-
-
 /* Large screen sizes */
 @media only screen and (min-width: 1025px) {
-  .section-one{
-    height: 30vh;
-  }
-  .section-two{
-    flex-direction: row-reverse;
-  }
   .col-large-12 {
       width: 100%;
   }

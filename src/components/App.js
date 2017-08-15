@@ -4,17 +4,17 @@ import Menu from './modals/Menu';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {cyan500} from 'material-ui/styles/colors';
+//import {cyan500,pink100} from 'material-ui/styles/colors';
 import AppBar from 'material-ui/AppBar'
 
-const muiTheme = getMuiTheme({
-  palette: {
-    primary1Color:pink100,
-    textColor: cyan500,
-    backgroundColor: cyan500,
-  },
-
-});
+// const muiTheme = getMuiTheme({
+//   palette: {
+//     primary1Color:pink100,
+//     textColor: cyan500,
+//     backgroundColor: cyan500,
+//   },
+//
+// });
 
 
 class App extends Component {
@@ -28,7 +28,7 @@ class App extends Component {
   render() {
     let {isMenuOpen} = this.state
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
+      <MuiThemeProvider>
         <div className="App row">
           <div className="header col-small-12">
             <div className="App-navbar">

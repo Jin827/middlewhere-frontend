@@ -3,13 +3,7 @@ import api from '../../api';
 import ProjectCard from '../elements/ProjectCard';
 import AddButton from '../elements/AddButton';
 import auth from '../../auth';
-//import '../App.css';
 import CreateProject from '../modals/CreateProject';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import AppBar from 'material-ui/AppBar';
-
 
 export default class Home extends Component {
   constructor(props) {
@@ -50,23 +44,22 @@ export default class Home extends Component {
     }
 
     return (
-      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-        <AppBar title="My AppBar" />
 
-      <div className="home col-small-12">
+      <div className="home">
         { projects.map(p =>
-          <ProjectCard
-            key={p.id}
-            id={p.id}
-            title={p.title}
-            progress={p.progressPct}
-            description={p.description}
-          />
+          <div>
+            <ProjectCard
+              key={p.id}
+              id={p.id}
+              title={p.title}
+              progress={p.progressPct}
+              description={p.description}
+            />
+          </div>
         )}
         <AddButton addButtonClick={this._createProjectForm}  />
         {this.state.createProject ? <CreateProject/> : null}
       </div>
-      </MuiThemeProvider>
     );
   }
 
