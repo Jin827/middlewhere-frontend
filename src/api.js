@@ -32,9 +32,12 @@ class Api {
     .send({title,description})
   )
 
-  getBookmarks = (boardId) => (
+
+  
+  getTasks = (boardId) => (
     superagent
     .get(`${API_HOST}/boards/${boardId}/bookmarks`)
+    
   )
 
   // getMe = (token) => (

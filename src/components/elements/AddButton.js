@@ -20,7 +20,9 @@ export default class AddButton extends Component {
 
     return (
       <div className="add-button">
+
         <button className="fa fa-plus fa-1x add-board-button" onClick={this.props.addButtonClick}></button>
+
       </div>
     )
   }
