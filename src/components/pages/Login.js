@@ -18,7 +18,7 @@ export default class Login extends Component {
       this.setState({ error: "Please enter an email and password"})
     }
   }
-  
+
   _handleTyping = (e) => {
     if (this.state && this.state.error) {
       this.setState({ error: null })
@@ -31,13 +31,13 @@ export default class Login extends Component {
   render() {
     return (
       <div className="login">
-        <input type="text" ref="email"
+        <input className="auth" type="text" ref="email" placeholder="email" maxLength="100"
           onKeyUp={this._handleTyping}
         />
-        <input type="password" ref="password"
+        <input className="auth" type="password" ref="password" placeholder="password" maxLength="100"
           onKeyUp={this._handleTyping}
         />
-        <button onClick={this._handleLogin}>login</button>
+        <button onClick={this._handleLogin}>Login</button>
       </div>
     );
   }

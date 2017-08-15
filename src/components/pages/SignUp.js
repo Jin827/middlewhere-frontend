@@ -26,10 +26,10 @@ export default class SignUp extends Component {
   render() {
     return (
       <div className="signup">
-        <input type="text" ref="email"
+        <input className="auth" type="text" ref="email" placeholder="email"
           onKeyUp={this._handleTyping}
         />
-        <input type="password" ref="password"
+        <input className="auth" type="password" ref="password" placeholder="password"
           onKeyUp={this._handleTyping}
         />
         <button onClick={this._handleSignup}>Signup</button>
