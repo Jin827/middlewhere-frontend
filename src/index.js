@@ -6,8 +6,8 @@ import Home from './components/pages/Home';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import Project from './components/pages/Project';
-
-import './index.css';
+import './components/App.css'
+// import './index.css';
 
 
 const routes = (

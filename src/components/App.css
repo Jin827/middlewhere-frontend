@@ -1,29 +1,283 @@
 body *, body *:before, body *:after { box-sizing: inherit; }
 body {
-  box-sizing: border-box;
-  font-size: 12px;
   margin: 0px;
+  padding:0px;
 }
 
 a {
   text-decoration: none !important;
   color: inherit;
+  justify-content: center;
+}
+
+#root {
+  margin:0px;
+  padding:0px;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 .App {
   display: flex;
-  flex-flow: column;
-  align-items: center;
+  flex-wrap: wrap;
+  flex-flow: row;
+  justify-content: center;
+  align-items: flex-start;
   background: #fff;
-  height: 100vh
+  height: 100vh;
+  margin:0px;
+  padding:0px;
+}
+
+.header {
+  background-color: #60C2C6;
+  min-height: 30vh;
+  min-width:100%;
+  display:flex;
+  flex-wrap: wrap;
+
+}
+.home {
+  min-width: 100%;
+  min-height: 70vh;
+  display:flex;
+  flex-flow: row;
+  justify-content: center;
+
+}
+
+.project {
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/*.project {
+  display:flex;
+  border-radius:50%;
+  background-color: orange;
+
+  justify-content: center;
+
+  margin: 3%;
+}*/
+
+.project-card {
+  max-width:50%;
+  max-height: 50%;
+  background-color: #FA9999;
+  border-radius:50%;
+  text-align:center;
+  color: #fff;
+  transition: all .2s ease-in-out;
+  padding:20px;
+  text-shadow: 2px 2px 4px #e57272;
+  box-shadow: 3px 3px 50px 3px #e57272 inset;
+  /*padding:2%;
+  margin: 3%*/
+}
+
+.add-button{
+  display: flex;
+  align-items: center;
+}
+.project-card:hover{
+  transform: scale(1.1);
 }
 
 
-.settings-icon, .menu-icon {
+.add-board-button{
+  min-height:50px;
+  min-width:50px;
+  border-radius: 50%;
+  padding:0;
+  background-color: #F63838;
+  transition: all .2s ease-in-out;
+}
+
+.add-board-button:hover{
+  background-color: #FA9999;
+}
+
+.menu-icon {
   transition: 0.5s;
   cursor: pointer;
+  color: #fff;
+  margin: 5rem 8rem;
+  transition: all .2s ease-in-out;
+
 }
 
-.settings-icon:hover, .menu-icon:hover {
-  color: DarkOliveGreen;
+.menu-icon:hover {
+  transform: scale(1.2);
+}
+
+
+/* Grid system! */
+.row {
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.responsive-img {
+  max-width: 100%;
+}
+.text-center {
+    text-align: center;
+
+}
+/* Small and up columns */
+
+/* If an element needs all twelve columns, then its width is 100%. Easy. */
+.col-small-12 {
+    width: 100%;
+}
+/* If an element needs 11 of 12 columns, its width is 11/12 * 100% */
+.col-small-11 {
+    width: 91.666%;
+}
+.col-small-10 {
+    width: 83.333%;
+}
+.col-small-9 {
+    width: 75%;
+}
+.col-small-8 {
+    width: 66.666%;
+}
+.col-small-7 {
+    width: 58.333%;
+}
+/* This is the class we'd use if we want two 50/50 elements next to each other */
+.col-small-6 {
+    width: 50%;
+}
+.col-small-5 {
+    width: 41.666%;
+}
+/* This is the class we'd use if we want three elements next to each other */
+.col-small-4 {
+    width: 33.333%;
+}
+/* This is the class we'd use if we want four elements next to each other */
+.col-small-3 {
+    width: 25%;
+}
+.col-small-2 {
+    width: 16.666%;
+}
+/* We'll almost NEVER use this */
+.col-small-1 {
+    width: 8.333%;
+}
+
+
+/* Medium and up screen sizes */
+@media only screen and (min-width: 641px) {
+  .section-one{
+    min-height:10vh;
+    padding:2%
+  }
+  .section-two{
+    flex-direction: row-reverse;
+  }
+  .col-medium-12 {
+      width: 100%;
+  }
+  /* If an element needs 11 of 12 columns, its width is 11/12 * 100% */
+  .col-medium-11 {
+      width: 91.666%;
+  }
+  .col-medium-10 {
+      width: 83.333%;
+  }
+  .col-medium-9 {
+      width: 75%;
+  }
+  .col-medium-8 {
+      width: 66.666%;
+  }
+  .col-medium-7 {
+      width: 58.333%;
+  }
+  /* This is the class we'd use if we want two 50/50 elements next to each other */
+  .col-medium-6 {
+      width: 50%;
+  }
+  .col-medium-5 {
+      width: 41.666%;
+  }
+  /* This is the class we'd use if we want three elements next to each other */
+  .col-medium-4 {
+      width: 33.333%;
+  }
+  /* This is the class we'd use if we want four elements next to each other */
+  .col-medium-3 {
+      width: 25%;
+  }
+  .col-medium-2 {
+      width: 16.666%;
+  }
+  /* We'll almost NEVER use this */
+  .col-medium-1 {
+      width: 8.333%;
+  }
+
+}
+
+
+
+
+/* Large screen sizes */
+@media only screen and (min-width: 1025px) {
+  .section-one{
+    height: 30vh;
+  }
+  .section-two{
+    flex-direction: row-reverse;
+  }
+  .col-large-12 {
+      width: 100%;
+  }
+  /* If an element needs 11 of 12 columns, its width is 11/12 * 100% */
+  .col-large-11 {
+      width: 91.666%;
+  }
+  .col-large-10 {
+      width: 83.333%;
+  }
+  .col-large-9 {
+      width: 75%;
+  }
+  .col-large-8 {
+      width: 66.666%;
+  }
+  .col-large-7 {
+      width: 58.333%;
+  }
+  /* This is the class we'd use if we want two 50/50 elements next to each other */
+  .col-large-6 {
+      width: 50%;
+  }
+
+  .col-large-5 {
+      width: 41.666%;
+  }
+  /* This is the class we'd use if we want three elements next to each other */
+  .col-large-4 {
+      width: 33.333%;
+  }
+  /* This is the class we'd use if we want four elements next to each other */
+  .col-large-3 {
+      width: 25%;
+  }
+  .col-large-2 {
+      width: 16.666%;
+  }
+  /* We'll almost NEVER use this */
+  .col-large-1 {
+      width: 8.333%;
+  }
 }
