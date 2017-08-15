@@ -5,7 +5,8 @@ import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import {cyan500,pink100} from 'material-ui/styles/colors';
-import AppBar from 'material-ui/AppBar'
+import AppBar from 'material-ui/AppBar';
+
 
 // const muiTheme = getMuiTheme({
 //   palette: {
