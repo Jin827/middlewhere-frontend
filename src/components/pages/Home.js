@@ -23,8 +23,9 @@ export default class Home extends Component {
   _fetchData = () => {
     api.getProjectsList()
     .then(data => {
+      console.log(data.body, "mydata")
       this.setState({
-        projects:data.body.projects
+        projects:data.body
       })
     })
 
@@ -38,7 +39,7 @@ export default class Home extends Component {
 
   render() {
     let { projects } = this.state
-
+    console.log(projects)
     return (
       <div className="home">
         { projects ? projects.map(p =>
