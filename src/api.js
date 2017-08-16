@@ -31,27 +31,39 @@ class Api {
     .get(`${API_HOST}/projects/${id}`)
   )
 
-  createProjects = (title, description,token) => (
+  createProjects = (title, description, deadline, token) => (
     superagent
     .post(`${API_HOST}/projects`)
     .set('Authorization', `token ${token}`)
-    .send({title,description})
+    .send({title, description, deadline})
   )
 
-
-
-  getTasks = (boardId) => (
+  EditProjects = (title, description, deadline, token) => (
     superagent
-    .get(`${API_HOST}/boards/${boardId}/bookmarks`)
+    .post(`${API_HOST}/projects`)
+    .set('Authorization', `token ${token}`)
+    .send({title, description, deadline})
+  )
+
+  getTasks = (id) => (
+    superagent
+    .get(`${API_HOST}/projects/${id}/tasks`)
 
   )
 
-  // getMe = (token) => (
-  //   superagent
-  //   .get(`${API_HOST}/auth/me`)
-  // )
+  createTasks = (id, title, description, deadline, token) => (
+    superagent
+    .post(`${API_HOST}/projects/${id}/tasks`)
+    .set('Authorization', `token ${token}`)
+    .send({title, description, deadline})
+  )
 
-
+  EditTasks = (id, title, description, deadline, token) => (
+    superagent
+    .post(`${API_HOST}/projects/${id}/tasks`)
+    .set('Authorization', `token ${token}`)
+    .send({title, description, deadline})
+  )
 }
 
 export default new Api();
