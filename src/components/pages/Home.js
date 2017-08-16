@@ -20,7 +20,6 @@ export default class Home extends Component {
   _fetchBoards = () => {
     api.getProjectsList()
     .then(data => {
-      console.log(data.body.projects[0].id)
       this.setState({
         projects:data.body.projects
       })

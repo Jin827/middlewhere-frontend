@@ -1,8 +1,20 @@
 import React, {Component} from 'react';
 import auth from '../../auth'
 import './Login.css';
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper'
+import RaisedButton from 'material-ui/RaisedButton';
+
 
 const ENTER = 13;
+
+const style = {
+  margin: '5% 30%',
+  textAlign: 'center',
+  display: 'inline-block',
+
+};
+
 
 export default class Login extends Component {
 
@@ -30,15 +42,18 @@ export default class Login extends Component {
 
   render() {
     return (
-      <div className="login">
-        <input className="auth" type="text" ref="email" placeholder="email" maxLength="100"
-          onKeyUp={this._handleTyping}
-        />
-        <input className="auth" type="password" ref="password" placeholder="password" maxLength="100"
-          onKeyUp={this._handleTyping}
-        />
-        <button onClick={this._handleLogin}>Login</button>
+      <div className="signup row">
+        <Paper style={style} className="col-large-6 big" zDepth={2}>
+          <div className="centered">
+            <TextField className="small col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
+            <TextField className="small col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
+          </div>
+            <RaisedButton label="Let's Go" secondary={true} onClick={this._handleLogin}/>
+
+        </Paper>
+
       </div>
+
     );
   }
 

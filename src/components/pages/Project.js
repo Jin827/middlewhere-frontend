@@ -6,6 +6,7 @@ import auth from '../../auth';
 import AddButton from '../elements/AddButton';
 import './Project.css';
 
+
 export default class Project extends Component {
   constructor(props) {
     super(props);
@@ -26,11 +27,11 @@ export default class Project extends Component {
         let resultTasks = res.tasks
 
         this.setState({
-          tasks: resultTasks 
+          tasks: resultTasks
       })
         })
       .catch(console.error)
-     
+
   }
 
   _createTaskForm = () =>{
@@ -63,12 +64,12 @@ export default class Project extends Component {
             deadline={b.deadline}
             priority={b.priority}
           />
-        )} 
-        
-        
+        )}
+
+
         {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask taskId= {this.props.params.id}/> : null}
-          
+
       </div>
     );
   }

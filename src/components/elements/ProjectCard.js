@@ -12,11 +12,15 @@ export default class ProjectCard extends Component {
   render() {
     let { progress, title, description, id } = this.props
     return (
-      <Card className='project-card'>
-        <CardHeader title={title} />
-        <CardText>{description}</CardText>
-        <LinearProgress mode="determinate" value={progress} />
-      </Card>
+      <div>
+        <Link to={`/projects/${id}`}>
+          <Card className='project-card'>
+            <CardHeader className='project-card' title={title} />
+            <CardText>{description}</CardText>
+            <LinearProgress mode="determinate" value={progress} />
+          </Card>
+        </Link>
+      </div>
     );
   }
 

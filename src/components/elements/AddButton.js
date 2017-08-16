@@ -7,7 +7,6 @@ const style = {
     margin: 0,
     right: 50,
     bottom: 50,
-
     position: 'fixed',
 };
 
@@ -29,13 +28,9 @@ export default class AddButton extends Component {
   render(){
 
     return (
-      <FloatingActionButton secondary={true}style={style}><ContentAdd /></FloatingActionButton>
-      // <div className="add-button">
-      //
-      //     <button className="fa fa-plus fa-1x add-board-button" onClick={this.props.addButtonClick}></button>
-      //
-      // </div>
-    )
-  }
+      <div>
+        <FloatingActionButton secondary={true} style={style} onClick={this.props.addButtonClick}><ContentAdd /></FloatingActionButton>
+      </div>
+  )}
 
 }
