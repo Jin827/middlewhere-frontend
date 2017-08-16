@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import api from '../../api';
 import ProjectCard from '../elements/ProjectCard';
 import AddButton from '../elements/AddButton';
-// import auth from '../../auth';
+import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
 
 export default class Home extends Component {
@@ -34,7 +34,7 @@ export default class Home extends Component {
         var project = data[0].body;
         var user = data[1].body;
 
-        
+
         this.setState({
           isAdmin: user.id === project.ownerId
         })
@@ -71,7 +71,7 @@ export default class Home extends Component {
             />
           </div>
         )}
-        
+
         {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createProjectForm}  /> : null}
         {this.state.createProject ? <CreateProject/> : null}
       </div>
