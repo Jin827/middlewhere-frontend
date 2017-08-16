@@ -1,33 +1,25 @@
-.login, .signup{
-  min-width:20%;
-  min-height:8%;
+.signup {
   display:flex;
-  flex-direction:column;
-  font-family: 'Roboto', sans-serif;
+  flex:1;
+  font-size:0.5rem;
+  justify-content: center;
 }
 
-.auth {
-  min-width:50%;
-  min-height:2%;
-  margin: 4%;
-  padding:6%;
-  border-radius: 10px;
-  font-weight:bold;
-  color:#757575;
-}
-button {
-  min-width:50%;
-  min-height:2%;
-  font-weight: bold;
-  color: #FA9999 ;
-  background-color: #2ecc71;
-  border-radius: 10px;
-  border-style: none;
-  padding: 1rem 2rem;
-  transition: all .2s ease-in-out;
+.big {
+  display:flex;
+  flex-direction:row;
+  min-height: auto;
+
 }
 
-button:hover{
-  background-color: #98f2be;
-  transform: scale(1.1);
+
+.centered {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: center;
+  margin-top: -1rem;
+}
+.typo{
+    font-size: 0.8rem !important;
+    align-self: center;
 }

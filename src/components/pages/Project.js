@@ -5,6 +5,7 @@ import CreateTask from '../modals/CreateTask';
 import AddButton from '../elements/AddButton';
 import './Project.css';
 
+
 export default class Project extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +27,7 @@ export default class Project extends Component {
         let resultTasks = res.body.tasks
 
         this.setState({
-          tasks: resultTasks 
+          tasks: resultTasks
       })
         })
       .catch(console.error)
@@ -77,12 +78,13 @@ export default class Project extends Component {
             deadline={b.deadline}
             priority={b.priority}
           />
+
         )} 
         
        
         {this.state.isAdmin?  <AddButton addButtonClick={this._createTaskForm} /> : null} 
         {this.state.createTask ? <CreateTask /> : null} 
-           
+
       </div>
     );
   }
