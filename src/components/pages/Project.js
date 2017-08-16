@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-// import api from '../../api';
+import api from '../../api';
 import TaskCard from '../elements/TaskCard';
 import CreateTask from '../modals/CreateTask';
 import auth from '../../auth';
@@ -19,11 +19,10 @@ export default class Project extends Component {
   }
 
   fetchBoardData = () => {
-      fetch('https://private-a5484-middlewhere.apiary-mock.com/projects/id/tasks')
-      .then(res=> res.json())
+      
+      api.getTasks()
       .then(res => {
-        console.log(res)
-        let resultTasks = res.tasks
+        let resultTasks = res.body.tasks
 
         this.setState({
           tasks: resultTasks 
@@ -53,7 +52,6 @@ export default class Project extends Component {
 
     return (
       <div className="tasks">
-        <h1>Project.js</h1>
          { tasks.map(b =>
           <TaskCard
             key={b.id}
@@ -67,7 +65,7 @@ export default class Project extends Component {
         
         
         {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createTaskForm} /> : null}
-        {this.state.createTask ? <CreateTask taskId= {this.props.params.id}/> : null}
+        {this.state.createTask ? <CreateTask projectId={this.props.params.id}/> : null}
           
       </div>
     );

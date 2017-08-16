@@ -20,7 +20,6 @@ export default class Home extends Component {
   _fetchBoards = () => {
     api.getProjectsList()
     .then(data => {
-      console.log(data.body.projects[0].id)
       this.setState({
         projects:data.body.projects
       })
@@ -57,7 +56,8 @@ export default class Home extends Component {
             />
           </div>
         )}
-        <AddButton addButtonClick={this._createProjectForm}  />
+        
+        {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createProjectForm}  /> : null}
         {this.state.createProject ? <CreateProject/> : null}
       </div>
     );

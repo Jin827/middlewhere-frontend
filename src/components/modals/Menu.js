@@ -11,6 +11,11 @@ class Menu extends Component {
     this.props.closeMenu();
   }
 
+  _logOut = () => {
+    auth.logout()
+    
+  }
+
   render() {
     let { closeMenu, show } = this.props
     const isLoggedIn = auth.isLoggedIn()
@@ -40,12 +45,12 @@ class Menu extends Component {
           : null}
 
           {isLoggedIn ?
-            <Link to="/logout" className="menu__item" onClick={closeMenu}>
+            <Link to="/login" className="menu__item" onClick={this._logOut.bind(this)}>
               Logout
             </Link>
           : null}
         </div>
-
+4
       </div>
     );
   }
