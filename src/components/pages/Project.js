@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-// import api from '../../api';
+import api from '../../api';
 import TaskCard from '../elements/TaskCard';
 import CreateTask from '../modals/CreateTask';
-import auth from '../../auth';
 import AddButton from '../elements/AddButton';
 import './Project.css';
 
@@ -11,20 +10,21 @@ export default class Project extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: []
+      tasks: [],
+      isAdmin: false
+     
     };
   }
 
   componentDidMount() {
-    this.fetchBoardData()
+    this.fetchData()
   }
 
-  fetchBoardData = () => {
-      fetch('https://private-a5484-middlewhere.apiary-mock.com/projects/id/tasks')
-      .then(res=> res.json())
+  fetchData = () => {
+      
+      api.getTasks(this.props.params.id)
       .then(res => {
-        console.log(res)
-        let resultTasks = res.tasks
+        let resultTasks = res.body.tasks
 
         this.setState({
           tasks: resultTasks
@@ -32,12 +32,26 @@ export default class Project extends Component {
         })
       .catch(console.error)
 
+      Promise.all([
+        api.getProjects(this.props.params.id),
+        api.getMe(localStorage.token)
+      ])
+      .then(data => {
+        
+        var project = data[0].body;
+        var user = data[1].body;
+
+        
+        this.setState({
+          isAdmin: user.id === project.ownerId
+        })
+      })
+      
   }
 
   _createTaskForm = () =>{
     this.setState({
       createTask: true
-
     })
   }
 
@@ -54,9 +68,9 @@ export default class Project extends Component {
 
     return (
       <div className="tasks">
-        <h1>Project.js</h1>
          { tasks.map(b =>
           <TaskCard
+            isAdmin={this.state.isAdmin}
             key={b.id}
             id={b.id}
             title={b.title}
@@ -64,11 +78,12 @@ export default class Project extends Component {
             deadline={b.deadline}
             priority={b.priority}
           />
-        )}
 
-
-        {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createTaskForm} /> : null}
-        {this.state.createTask ? <CreateTask taskId={this.props.params.id}/> : null}
+        )} 
+        
+       
+        {this.state.isAdmin?  <AddButton addButtonClick={this._createTaskForm} /> : null} 
+        {this.state.createTask ? <CreateTask /> : null} 
 
       </div>
     );

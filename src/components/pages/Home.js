@@ -9,21 +9,36 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      projects: [],
+      isAdmin: false
     };
   }
 
   componentDidMount() {
-    this._fetchBoards();
+    this._fetchData();
   }
 
-  _fetchBoards = () => {
+  _fetchData = () => {
     api.getProjectsList()
     .then(data => {
       this.setState({
         projects:data.body.projects
       })
     })
+
+    Promise.all([
+        api.getProjects(this.props.params.id),
+        api.getMe(localStorage.token)
+      ])
+      .then(data => {
+        var project = data[0].body;
+        var user = data[1].body;
+
+        
+        this.setState({
+          isAdmin: user.id === project.ownerId
+        })
+      })
   }
 
   _createProjectForm = () =>{
@@ -47,6 +62,7 @@ export default class Home extends Component {
         { projects.map(p =>
           <div>
             <ProjectCard
+              isAdmin={this.state.isAdmin}
               key={p.id}
               id={p.id}
               title={p.title}
@@ -55,7 +71,8 @@ export default class Home extends Component {
             />
           </div>
         )}
-        <AddButton addButtonClick={this._createProjectForm}  />
+        
+        {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createProjectForm}  /> : null}
         {this.state.createProject ? <CreateProject/> : null}
       </div>
     );

@@ -3,7 +3,7 @@ import './CreateProject.css';
 import {browserHistory as history} from 'react-router';
 import api from '../../api';
 
-export default class EditBoard extends Component {
+export default class EditProject extends Component {
   constructor(props) {
     super(props);
     this.state = {

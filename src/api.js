@@ -43,19 +43,33 @@ class Api {
     .set('Authorization', `token ${token}`)
     .send({title,description})
   )
-
-  getTasks = (boardId) => (
+ 
+  getTasks = (id) => (
     superagent
-    .get(`${API_HOST}/boards/${boardId}/bookmarks`)
+    .get(`${API_HOST}/projects/${id}/tasks`)
 
   )
 
-  getMe = (token) => (
+  createTasks = (id, title, description, deadline, token) => (
+    superagent
+    .post(`${API_HOST}/projects/${id}/tasks`)
+    .set('Authorization', `token ${token}`)
+    .send({title, description, deadline})
+
+  )
+
+  EditTasks = (id, title, description, deadline, token) => (
+    superagent
+    .post(`${API_HOST}/projects/${id}/tasks`)
+    .set('Authorization', `token ${token}`)
+    .send({title, description, deadline})
+  )
+
+   getMe = (token) => (
     superagent
     .get(`${API_HOST}/auth/me`)
     .set('Authorization', `token ${token}`)
   )
-
 
 }
 

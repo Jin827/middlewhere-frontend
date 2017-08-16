@@ -27,6 +27,7 @@ export default class CreateProject extends Component {
 
   _fetchData = () =>{
     api.createProjects(this.refs.title.getValue(), this.refs.deadline.getValue(), this.refs.description.getValue(), localStorage.token)
+
     .then (res => {
       history.push(`/`)
     })
