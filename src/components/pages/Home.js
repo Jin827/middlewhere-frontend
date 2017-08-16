@@ -14,10 +14,10 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    this._fetchBoards();
+    this._fetchProjects();
   }
 
-  _fetchBoards = () => {
+  _fetchProjects = () => {
     api.getProjectsList()
     .then(data => {
       this.setState({

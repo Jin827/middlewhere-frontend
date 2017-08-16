@@ -38,6 +38,13 @@ class Api {
     .send({title, description, deadline})
   )
 
+  EditProjects = (title, description, deadline, token) => (
+    superagent
+    .post(`${API_HOST}/projects`)
+    .set('Authorization', `token ${token}`)
+    .send({title, description, deadline})
+  )
+
   getTasks = (id) => (
     superagent
     .get(`${API_HOST}/projects/${id}/tasks`)
@@ -45,6 +52,13 @@ class Api {
   )
 
   createTasks = (id, title, description, deadline, token) => (
+    superagent
+    .post(`${API_HOST}/projects/${id}/tasks`)
+    .set('Authorization', `token ${token}`)
+    .send({title, description, deadline})
+  )
+
+  EditTasks = (id, title, description, deadline, token) => (
     superagent
     .post(`${API_HOST}/projects/${id}/tasks`)
     .set('Authorization', `token ${token}`)

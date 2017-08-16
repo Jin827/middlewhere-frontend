@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import EditButton from './EditButton';
+import EditTask from '../modals/EditTask'
+import auth from '../../auth';
 import './TaskCard.css';
 
 export default class TaskCard extends Component {
@@ -6,6 +9,13 @@ export default class TaskCard extends Component {
     super(props);
     this.state = {};
   }
+
+  _editTaskForm = () =>{
+      this.setState({
+        editTask: true
+
+      })
+    }
 
   render() {
     let { title, description, deadline } = this.props
@@ -19,8 +29,14 @@ export default class TaskCard extends Component {
             <p className="deadline">deadline  { deadline }</p>
           </div>
           <br/>
+          
+          <EditButton editButtonClick={this._editTaskForm} />
+          {/* {auth.isAdminUser() ?  <EditButton editButtonClick={this._editTaskForm} /> : null} */}
+          {this.state.editTask ? <EditTask /> : null} 
         </div>
     );
   }
 
 }
+
+// id={this.props.params.id}

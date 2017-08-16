@@ -26,7 +26,7 @@ export default class CreateProject extends Component {
     }
 
   _fetchData = () =>{
-    api.createProjects(this.refs.title.value, this.refs.description.value,localStorage.token)
+    api.createProjects(this.refs.title.value, this.refs.description.value, this.refs.dedlilne.valuelocalStorage.token)
     .then (res => {
       console.log(res.body)
       history.push(`/`)
@@ -39,10 +39,12 @@ export default class CreateProject extends Component {
     return (
       <div className="createNewProject">
         <form>
-          Title: <input type="text" ref="title" maxLength="200"/>
+          Title: <input type="text" ref="title" maxLength="20"/>
           <hr/>
           Description: <input value={this.state.inputValue} type="text" ref="description" maxLength="200" onInput={e => this.handleInput(e)}/>
           {this.state.inputValue.length}/80
+          <hr/>
+          Deadline: <input type="text" ref="deadline" maxLength="20"/>
           <hr/>
           <button type="submit" onClick={(e) => this._handleClick(e)}>Create</button>
         </form>

@@ -15,6 +15,15 @@ module.exports = {
     return localStorage.token
   },
 
+  getAdminId(id) {
+    if (localStorage.adminUserId) {
+      
+    } else {
+      api.getProjects(id)
+      .then(res => localStorage.adminUserId = res.body.adminUserId)
+    }
+  },
+
   logout() {
     return api.requestLogout(localStorage.token)
     .then(res => delete localStorage.token)
@@ -24,4 +33,7 @@ module.exports = {
     return !!localStorage.token
   },
   
+  isAdminUser() {
+    return !!localStorage.adminUserId
+  }
 }
