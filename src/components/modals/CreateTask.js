@@ -11,10 +11,10 @@ export default class CreateBookmark extends Component {
     };
   }
 
-  // _handleClick = (e) => {
-  //   // e.preventDefault()
-  //   this._fetchData()
-  // }
+  _handleClick = (e) => {
+    // e.preventDefault()
+    this._fetchData()
+  }
 
   _handleInput = (e) => {
     // e.preventDefault()
@@ -25,14 +25,14 @@ export default class CreateBookmark extends Component {
     }
   }
 
-  // _fetchData = () => {
+  _fetchData = () => {
 
-  //   api.createBookmarks(this.props.boardId, this.refs.title.value, this.refs.url.value, this.refs.description.value, localStorage.token)
-  //   .then(res => {
-  //     console.log('CBM 34', this.props.boardId, " fsadfsf ", res);
-  //     history.push(`/boards/${this.props.boardId}`) // ******* REDIRECT BETTER
-  //   })
-  // }
+    api.createBookmarks(this.props.projectId, this.refs.title.value, this.refs.description.value, this.refs.description.value, localStorage.token)
+    .then(res => {
+      
+      history.push(`/projects/${this.props.projectId}`) 
+    })
+  }
 
   render() {
     return (
@@ -40,11 +40,11 @@ export default class CreateBookmark extends Component {
         <form>
           TITLE: <input type="text" ref="title"/>
           <hr/>
-          DESCRIPTION: <input type="text" ref="description" onInput={(e)=>this._handleInput(e)}/>
+          DESCRIPTION: <input type="text" ref="description"  value={this.state.inputValue} onInput={(e)=>this._handleInput(e)}/>
           {80-this.state.inputValue.length}
           <hr/>
           DEADLINE: <input type="text" ref="deadline"/>
-          <button type="submit">Create</button> 
+          <button type="submit" onClick={(e) => this._handleClick(e)}>Create</button> 
         </form>
 
       </div>
@@ -53,7 +53,7 @@ export default class CreateBookmark extends Component {
 
 }
 
-{/* onClick={(e) => this._handleClick(e)} */}
+
 
 
  
