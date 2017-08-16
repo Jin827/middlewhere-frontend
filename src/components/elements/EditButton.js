@@ -1,5 +1,8 @@
 import React, {Component} from 'react';
 // import EditProject from '../modals/EditProject'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+
 
 
 export default class EditButton extends Component {
@@ -20,7 +23,7 @@ export default class EditButton extends Component {
   render(){
     return (
       <div className="add-button">
-        <FloatingActionButton secondary={true} style={style} onClick={this.props.addButtonClick}><ContentAdd /></FloatingActionButton>
+        <FloatingActionButton secondary={true} onClick={this.props.addButtonClick}><ContentAdd /></FloatingActionButton>
       </div>
     )
   }
