@@ -3,7 +3,6 @@ import { API_HOST } from './config'
 
 class Api {
   requestSignup = (email, password) => (
-
     superagent
     .post(`${API_HOST}/auth/users`)
     .send({email, password})
@@ -31,20 +30,20 @@ class Api {
     .get(`${API_HOST}/projects/${id}`)
   )
 
-  createProjects = (title, description, deadline, token) => (
+  createProjects = (title, deadline, description, token) => (
     superagent
     .post(`${API_HOST}/projects`)
     .set('Authorization', `token ${token}`)
-    .send({title, description, deadline})
+    .send({title, deadline, description})
   )
 
-  EditProjects = (title, description, deadline, token) => (
+  editProjects = (id, title, description, token) => (
     superagent
-    .post(`${API_HOST}/projects`)
+    .patch(`${API_HOST}/projects/${id}`)
     .set('Authorization', `token ${token}`)
-    .send({title, description, deadline})
+    .send({title,description})
   )
-
+ 
   getTasks = (id) => (
     superagent
     .get(`${API_HOST}/projects/${id}/tasks`)
@@ -56,6 +55,7 @@ class Api {
     .post(`${API_HOST}/projects/${id}/tasks`)
     .set('Authorization', `token ${token}`)
     .send({title, description, deadline})
+
   )
 
   EditTasks = (id, title, description, deadline, token) => (
