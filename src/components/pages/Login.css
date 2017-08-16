@@ -1,5 +1,4 @@
 .signup {
-
   display:flex;
   flex:1;
   font-size:0.5rem;
@@ -9,7 +8,7 @@
 .big{
   display:flex;
   flex-direction:row;
-  max-height: 40vh;
+  max-height: 45vh;
   padding:1rem;
 }
 .centered {
@@ -21,11 +20,4 @@
 .small{
     font-size: 0.8rem !important;
     align-self: center;
-}
-/*.signin {
-  font-size: 0.8rem !important;
-  /*margin:40px*/
-
-input {
-  margin:0 !important;
 }

@@ -1,32 +1,25 @@
 .signup {
-
   display:flex;
   flex:1;
   font-size:0.5rem;
   justify-content: center;
-  
 }
 
-.big{
+.big {
   display:flex;
   flex-direction:row;
   min-height: auto;
-  padding:1rem;
+
 }
+
+
 .centered {
   display:flex;
   flex-wrap:wrap;
   justify-content: center;
   margin-top: -1rem;
 }
-.small{
+.typo{
     font-size: 0.8rem !important;
     align-self: center;
-}
-/*.signin {
-  font-size: 0.8rem !important;
-  /*margin:40px*/
-
-input {
-  margin:0 !important;
 }

@@ -12,18 +12,19 @@ const style = {
   margin: '5% 30%',
   textAlign: 'center',
   display: 'inline-block',
-
 };
-
 
 export default class Login extends Component {
 
   _handleLogin = () => {
     // deep destructuring equivalent to (let email = this.refs.email.value;)
-    let { email: {value: email}, password: {value: password} } = this.refs;
+    let email = this.refs.email.getValue()
+    let password = this.refs.password.getValue()
+
     if (email && password) {
       auth.login(email, password)
-      .then(res => this.props.router.push('/'))
+      .then(res => {
+        this.props.router.push('/')})
       .catch(console.error)
     }
     else {
@@ -49,7 +50,7 @@ export default class Login extends Component {
             <TextField className="small col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
           </div>
             <RaisedButton label="Let's Go" secondary={true} onClick={this._handleLogin}/>
-
+            <h3>Please enter a valid email and password.</h3>
         </Paper>
 
       </div>

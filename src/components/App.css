@@ -20,6 +20,7 @@ a {
   padding:0px;
 }
 
+
 .App {
   display: flex;
   flex-flow: row;
@@ -40,10 +41,6 @@ a {
 .home {
   flex: 1;
   margin: 1em
-  /*display:flex;*/
-  /*flex-flow: row;*/
-  /*justify-content: center;*/
-
 }
 
 .project {

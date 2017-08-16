@@ -10,10 +10,10 @@ export default class TaskCard extends Component {
   render() {
       console.log(this.props,"comee back plz !!!!")
     let { id, title, description, deadline } = this.props
-  
+
     return (
-        
-        <div> 
+
+        <div>
           <h1>TaskCard ? where are you?</h1>
           <h2 className="task-card">{ title }</h2>
           <div className="info">

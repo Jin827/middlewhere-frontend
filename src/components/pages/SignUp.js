@@ -12,7 +12,6 @@ const style = {
   margin: '5% 30%',
   textAlign: 'center',
   display: 'inline-block',
-
 };
 
 
@@ -33,9 +32,10 @@ export default class SignUp extends Component {
 
   _handleSignup = (e) => {
     e.preventDefault();
-    api.requestSignup(this.refs.email.value, this.refs.password.value)
+
+    api.requestSignup(this.refs.firstName.getValue(), this.refs.lastName.getValue(), this.refs.email.getValue(), this.refs.password.getValue())
     .then(res => {
-      if(this.refs.email.value && this.refs.password.value){
+      if(this.refs.firstName.getValue() && this.refs.lastName.getValue() && this.refs.email.getValue() && this.refs.password.getValue()){
         this.props.router.push('/login')
       }
     })
@@ -50,13 +50,13 @@ export default class SignUp extends Component {
       <div className="signup row">
         <Paper style={style} className="col-large-6 big" zDepth={2}>
           <div className="centered">
-            <TextField className="small col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" onKeyUp={this._handleTyping}/>
-            <TextField className="small col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" onKeyUp={this._handleTyping}/>
-            <TextField className="small col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
-            <TextField className="small col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
+            <TextField className="typo col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" onKeyUp={this._handleTyping}/>
+            <TextField className="typo col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" onKeyUp={this._handleTyping}/>
+            <TextField className="typo col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
+            <TextField className="typo col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
           </div>
-            <RaisedButton label="SignUp" secondary={true} onClick={this._handleSignup}/>
-
+          <RaisedButton label="SignUp" secondary={true} onClick={this._handleSignup}/>
+          <h3>{this.state.error}</h3>
         </Paper>
 
       </div>
