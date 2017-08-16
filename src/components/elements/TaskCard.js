@@ -30,8 +30,8 @@ export default class TaskCard extends Component {
           </div>
           <br/>
           
-          <EditButton editButtonClick={this._editTaskForm} />
-          {/* {auth.isAdminUser() ?  <EditButton editButtonClick={this._editTaskForm} /> : null} */}
+         
+          {this.props.isAdmin ?  <EditButton editButtonClick={this._editTaskForm} /> : null}  
           {this.state.editTask ? <EditTask /> : null} 
         </div>
     );
@@ -39,4 +39,3 @@ export default class TaskCard extends Component {
 
 }
 
-// id={this.props.params.id}

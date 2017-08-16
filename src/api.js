@@ -64,6 +64,13 @@ class Api {
     .set('Authorization', `token ${token}`)
     .send({title, description, deadline})
   )
+
+   getMe = (token) => (
+    superagent
+    .get(`${API_HOST}/auth/me`)
+    .set('Authorization', `token ${token}`)
+  )
+
 }
 
 export default new Api();
