@@ -41,7 +41,7 @@ export default class EditBookmark extends Component {
           DESCRIPTION: <input type="text" ref="description" value={this.state.inputValue} onInput={(e)=>this._handleInput(e)} maxLength="200"/>
           {80-this.state.inputValue.length}
           <hr/>
-          DEADLINE: <input type="text" ref="deadline" maxLength="20"/>
+          DEADLINE: <input type="text" ref="deadline" maxLength="100"/>
           <hr/>
           <button type="submit" onClick={(e) => this._handleClick(e)}>Edit</button>
         </form>

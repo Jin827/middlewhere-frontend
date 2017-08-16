@@ -39,6 +39,7 @@ export default class CreateProject extends Component {
     return (
       <div className="createNewProject">
         <form>
+          
           Title: <input type="text" ref="title" maxLength="20"/>
           <hr/>
           Description: <input value={this.state.inputValue} type="text" ref="description" maxLength="200" onInput={e => this.handleInput(e)}/>
