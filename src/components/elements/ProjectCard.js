@@ -3,6 +3,7 @@ import EditButton from './EditButton';
 import EditProject from '../modals/EditProject'
 import auth from '../../auth';
 import '../App.css';
+import { Link } from 'react-router';
 import {Card, CardHeader, CardText, LinearProgress} from 'material-ui';
 import './ProjectCard.css';
 // import EditButton from './EditButton';
@@ -13,7 +14,7 @@ export default class ProjectCard extends Component {
     super(props);
     this.state = {};
   }
-    
+
   _editProjectForm = () =>{
       this.setState({
         editProject: true
@@ -22,7 +23,7 @@ export default class ProjectCard extends Component {
     }
 
   render() {
-    let { progress, title, description, deadline } = this.props
+    let { id, progress, title, description } = this.props
     return (
 
       <div>
@@ -36,9 +37,9 @@ export default class ProjectCard extends Component {
       </div>
     );
 
-      
-        
-   {auth.props.isAdmin ?  <EditButton editButtonClick={this._editProjectForm} /> : null}  
+
+
+   {auth.props.isAdmin ?  <EditButton editButtonClick={this._editProjectForm} /> : null}
    {this.state.editProject ? <EditProject /> : null}
 
   }
