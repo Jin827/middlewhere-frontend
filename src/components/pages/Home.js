@@ -9,21 +9,36 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      projects: [],
+      isAdmin: false
     };
   }
 
   componentDidMount() {
-    this._fetchProjects();
+    this._fetchData();
   }
 
-  _fetchProjects = () => {
+  _fetchData = () => {
     api.getProjectsList()
     .then(data => {
       this.setState({
         projects:data.body.projects
       })
     })
+
+    Promise.all([
+        api.getProjects(this.props.params.id),
+        api.getMe(localStorage.token)
+      ])
+      .then(data => {
+        var project = data[0].body;
+        var user = data[1].body;
+
+        
+        this.setState({
+          isAdmin: user.id === project.ownerId
+        })
+      })
   }
 
   _createProjectForm = () =>{
@@ -48,6 +63,7 @@ export default class Home extends Component {
         { projects.map(p =>
           <div>
             <ProjectCard
+              isAdmin={this.state.isAdmin}
               key={p.id}
               id={p.id}
               title={p.title}
@@ -64,22 +80,3 @@ export default class Home extends Component {
   }
 
 }
-
-// {auth.isLoggedIn() ? <AddButton addButtonClick={this._createBoardForm}  /> : null}
-// {this.state.createBoard ? <CreateBoard id={boards}/> : null}
-//isAdmin then you can add a project for example
-// add delete, assign tasks
-
-
-// {auth.isLoggedIn() ? <AddButton /> : null}
-
-// .then(data => {
-//   console.log(data)
-// })
-// this.setState({
-//   projects: [
-//     {id:1,title:"first project", progress: "20%", description:"project about web development"},
-//     {id:2,title:"second project",progress:"12%", description:"project about food"},
-//     {id:3,title:"third project",progress:"52%", description:"project about sleep"}
-//   ]
-// })

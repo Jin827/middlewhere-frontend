@@ -27,8 +27,8 @@ export default class ProjectCard extends Component {
         <cardText>{deadline}</cardText>
         <LinearProgress mode="determinate" value={progress} />
 
-        <EditButton editButtonClick={this._editProjectForm}/>
-        {/* {auth.isAdminUser() ?  <EditButton editButtonClick={this._editProjectForm} /> : null} */}
+        
+        {auth.props.isAdmin ?  <EditButton editButtonClick={this._editProjectForm} /> : null}  
         {this.state.editProject ? <EditProject /> : null}
            
       </Card>
