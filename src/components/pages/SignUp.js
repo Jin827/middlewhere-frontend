@@ -1,27 +1,19 @@
 import React, {Component} from 'react';
 // import auth from '../../auth'
 import './SignUp.css';
-import api from "../../api"
+import api from "../../api";
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper'
 import RaisedButton from 'material-ui/RaisedButton';
-import {cyan500} from 'material-ui/styles/colors';
 
-const styles = {
-  button: {
-    margin: 12,
-    backgroundColor: 'red',
-  },
-  exampleImageInput: {
+const ENTER = 13;
 
-    cursor: 'pointer',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    right: 0,
-    left: 0,
-    width: '100%',
-    opacity: 0,
-  },
+const style = {
+  margin: '5% 30%',
+  textAlign: 'center',
+  display: 'inline-block',
 };
+
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -29,11 +21,21 @@ export default class SignUp extends Component {
     this.state = {};
   }
 
+  _handleTyping = (e) => {
+    if (this.state && this.state.error) {
+      this.setState({ error: null})
+    }
+    if (e.keyCode===ENTER) {
+      this._handleSignup()
+    }
+  }
+
   _handleSignup = (e) => {
     e.preventDefault();
-    api.requestSignup(this.refs.email.value, this.refs.password.value)
+
+    api.requestSignup(this.refs.firstName.getValue(), this.refs.lastName.getValue(), this.refs.email.getValue(), this.refs.password.getValue())
     .then(res => {
-      if(this.refs.email.value && this.refs.password.value){
+      if(this.refs.firstName.getValue() && this.refs.lastName.getValue() && this.refs.email.getValue() && this.refs.password.getValue()){
         this.props.router.push('/login')
       }
     })
@@ -45,30 +47,21 @@ export default class SignUp extends Component {
 
   render() {
     return (
-      <div className="signup">
-        <input className="auth" type="text" ref="firstName" placeholder="firstName"
-          onKeyUp={this._handleTyping}
-        />
-        <input className="auth" type="text" ref="lastName" placeholder="lastName"
-          onKeyUp={this._handleTyping}
-        />
-        <input className="auth" type="text" ref="email" placeholder="email"
-          onKeyUp={this._handleTyping}
-        />
-        <input className="auth" type="password" ref="password" placeholder="password"
-          onKeyUp={this._handleTyping}
-        />
-        <RaisedButton
-           label="Signup"
-           labelPosition="before"
-           style={styles.button}
-           containerElement="label"
-           onClick={this._handleSignup}
-         >
-           <input type="file" style={styles.exampleImageInput} />
-        </RaisedButton>
-        <h3>{this.state.error}</h3>
+      <div className="signup row">
+        <Paper style={style} className="col-large-6 big" zDepth={2}>
+          <div className="centered">
+            <TextField className="typo col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" onKeyUp={this._handleTyping}/>
+            <TextField className="typo col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" onKeyUp={this._handleTyping}/>
+            <TextField className="typo col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
+            <TextField className="typo col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
+          </div>
+          <RaisedButton label="SignUp" secondary={true} onClick={this._handleSignup}/>
+          <h3>{this.state.error}</h3>
+        </Paper>
+
       </div>
+
+
     );
   }
 

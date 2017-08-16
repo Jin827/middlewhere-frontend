@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import './CreateProject.css';
 import api from '../../api'
 import {browserHistory as history} from 'react-router';
+import TextField from 'material-ui/TextField'
+import FlatButton from 'material-ui/FlatButton';
 
 export default class CreateProject extends Component {
   constructor(props) {
@@ -13,11 +15,9 @@ export default class CreateProject extends Component {
 
   handleInput = (e) => {
     e.preventDefault()
-    if (e.target.value.length <= 80){
-      this.setState({
-        inputValue:e.target.value
-      })
-    }
+    this.setState({
+      inputValue:e.target.value
+    })
   }
 
   _handleClick = (e) => {
@@ -26,29 +26,21 @@ export default class CreateProject extends Component {
     }
 
   _fetchData = () =>{
-    api.createProjects(this.refs.title.value, this.refs.description.value, this.refs.dedlilne.valuelocalStorage.token)
+    api.createProjects(this.refs.title.getValue(), this.refs.deadline.getValue(), this.refs.description.getValue(), localStorage.token)
+
     .then (res => {
-      console.log(res.body)
       history.push(`/`)
-
     })
-
   }
 
   render(){
     return (
       <div className="createNewProject">
-        <form>
-          
-          Title: <input type="text" ref="title" maxLength="20"/>
-          <hr/>
-          Description: <input value={this.state.inputValue} type="text" ref="description" maxLength="200" onInput={e => this.handleInput(e)}/>
-          {this.state.inputValue.length}/80
-          <hr/>
-          Deadline: <input type="text" ref="deadline" maxLength="20"/>
-          <hr/>
-          <button type="submit" onClick={(e) => this._handleClick(e)}>Create</button>
-        </form>
+          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='100'/>
+          <TextField floatingLabelText="Deadline: " type="text" ref="deadline" maxLength='100'/>
+          <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="500" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
+          {140 - this.state.inputValue.length}
+          <FlatButton label="Submit" secondary={true} onClick={(e) => this._handleClick(e)} />
       </div>
     );
   }

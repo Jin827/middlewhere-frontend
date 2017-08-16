@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import api from '../../api';
 import ProjectCard from '../elements/ProjectCard';
 import AddButton from '../elements/AddButton';
-import auth from '../../auth';
+// import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
 
 export default class Home extends Component {
@@ -58,7 +58,6 @@ export default class Home extends Component {
     }
 
     return (
-
       <div className="home">
         { projects.map(p =>
           <div>
