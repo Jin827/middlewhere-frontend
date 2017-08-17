@@ -30,26 +30,27 @@ a {
   display:flex;
   padding: 1em;
 }
-.home {
+
+
+/*.home {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   flex: 1;
   margin: 1em
-}
+}*/
 
-.project {
+/*.project {
   display:flex;
   justify-content: center;
   align-items: center;
-}
+}*/
 
 .add-button{
   display: flex;
   align-items: center;
 }
 
-.project-card{
-  text-align: center;
-  padding:0;
-}
 
 /*.project-card:hover{
   transform: scale(1.1);
