@@ -6,11 +6,11 @@
   display: flex;
   flex-wrap:wrap;
   margin:2% 5%;
-  justify-content: center;
+
 }
 
 .single-proj {
-  margin:2%;
+  padding:2%;
 
 }
 

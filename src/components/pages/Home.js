@@ -3,6 +3,7 @@ import moment from 'moment';
 import api from '../../api';
 import ProjectCard from '../elements/ProjectCard';
 import AddButton from '../elements/AddButton';
+import AddForm from '../elements/AddForm'
 import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
 import Paper from 'material-ui/Paper'
@@ -42,7 +43,7 @@ export default class Home extends Component {
     return (
       <div className="home">
         { projects ? projects.map(p =>
-          <div className = "single-proj col-large-3">
+          <div className = "single-proj col-large-3 col-medium-6 col-small-12">
             <ProjectCard
               key={p.id}
               id={p.id}
@@ -53,6 +54,7 @@ export default class Home extends Component {
             />
           </div>
         ) : <h1>No projects yet</h1>}
+        <AddForm/>
         {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createProjectForm}  /> : null}
         {this.state.createProject ? <CreateProject/> : null}
       </div>
