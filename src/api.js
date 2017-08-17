@@ -1,6 +1,6 @@
 import superagent from 'superagent'
 import { API_HOST } from './config'
-//need get all users api call 
+//need get all users api call
 
 
 class Api {
@@ -22,7 +22,7 @@ class Api {
     .set('Authorization', `token ${token}`)
   )
 
-  getProjectsList = (page, count) => (
+  getProjectsList = () => ( //page, count  ************
     superagent
     .get(`${API_HOST}/projects`)
     .set('Authorization', `token ${localStorage.token}`)
@@ -81,6 +81,12 @@ class Api {
     .get(`${API_HOST}/auth/me`)
     .set('Authorization', `token ${token}`)
   )
+
+  getAll = (token) => (
+   superagent
+   .get(`${API_HOST}/auth/all`)
+   .set('Authorization', `token ${token}`)
+ )
 
 }
 

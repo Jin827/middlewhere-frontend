@@ -14,17 +14,21 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
+    console.log('Home.js, 17 I mounted');
     this._fetchData();
   }
 
   _fetchData = () => {
     api.getProjectsList()
+    //.then(() => api.getAll(localStorage.token))
     .then(data => {
+      console.log('Home.js, 24 , ... processing', data.body);
       this.setState({
         projects:data.body
       })
     })
   }
+
 
   _createProjectForm = () =>{
     this.setState({
