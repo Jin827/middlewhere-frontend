@@ -12,21 +12,26 @@ export default class CreateBookmark extends Component {
   }
 
   _handleClick = (e) => {
+    console.log('CrTask.js ... CLICKING');
     this._fetchData()
   }
 
   _handleInput = (e) => {
+    console.log('CrTask.js HANDLING INPUT');
     e.preventDefault()
     if (e.target.value.length <= 80){
       this.setState({
         inputValue:e.target.value
       })
     }
+    console.log('CrTask.js ' , this.state);
   }
 
   _fetchData = () => {
+    console.log('CreateT ' , this.props.projectId, this.refs.title.value, this.refs.description.value, this.refs.deadline.value, this.refs.priority.value);
     api.createTasks(this.props.projectId, this.refs.title.value, this.refs.description.value, this.refs.deadline.value, this.refs.priority.value)
     .then(data => {
+      console.log('20 CreateTask.js' , data);
       JSON.parse(data)
       history.push(`/projects/${this.props.projectId}`)
     })

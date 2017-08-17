@@ -10,7 +10,7 @@ const style = {
     position: 'fixed',
 };
 
-export default class AddButton extends Component {
+export default class CompleteButton extends Component {
   constructor(props){
     super(props);
     this.state ={
@@ -26,9 +26,13 @@ export default class AddButton extends Component {
   }
 
   render(){
+
     return (
       <div>
-        <FloatingActionButton secondary={true} style={style} onClick={this.props.addButtonClick}><ContentAdd /></FloatingActionButton>
+        <FloatingActionButton secondary={true} style={style}
+          onClick={this.props.addButtonClick}>
+          <ContentAdd /></FloatingActionButton>
+
       </div>
   )}
 
