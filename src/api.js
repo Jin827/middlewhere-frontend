@@ -1,6 +1,6 @@
 import superagent from 'superagent'
 import { API_HOST } from './config'
-//need get all users api call 
+//need get all users api call
 
 
 class Api {
@@ -35,11 +35,11 @@ class Api {
     .send({title, deadline, description})
   )
 
-  editProjects = (id, title, description, token) => (
+  editProjects = (id, title, description, deadline, token) => (
     superagent
     .patch(`${API_HOST}/projects/${id}`)
     .set('Authorization', `token ${token}`)
-    .send({title,description})
+    .send({title,description,deadline})
   )
 
   getProjects = (id) => (

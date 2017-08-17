@@ -13,6 +13,7 @@ export default class Home extends Component {
     super(props);
     this.state = {
       projects: [],
+      me : null
     };
   }
 
@@ -21,7 +22,11 @@ export default class Home extends Component {
   }
 
   _fetchData = () => {
-    api.getProjectsList()
+    api.getMe(localStorage.token)
+    .then(yoSoy => {
+      this.setState({me : yoSoy.body.users_id})
+    })
+    .then(() => api.getProjectsList())
     .then(data => {
       this.setState({
         projects:data.body
@@ -29,7 +34,7 @@ export default class Home extends Component {
     })
   }
 
-  _createProjectForm = () =>{
+  _createProjectForm = () => {
     this.setState({
       createProject: true
     })
@@ -44,6 +49,7 @@ export default class Home extends Component {
         { projects ? projects.map(p =>
           <div className = "single-proj col-large-3">
             <ProjectCard
+              isAdmin={p.adminUserId==this.state.me}
               key={p.id}
               id={p.id}
               progress={p.progressPct}

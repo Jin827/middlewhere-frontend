@@ -13,13 +13,16 @@ import './ProjectCard.css';
 export default class ProjectCard extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      editProject:false
+    };
+
   }
 
   _editProjectForm = () =>{
+      console.log('ProjectCard 22 ', this.props.isAdmin, this.state.editProject);
       this.setState({
         editProject: true
-
       })
     }
 
@@ -28,9 +31,9 @@ export default class ProjectCard extends Component {
     if(deadline){
       var time = moment(deadline).format("DD-MM-YYYY h:mm:ss")
     }
-
+          console.log( this.state.editProject);
     return (
-        <div>
+      <div>
           <Link to={`/projects/${id}`}>
             <Card className='project-card'>
               <CardHeader textStyle={{ paddingRight: 0}} title={title} />
@@ -39,6 +42,9 @@ export default class ProjectCard extends Component {
               <LinearProgress mode="determinate" value={progress} />
             </Card>
           </Link>
+          {this.props.isAdmin ?  <EditButton editButtonClick={this._editProjectForm} /> : null}
+          {this.state.editProject ? <EditProject id={id} title={title}
+          description={description} deadline={deadline} /> : null}
       </div>
     );
 
