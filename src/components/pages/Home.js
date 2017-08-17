@@ -12,9 +12,6 @@ export default class Home extends Component {
       projects: [],
     };
   }
-  componentDidUpdate() {
-    console.log(this.state);
-  }
 
   componentDidMount() {
     this._fetchData();
@@ -23,12 +20,10 @@ export default class Home extends Component {
   _fetchData = () => {
     api.getProjectsList()
     .then(data => {
-      console.log(data.body, "mydata")
       this.setState({
         projects:data.body
       })
     })
-
   }
 
   _createProjectForm = () =>{
