@@ -22,15 +22,7 @@ a {
 
 
 .App {
-  display: flex;
-  flex-flow: row;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   background: #fff;
-  height: 100vh;
-  margin:0px;
-  padding:0px;
 }
 
 .header {
@@ -38,26 +30,27 @@ a {
   display:flex;
   padding: 1em;
 }
-.home {
+
+
+/*.home {
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   flex: 1;
   margin: 1em
-}
+}*/
 
-.project {
+/*.project {
   display:flex;
   justify-content: center;
   align-items: center;
-}
+}*/
 
 .add-button{
   display: flex;
   align-items: center;
 }
 
-.project-card{
-  text-align: center;
-  padding:0;
-}
 
 /*.project-card:hover{
   transform: scale(1.1);

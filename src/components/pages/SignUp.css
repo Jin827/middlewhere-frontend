@@ -6,8 +6,15 @@
 
 .paper-frame {
   padding:1rem;
+
 }
 
 .button-pad {
   margin:0.5rem;
+}
+
+@media only screen and (min-width: 641px) {
+  .paper-frame {
+    padding:0;
+  }
 }
