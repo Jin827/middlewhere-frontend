@@ -5,8 +5,6 @@
 .home {
   display: flex;
   flex-wrap:wrap;
-  margin:2% 5%;
-
 }
 
 .single-proj {

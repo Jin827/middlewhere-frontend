@@ -49,9 +49,12 @@ export default class CreateProject extends Component {
     return (
       <div className="createNewProject">
           <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='100'/>
+
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e,date) => this._handleChange(e, date)}/>
+
           <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="500" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
           {140 - this.state.inputValue.length}
+          
           <FlatButton label="Submit" secondary={true} onClick={(e) => this._handleClick(e)} />
 
       </div>
