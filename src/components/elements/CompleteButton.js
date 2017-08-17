@@ -18,12 +18,12 @@ export default class CompleteButton extends Component {
     }
   }
 
-  _handleClick = (e) => {
-    e.preventDefault();
-    this.setState({
-      showComponent:true,
-    })
-  }
+  // _handleClick = (e) => {
+  //   e.preventDefault();
+  //   this.setState({
+  //     showComponent:true,
+  //   })
+  // }
 
   render(){
 

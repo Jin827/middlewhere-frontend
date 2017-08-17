@@ -30,10 +30,7 @@ export default class CreateTask extends Component {
     console.log('CreateT ' , this.props.projectId, this.refs.title.value, this.refs.description.value, this.refs.deadline.value, this.refs.priority.value);
     api.createTasks(this.props.projectId, this.refs.title.value, this.refs.description.value, this.refs.deadline.value, this.refs.priority.value)
     .then(data => {
-      console.log('CT.js 33 ' , `/projects/${this.props.projectId}` );
-      //var solving = JSON.parse(data.text);
-      // console.log('CT.js 33 ' , solving);
-      history.push(`/projects/${this.props.projectId}`)
+      this.props.onCreate();
     })
   }
 

@@ -68,7 +68,7 @@ export default class Project extends Component {
         ) : <h1>Add tasks</h1> }
 
         {this.state.isAdmin?  <AddButton addButtonClick={this._createTaskForm} /> : null}
-        {this.state.createTask ? <CreateTask projectId={this.props.params.id}/> : null}
+        {this.state.createTask ? <CreateTask onCreate={this.fetchData} projectId={this.props.params.id}/> : null}
 
       </div>
     );
