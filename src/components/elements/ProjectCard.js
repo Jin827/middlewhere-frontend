@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import EditButton from './EditButton';
 import EditProject from '../modals/EditProject'
+import moment from 'moment';
 import auth from '../../auth';
 import '../App.css';
 import { Link } from 'react-router';
@@ -23,18 +24,21 @@ export default class ProjectCard extends Component {
     }
 
   render() {
-    let { id, progress, title, description } = this.props
+    let { id, progress, title, deadline, description } = this.props
+    if(deadline){
+      var time = moment(deadline).format("DD-MM-YYYY h:mm:ss")
+    }
+
     return (
-
-      <div>
-        <Link to={`/projects/${id}`}>
-          <Card className='project-card'>
-            <CardHeader textStyle={{ paddingRight: 0}} title={title} />
-            <CardText>{description}</CardText>
-            <LinearProgress mode="determinate" value={progress} />
-          </Card>
-        </Link>
-
+        <div>
+          <Link to={`/projects/${id}`}>
+            <Card className='project-card'>
+              <CardHeader textStyle={{ paddingRight: 0}} title={title} />
+              <CardText>{time}</CardText>
+              <CardText>{description}</CardText>
+              <LinearProgress mode="determinate" value={progress} />
+            </Card>
+          </Link>
       </div>
     );
 
