@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import EditButton from './EditButton';
-import EditTask from '../modals/EditTask'
+import EditTask from '../modals/EditTask';
+import CompleteButton from '../elements/CompleteButton';
 import auth from '../../auth';
 import api from '../../api'
 import './TaskCard.css';
@@ -35,7 +36,7 @@ export default class TaskCard extends Component {
     let { title, description, deadline, priority} = this.props
     return (
         <div>
-          <h2 className="task-card">{ title }</h2>
+          <h2 className="task-card">{ title } <CompleteButton/></h2>
           <div className="info">
             <p>{ description }</p>
             <p className="deadline">deadline  { deadline }</p>

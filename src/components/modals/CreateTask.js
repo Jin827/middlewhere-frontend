@@ -3,7 +3,7 @@ import './CreateTask.css';
 import api from '../../api';
 import {browserHistory as history} from 'react-router';
 
-export default class CreateBookmark extends Component {
+export default class CreateTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,12 +12,11 @@ export default class CreateBookmark extends Component {
   }
 
   _handleClick = (e) => {
-    console.log('CrTask.js ... CLICKING');
+    e.preventDefault();
     this._fetchData()
   }
 
   _handleInput = (e) => {
-    console.log('CrTask.js HANDLING INPUT');
     e.preventDefault()
     if (e.target.value.length <= 80){
       this.setState({
@@ -31,8 +30,9 @@ export default class CreateBookmark extends Component {
     console.log('CreateT ' , this.props.projectId, this.refs.title.value, this.refs.description.value, this.refs.deadline.value, this.refs.priority.value);
     api.createTasks(this.props.projectId, this.refs.title.value, this.refs.description.value, this.refs.deadline.value, this.refs.priority.value)
     .then(data => {
-      console.log('20 CreateTask.js' , data);
-      JSON.parse(data)
+      console.log('CT.js 33 ' , `/projects/${this.props.projectId}` );
+      //var solving = JSON.parse(data.text);
+      // console.log('CT.js 33 ' , solving);
       history.push(`/projects/${this.props.projectId}`)
     })
   }

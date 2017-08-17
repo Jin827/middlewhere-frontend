@@ -27,5 +27,4 @@ export default class EditButton extends Component {
       </div>
     )
   }
-
 }

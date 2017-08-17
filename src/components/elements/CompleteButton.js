@@ -29,11 +29,23 @@ export default class CompleteButton extends Component {
 
     return (
       <div>
-        <FloatingActionButton secondary={true} style={style}
-          onClick={this.props.addButtonClick}>
-          <ContentAdd /></FloatingActionButton>
-
+        <form>
+          <input type = "checkbox"
+                 id = "chkHam"
+                 value = "ham" />
+        </form>
       </div>
   )}
+  // render(){
+  //
+  //   return (
+  //     <div>
+  //       <FloatingActionButton secondary={true} style={style}
+  //         onClick={this.props.addButtonClick}>
+  //         <ContentAdd /></FloatingActionButton>
+  //
+  //     </div>
+  // )}
+
 
 }
