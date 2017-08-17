@@ -32,7 +32,6 @@ export default class SignUp extends Component {
 
   _handleSignup = (e) => {
     e.preventDefault();
-    console.log(this.refs.firstName.getValue(), this.refs.lastName.getValue(), this.refs.email.getValue(), this.refs.password.getValue())
     api.requestSignup(this.refs.firstName.getValue(), this.refs.lastName.getValue(), this.refs.email.getValue(), this.refs.password.getValue())
     .then(res => {
       if(this.refs.firstName.getValue() && this.refs.lastName.getValue() && this.refs.email.getValue() && this.refs.password.getValue()){
@@ -48,14 +47,13 @@ export default class SignUp extends Component {
   render() {
     return (
       <div className="signup row">
-        <Paper style={style} className="col-large-6 big" zDepth={2}>
-          <div className="centered">
-            <TextField className="typo col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" onKeyUp={this._handleTyping}/>
-            <TextField className="typo col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" onKeyUp={this._handleTyping}/>
-            <TextField className="typo col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
-            <TextField className="typo col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
-          </div>
-          <RaisedButton label="SignUp" secondary={true} onClick={this._handleSignup}/>
+        <Paper style={style} className="col-large-6 paper-frame" zDepth={2}>
+            <TextField className="col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
+            <br/>
+          <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
           <h3>{this.state.error}</h3>
         </Paper>
 
