@@ -22,15 +22,7 @@ a {
 
 
 .App {
-  display: flex;
-  flex-flow: row;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
   background: #fff;
-  height: 100vh;
-  margin:0px;
-  padding:0px;
 }
 
 .header {
