@@ -54,8 +54,7 @@ export default class Home extends Component {
             />
           </div>
         ) : <h1>No projects yet</h1>}
-        <AddForm/>
-        {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createProjectForm}  /> : null}
+        {auth.isLoggedIn() ?  <AddForm addButtonClick={this._createProjectForm}  /> : null}
         {this.state.createProject ? <CreateProject/> : null}
       </div>
     );

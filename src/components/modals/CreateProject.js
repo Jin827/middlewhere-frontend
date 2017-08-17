@@ -43,7 +43,6 @@ export default class CreateProject extends Component {
       // console.log(solving[0].id)
       history.push(`/projects/${solving[0].id}`)
     })
-
   }
 
   render(){
@@ -54,6 +53,7 @@ export default class CreateProject extends Component {
           <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="500" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
           {140 - this.state.inputValue.length}
           <FlatButton label="Submit" secondary={true} onClick={(e) => this._handleClick(e)} />
+
       </div>
     );
   }
