@@ -10,7 +10,6 @@ export default class Home extends Component {
     super(props);
     this.state = {
       projects: [],
-      isAdmin: false
     };
   }
 
@@ -22,23 +21,9 @@ export default class Home extends Component {
     api.getProjectsList()
     .then(data => {
       this.setState({
-        projects:data.body.projects
+        projects:data.body
       })
     })
-
-    Promise.all([
-        api.getProjects(this.props.params.id),
-        api.getMe(localStorage.token)
-      ])
-      .then(data => {
-        var project = data[0].body;
-        var user = data[1].body;
-
-
-        this.setState({
-          isAdmin: user.id === project.ownerId
-        })
-      })
   }
 
   _createProjectForm = () =>{
@@ -49,20 +34,12 @@ export default class Home extends Component {
 
   render() {
     let { projects } = this.state
-    if(!projects){
-      return (
-        <div>
-          <h1>Insert projects here</h1>
-        </div>
-      )
-    }
-
+    console.log(projects)
     return (
       <div className="home">
-        { projects.map(p =>
+        { projects ? projects.map(p =>
           <div>
             <ProjectCard
-              isAdmin={this.state.isAdmin}
               key={p.id}
               id={p.id}
               title={p.title}
@@ -70,8 +47,7 @@ export default class Home extends Component {
               description={p.description}
             />
           </div>
-        )}
-
+        ) : <h1>No projects yet</h1>}
         {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createProjectForm}  /> : null}
         {this.state.createProject ? <CreateProject/> : null}
       </div>

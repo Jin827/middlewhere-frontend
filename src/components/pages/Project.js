@@ -12,7 +12,6 @@ export default class Project extends Component {
     this.state = {
       tasks: [],
       isAdmin: false
-     
     };
   }
 
@@ -21,15 +20,13 @@ export default class Project extends Component {
   }
 
   fetchData = () => {
-      
       api.getTasks(this.props.params.id)
       .then(res => {
-        let resultTasks = res.body.tasks
-
+        let resultTasks = res.body
         this.setState({
           tasks: resultTasks
-      })
         })
+      })
       .catch(console.error)
 
       Promise.all([
@@ -37,16 +34,15 @@ export default class Project extends Component {
         api.getMe(localStorage.token)
       ])
       .then(data => {
-        
         var project = data[0].body;
         var user = data[1].body;
 
-        
         this.setState({
-          isAdmin: user.id === project.ownerId
+          isAdmin: user.users_id === project.adminUserId,
+          userId: user.users_id
         })
       })
-      
+
   }
 
   _createTaskForm = () =>{
@@ -57,20 +53,12 @@ export default class Project extends Component {
 
   render() {
     let { tasks } = this.state;
-
-    if(!tasks) {
-      return (
-        <div>
-          <h1> LOADING tasks </h1>
-        </div>
-      )
-    }
-
     return (
       <div className="tasks">
-         { tasks.map(b =>
+         { tasks ? tasks.map(b =>
           <TaskCard
             isAdmin={this.state.isAdmin}
+            userId={this.state.userId}
             key={b.id}
             id={b.id}
             title={b.title}
@@ -78,12 +66,10 @@ export default class Project extends Component {
             deadline={b.deadline}
             priority={b.priority}
           />
+        ) : <h1>Add tasks</h1> }
 
-        )} 
-        
-       
-        {this.state.isAdmin?  <AddButton addButtonClick={this._createTaskForm} /> : null} 
-        {this.state.createTask ? <CreateTask /> : null} 
+        {this.state.isAdmin?  <AddButton addButtonClick={this._createTaskForm} /> : null}
+        {this.state.createTask ? <CreateTask projectId={this.props.params.id}/> : null}
 
       </div>
     );

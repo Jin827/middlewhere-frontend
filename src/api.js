@@ -1,11 +1,13 @@
 import superagent from 'superagent'
 import { API_HOST } from './config'
+//need get all users api call 
+
 
 class Api {
-  requestSignup = (email, password) => (
+  requestSignup = (firstName, lastName, email, password) => (
     superagent
     .post(`${API_HOST}/auth/users`)
-    .send({email, password})
+    .send({firstName, lastName, email, password})
   )
 
   requestLogin = (email, password) => (
@@ -23,17 +25,13 @@ class Api {
   getProjectsList = (page, count) => (
     superagent
     .get(`${API_HOST}/projects`)
+    .set('Authorization', `token ${localStorage.token}`)
   )
 
-  getProjects = (id) => (
-    superagent
-    .get(`${API_HOST}/projects/${id}`)
-  )
-
-  createProjects = (title, deadline, description, token) => (
+  createProjects = (title, deadline, description) => (
     superagent
     .post(`${API_HOST}/projects`)
-    .set('Authorization', `token ${token}`)
+    .set('Authorization', `token ${localStorage.token}`)
     .send({title, deadline, description})
   )
 
@@ -43,26 +41,39 @@ class Api {
     .set('Authorization', `token ${token}`)
     .send({title,description})
   )
- 
+
+  getProjects = (id) => (
+    superagent
+    .get(`${API_HOST}/projects/${id}`)
+    .set('Authorization', `token ${localStorage.token}`)
+  )
+
+  createTasks = (id, title, description, deadline, priority) => (
+    superagent
+    .post(`${API_HOST}/projects/${id}/tasks`)
+    .set('Authorization', `token ${localStorage.token}`)
+    .send({title, description, deadline, priority})
+
+  )
+
+  editTasks = (id, title, description, deadline, priority) => (
+    superagent
+    .post(`${API_HOST}/projects/${id}/tasks`)
+    .set('Authorization', `token ${localStorage.token}`)
+    .send({title, description, deadline, priority})
+  )
+
   getTasks = (id) => (
     superagent
     .get(`${API_HOST}/projects/${id}/tasks`)
-
+    .set('Authorization', `token ${localStorage.token}`)
   )
 
-  createTasks = (id, title, description, deadline, token) => (
+  assignTask = (id, assigneeId) => (
     superagent
-    .post(`${API_HOST}/projects/${id}/tasks`)
-    .set('Authorization', `token ${token}`)
-    .send({title, description, deadline})
-
-  )
-
-  EditTasks = (id, title, description, deadline, token) => (
-    superagent
-    .post(`${API_HOST}/projects/${id}/tasks`)
-    .set('Authorization', `token ${token}`)
-    .send({title, description, deadline})
+    .post(`${API_HOST}/tasks/${id}/assigned`)
+    .set('Authorization', `token ${localStorage.token}`)
+    .send(assigneeId)
   )
 
    getMe = (token) => (
