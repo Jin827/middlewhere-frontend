@@ -27,6 +27,7 @@ export default class CreateBookmark extends Component {
   _fetchData = () => {
     api.createTasks(this.props.projectId, this.refs.title.value, this.refs.description.value, this.refs.deadline.value, this.refs.priority.value)
     .then(data => {
+      JSON.parse(data)
       history.push(`/projects/${this.props.projectId}`)
     })
   }
