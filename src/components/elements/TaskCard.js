@@ -19,10 +19,10 @@ export default class TaskCard extends Component {
     var taskId = this.props.id
     var assigneeId = this.props.userId
 
-    api.assignTask(taskId, assigneeId)
-    .then(res => {
-      console.log(res, 'yayayay')
-    })
+    // api.assignTask(taskId, assigneeId)
+    // .then(res => {
+    //   console.log(res)
+    // })
   }
 
   _editTaskForm = () =>{
