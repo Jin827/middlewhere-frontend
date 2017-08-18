@@ -7,7 +7,8 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import auth from '../auth';
-
+import FlatButton from 'material-ui/FlatButton';
+import {browserHistory as history} from 'react-router';
 // import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import {cyan500,pink100} from 'material-ui/styles/colors';
 
@@ -32,7 +33,10 @@ class App extends Component {
   }
 
   closeMenu = () => this.setState({ isMenuOpen: false })
-
+  _logOut = () => {
+    auth.logout()
+    history.push(`/login`)
+  }
   render() {
     let {isMenuOpen} = this.state
     return (
@@ -40,7 +44,8 @@ class App extends Component {
         <div className="App row">
           <AppBar title="MiddleWhere"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
-            iconElementRight={auth.isLoggedIn() ? <h1>Logout</h1> :null}
+            iconElementRight={auth.isLoggedIn() ?
+              <FlatButton label= "Logout" onClick={this._logOut.bind(this)}/> : null}
           />
               {//
               // <i className="fa fa-bars fa-2x menu-icon"
