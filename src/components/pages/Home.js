@@ -14,11 +14,8 @@ export default class Home extends Component {
     super(props);
     this.state = {
       projects: [],
-<<<<<<< HEAD
-      me : null
-=======
+      me : null,
       open:false
->>>>>>> b4561d0df1a6e7b2e6f7cd3678ad1d9ff75f3d87
     };
   }
 
@@ -73,13 +70,10 @@ export default class Home extends Component {
             />
           </div>
         ) : <h1>No projects yet</h1>}
-<<<<<<< HEAD
-        {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createProjectForm}  /> : null}
-        {this.state.createProject ? <CreateProject onCreate={this._fetchData}/> : null}
-=======
+        {/* {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createProjectForm}  /> : null}
+        {this.state.createProject ? <CreateProject onCreate={this._fetchData}/> : null} */}
         {auth.isLoggedIn() ?  <AddButton buttonClick={this.handleOpen}  /> : null}
         {this.state.open ? <CreateProject openState={this.handleOpen} closeState={this.handleClose}/> : null}
->>>>>>> b4561d0df1a6e7b2e6f7cd3678ad1d9ff75f3d87
       </div>
     );
   }
