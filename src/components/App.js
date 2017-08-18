@@ -11,6 +11,8 @@ import FlatButton from 'material-ui/FlatButton';
 import {browserHistory as history} from 'react-router';
 // import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import {cyan500,pink100} from 'material-ui/styles/colors';
+// import MobileTearSheet from '../../../MobileTearSheet';
+
 
 
 // const muiTheme = getMuiTheme({
@@ -32,11 +34,13 @@ class App extends Component {
      }
   }
 
-  closeMenu = () => this.setState({ isMenuOpen: false })
+  // closeMenu = () => {console.log('ihappened')}
+  //this.setState({ isMenuOpen: false })
   _logOut = () => {
     auth.logout()
     history.push(`/login`)
   }
+
   _signUp = () => {
     history.push(`/signup`)
   }
@@ -47,17 +51,11 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="App row">
           <AppBar title="MiddleWhere"
-            iconClassNameRight="muidocs-icon-navigation-expand-more"
+            onLeftIconButtonTouchTap={this.ListExampleSimple}
             iconElementRight={auth.isLoggedIn() ?
               <FlatButton label= "Logout" onClick={this._logOut}/> : <FlatButton label= "Signup" onClick={this._signUp}/>}
           />
-              {//
-              // <i className="fa fa-bars fa-2x menu-icon"
-              //   onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}
-              // />
-              // <Link to="/" className="App-navbar__title"></Link>
-                //<Menu show={isMenuOpen} closeMenu={this.closeMenu}/>
-            }
+
 
           {this.props.children}
           </div>
