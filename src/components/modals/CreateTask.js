@@ -98,7 +98,7 @@ export default class CreateTask extends Component {
     <FlatButton
       label="Cancel Task"
       primary={true}
-      onClick={this.props.closeState}
+      onClick={this.props.closeForm}
     />,
     <FlatButton
       label="Submit Task"

@@ -68,6 +68,14 @@ class Api {
     superagent
     .get(`${API_HOST}/projects/${id}/tasks`)
     .set('Authorization', `token ${localStorage.token}`)
+
+  )
+
+  completedTasks = (id, completed, token) => (
+    superagent
+    .patch(`${API_HOST}/tasks/${id}/completed`)
+    .set('Authorization', `token ${token}`)
+    .send({id, completed})
   )
 
   assignTask = (id, assigneeId) => (
