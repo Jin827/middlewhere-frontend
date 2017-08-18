@@ -11,7 +11,6 @@ const ENTER = 13;
 const style = {
   margin: '5% 30%',
   textAlign: 'center',
-  display: 'inline-block',
 };
 
 
@@ -39,7 +38,7 @@ export default class SignUp extends Component {
       }
     })
     .catch(
-      this.setState({error:"Please put in a username or password"})
+      this.setState({error:"Please put in a valid email or password(12 characters)"})
     )
 
   }

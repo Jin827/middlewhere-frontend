@@ -4,6 +4,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 
+// EDITS THE TASK
 
 export default class EditButton extends Component {
   constructor(props){
@@ -22,10 +23,9 @@ export default class EditButton extends Component {
 
   render(){
     return (
-      <div className="add-button">
-        <FloatingActionButton secondary={true} onClick={this.props.addButtonClick}><ContentAdd /></FloatingActionButton>
+      <div className="edit-button">
+        <FloatingActionButton secondary={true} onClick={this.props.editButtonClick}><ContentAdd /></FloatingActionButton>
       </div>
     )
   }
-
 }

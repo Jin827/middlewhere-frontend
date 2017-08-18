@@ -1,3 +1,18 @@
 .tasks {
     flex: 1;
 }
+
+.home {
+  display: flex;
+  flex-wrap:wrap;
+}
+
+.single-proj {
+  padding:2%;
+
+}
+
+.project-card{
+  text-align: center;
+  padding:0;
+}
