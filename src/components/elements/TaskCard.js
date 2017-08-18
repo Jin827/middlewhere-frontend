@@ -49,6 +49,12 @@ export default class TaskCard extends Component {
         editTask: true
       })
     }
+  _closeTaskForm = () =>{
+      this.setState({
+        editTask: false
+      })
+      this.props.ReRenderProject();
+    }
 
   render() {
     let { id, title, description, deadline, priority} = this.props
@@ -59,7 +65,6 @@ export default class TaskCard extends Component {
             <p>{ description }</p>
             <p className="deadline">deadline  { deadline }</p>
             <p>priority{ priority }</p>
-
             <input type="text" ref="assignee"/>
             <button>search</button>
           </div>
@@ -68,7 +73,8 @@ export default class TaskCard extends Component {
           <br/>
           {this.props.isAdmin ?  <EditButton editButtonClick={this._editTaskForm} /> : null}
           {this.state.editTask ? <EditTask id={id} title={title}
-          description={description} deadline={deadline} priority={priority} /> : null}
+          description={description} deadline={deadline} priority={priority}
+          closeForm={this._closeTaskForm}/> : null}
         </div>
     );
   }
