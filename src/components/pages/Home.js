@@ -14,11 +14,8 @@ export default class Home extends Component {
     super(props);
     this.state = {
       projects: [],
-
-      open:false
-
+      open:false,
       me : null
-
     };
   }
 
