@@ -3,6 +3,7 @@ import moment from 'moment';
 import api from '../../api';
 import ProjectCard from '../elements/ProjectCard';
 import AddButton from '../elements/AddButton';
+import AddForm from '../elements/AddForm'
 import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
 import Paper from 'material-ui/Paper'
@@ -13,9 +14,22 @@ export default class Home extends Component {
     super(props);
     this.state = {
       projects: [],
+
+      open:false
+
       me : null
+
     };
   }
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
 
   componentDidMount() {
     this._fetchData();
@@ -47,7 +61,7 @@ export default class Home extends Component {
     return (
       <div className="home">
         { projects ? projects.map(p =>
-          <div className = "single-proj col-large-3">
+          <div className = "single-proj col-large-3 col-medium-6 col-small-12">
             <ProjectCard
               isAdmin={p.adminUserId==this.state.me}
               key={p.id}
@@ -59,10 +73,14 @@ export default class Home extends Component {
             />
           </div>
         ) : <h1>No projects yet</h1>}
-        {auth.isLoggedIn() ?  <AddButton addButtonClick={this._createProjectForm}  /> : null}
-        {this.state.createProject ? <CreateProject onCreate={this._fetchData}/> : null}
+
+        {auth.isLoggedIn() ?  <AddButton buttonClick={this.handleOpen}  /> : null}
+        {this.state.open ? <CreateProject openState={this.handleOpen} closeState={this.handleClose}/> : null}
+
       </div>
     );
   }
 
 }
+
+//addButtonClick={this._createProjectForm}
