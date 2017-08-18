@@ -5,6 +5,7 @@ import auth from '../../auth';
 import './Menu.css';
 
 
+
 class Menu extends Component {
 
   handleClickOutside = () => {
@@ -13,7 +14,6 @@ class Menu extends Component {
 
   _logOut = () => {
     auth.logout()
-
   }
 
   render() {
@@ -49,6 +49,7 @@ class Menu extends Component {
               Logout
             </Link>
           : null}
+
         </div>
       </div>
     );
