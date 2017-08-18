@@ -3,8 +3,16 @@ import { Link } from 'react-router';
 import Menu from './modals/Menu';
 import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import AppBar from 'material-ui/AppBar';
+import IconButton from 'material-ui/IconButton';
+import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import auth from '../auth';
+import FlatButton from 'material-ui/FlatButton';
+import {browserHistory as history} from 'react-router';
 // import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import {cyan500,pink100} from 'material-ui/styles/colors';
+// import MobileTearSheet from '../../../MobileTearSheet';
+
 
 
 // const muiTheme = getMuiTheme({
@@ -20,28 +28,37 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class App extends Component {
   constructor(props) {
     super(props)
-    this.state = { isMenuOpen: false }
+    this.state = {
+      logged: true,
+      // isMenuOpen: false
+     }
   }
 
-  closeMenu = () => this.setState({ isMenuOpen: false })
+  // closeMenu = () => {console.log('ihappened')}
+  //this.setState({ isMenuOpen: false })
+  _logOut = () => {
+    auth.logout()
+    history.push(`/login`)
+  }
+
+  _signUp = () => {
+    history.push(`/signup`)
+  }
 
   render() {
     let {isMenuOpen} = this.state
     return (
       <MuiThemeProvider>
         <div className="App row">
-          <div className="header col-small-12">
-            <div className="App-navbar">
-              <i className="fa fa-bars fa-2x menu-icon"
-                onClick={()=>this.setState({ isMenuOpen: !isMenuOpen })}
-              />
-              <Link to="/" className="App-navbar__title"></Link>
-            </div>
-          </div>
+          <AppBar title="MiddleWhere"
+            onLeftIconButtonTouchTap={this.ListExampleSimple}
+            iconElementRight={auth.isLoggedIn() ?
+              <FlatButton label= "Logout" onClick={this._logOut}/> : <FlatButton label= "Signup" onClick={this._signUp}/>}
+          />
 
-          <Menu show={isMenuOpen} closeMenu={this.closeMenu}/>
+
           {this.props.children}
-        </div>
+          </div>
       </MuiThemeProvider>
     );
   }

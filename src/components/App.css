@@ -25,11 +25,11 @@ a {
   background: #fff;
 }
 
-.header {
+/*.header {
   background-color: #00acc1 ;
   display:flex;
   padding: 1em;
-}
+}*/
 
 
 /*.home {
@@ -68,14 +68,6 @@ a {
   background-color: #FA9999;
 }
 
-
-/* Grid system! */
-.row {
-    max-width: 100%;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-}
 
 .responsive-img {
   max-width: 100%;
