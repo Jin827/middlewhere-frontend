@@ -28,7 +28,6 @@ export default class Home extends Component {
     this.setState({open: false});
   };
 
-
   componentDidMount() {
     this._fetchData();
   }
@@ -73,7 +72,7 @@ export default class Home extends Component {
         ) : <h1>No projects yet</h1>}
 
         {auth.isLoggedIn() ?  <AddButton buttonClick={this.handleOpen}  /> : null}
-        {this.state.open ? <CreateProject openState={this.handleOpen} closeState={this.handleClose}/> : null}
+        {this.state.open ? <CreateProject onCreate={() => {this._fetchData(); this.handleClose()}} openState={this.handleOpen} closeState={this.handleClose}/> : null}
 
       </div>
     );
