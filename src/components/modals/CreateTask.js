@@ -22,8 +22,7 @@ export default class CreateTask extends Component {
       this.setState({
         inputValue:e.target.value
       })
-    }
-    console.log('CrTask.js ' , this.state);
+    };
   }
 
   _fetchData = () => {
