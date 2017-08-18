@@ -3,7 +3,7 @@ import './CreateTask.css';
 import api from '../../api';
 import {browserHistory as history} from 'react-router';
 
-export default class CreateBookmark extends Component {
+export default class CreateTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -12,6 +12,7 @@ export default class CreateBookmark extends Component {
   }
 
   _handleClick = (e) => {
+    e.preventDefault();
     this._fetchData()
   }
 
@@ -22,13 +23,13 @@ export default class CreateBookmark extends Component {
         inputValue:e.target.value
       })
     }
+    console.log('CrTask.js ' , this.state);
   }
 
   _fetchData = () => {
     api.createTasks(this.props.projectId, this.refs.title.value, this.refs.description.value, this.refs.deadline.value, this.refs.priority.value)
     .then(data => {
-      JSON.parse(data)
-      history.push(`/projects/${this.props.projectId}`)
+      this.props.onCreate();
     })
   }
 
