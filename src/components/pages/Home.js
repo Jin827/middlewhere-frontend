@@ -14,8 +14,18 @@ export default class Home extends Component {
     super(props);
     this.state = {
       projects: [],
+      open:false
     };
   }
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
 
   componentDidMount() {
     this._fetchData();
@@ -54,10 +64,12 @@ export default class Home extends Component {
             />
           </div>
         ) : <h1>No projects yet</h1>}
-        {auth.isLoggedIn() ?  <AddForm addButtonClick={this._createProjectForm}  /> : null}
-        {this.state.createProject ? <CreateProject/> : null}
+        {auth.isLoggedIn() ?  <AddButton buttonClick={this.handleOpen}  /> : null}
+        {this.state.open ? <CreateProject openState={this.handleOpen} closeState={this.handleClose}/> : null}
       </div>
     );
   }
 
 }
+
+//addButtonClick={this._createProjectForm}
