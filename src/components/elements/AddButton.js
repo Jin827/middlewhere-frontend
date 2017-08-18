@@ -14,22 +14,14 @@ export default class AddButton extends Component {
   constructor(props){
     super(props);
     this.state ={
-      showComponent:false,
+
     }
   }
 
-  _handleClick = (e) => {
-    e.preventDefault();
-    this.setState({
-      showComponent:true,
-    })
-  }
-
   render(){
-
     return (
       <div>
-        <FloatingActionButton secondary={true} style={style} onClick={this.props.addButtonClick}><ContentAdd /></FloatingActionButton>
+        <FloatingActionButton secondary={true} style={style} onClick={this.props.buttonClick}><ContentAdd /></FloatingActionButton>
       </div>
   )}
 
