@@ -30,18 +30,18 @@ export default class TaskCard extends Component {
 
   _completedTask = () => {
     console.log("TaskCard 32 ...", this.props.id, this.state.completed);
-    // if (!this.state.completed) {
-    //   this.setState({
-    //     completed: 1
-    //   }).then(()=> api.comletedTasks(this.props.id, this.state.completed))
-    //   //.then((data) => console.log(data))
-    // } else {
-    //   this.setState({
-    //     completed: 0
-    //   }).then(()=>api.comletedTasks(this.props.id, this.state.completed))
-    //   //.then((data) => console.log(data))
-    // }
-    api.comletedTasks(this.props.id, this.state.completed, localStorage.token).then(console.log)
+
+    if (!this.state.completed) {
+      this.setState({
+        completed: 1
+      })
+    } else {
+      this.setState({
+        completed: 0
+      })
+    }
+
+    api.completedTasks(this.props.id, this.state.completed, localStorage.token).then(console.log)
   }
 
   _editTaskForm = () =>{

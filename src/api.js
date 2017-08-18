@@ -40,7 +40,7 @@ class Api {
     .patch(`${API_HOST}/projects/${id}`)
     .set('Authorization', `token ${token}`)
     .send({title,description,deadline, token})
-    .then(console.log('HELLO api', id, title, description, deadline, token))
+    //.then(console.log('HELLO api', id, title, description, deadline, token))
   )
 
   getProjects = (id) => (
