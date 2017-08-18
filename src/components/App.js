@@ -9,6 +9,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import auth from '../auth';
 import FlatButton from 'material-ui/FlatButton';
 import {browserHistory as history} from 'react-router';
+import SideMenu from './modals/SideMenu'
 // import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import {cyan500,pink100} from 'material-ui/styles/colors';
 // import MobileTearSheet from '../../../MobileTearSheet';
@@ -46,12 +47,11 @@ class App extends Component {
   }
 
   render() {
-    let {isMenuOpen} = this.state
     return (
       <MuiThemeProvider>
         <div className="App row">
           <AppBar title="MiddleWhere"
-            onLeftIconButtonTouchTap={this.ListExampleSimple}
+            onLeftIconButtonTouchTap={<SideMenu />}
             iconElementRight={auth.isLoggedIn() ?
               <FlatButton label= "Logout" onClick={this._logOut}/> : <FlatButton label= "Signup" onClick={this._signUp}/>}
           />

@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react';
+import onClickOutside from 'react-onclickoutside';
 import {List, ListItem} from 'material-ui/List';
 import ContentInbox from 'material-ui/svg-icons/content/inbox';
 import ActionGrade from 'material-ui/svg-icons/action/grade';
@@ -14,7 +15,6 @@ export default class SideMenu extends Component{
 
        }
   }
-  
   render(){
     return(
       <div>
