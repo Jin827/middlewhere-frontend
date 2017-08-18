@@ -37,6 +37,10 @@ class App extends Component {
     auth.logout()
     history.push(`/login`)
   }
+  _signUp = () => {
+    history.push(`/signup`)
+  }
+
   render() {
     let {isMenuOpen} = this.state
     return (
@@ -45,7 +49,7 @@ class App extends Component {
           <AppBar title="MiddleWhere"
             iconClassNameRight="muidocs-icon-navigation-expand-more"
             iconElementRight={auth.isLoggedIn() ?
-              <FlatButton label= "Logout" onClick={this._logOut.bind(this)}/> : null}
+              <FlatButton label= "Logout" onClick={this._logOut}/> : <FlatButton label= "Signup" onClick={this._signUp}/>}
           />
               {//
               // <i className="fa fa-bars fa-2x menu-icon"
