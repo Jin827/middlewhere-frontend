@@ -49,6 +49,7 @@ class Menu extends Component {
               Logout
             </Link>
           : null}
+
         </div>
       </div>
     );
