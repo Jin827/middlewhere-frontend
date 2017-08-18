@@ -20,18 +20,20 @@ export default class ProjectCard extends Component {
   }
 
   _editProjectForm = () =>{
-      console.log('ProjectCard 22 ', this.props.isAdmin, this.state.editProject);
       this.setState({
         editProject: true
       })
-    }
+  }
+  //
+  // _callFetchData = () => {
+  //   this.props.onCreate();
+  // }
 
   render() {
     let { id, progress, title, deadline, description } = this.props
     if(deadline){
       var time = moment(deadline).format("DD-MM-YYYY h:mm:ss")
     }
-          console.log( this.state.editProject);
     return (
       <div>
           <Link to={`/projects/${id}`}>
@@ -43,7 +45,7 @@ export default class ProjectCard extends Component {
             </Card>
           </Link>
           {this.props.isAdmin ?  <EditButton editButtonClick={this._editProjectForm} /> : null}
-          {this.state.editProject ? <EditProject id={id} title={title}
+          {this.state.editProject ? <EditProject onCreate={this.props.onCreate} id={id} title={title}
           description={description} deadline={deadline} /> : null}
       </div>
     );
@@ -51,6 +53,3 @@ export default class ProjectCard extends Component {
   }
 
 }
-
-// {auth.props.isAdmin ?  <EditButton editButtonClick={this._editProjectForm} /> : null}
-// {this.state.editProject ? <EditProject /> : null}

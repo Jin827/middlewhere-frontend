@@ -16,17 +16,20 @@ export default class EditProject extends Component {
 
   _fetchData = () =>{
     if(this.refs.title.value){
-      console.log('Edit Projects 19 ',this.refs.title.value);
+      // console.log('Edit Projects 19 ',this.refs.title.value, this.props.id);
+
       api.editProjects(
         this.props.id,
         this.refs.title.value,
         this.refs.description.value,
         this.refs.deadline.value,
         localStorage.token)
-
       .then(res => {
-          history.push(`/`)
+        console.log('ARRRIVA ');
+        this.props.onCreate; // need to redirect
+        // history.push(`/projects/...`
       })
+      .catch(console.log("I AM NOT WORKING"));
     }
     else {
       console.error("Must have a title, description, deadline")
@@ -47,9 +50,9 @@ export default class EditProject extends Component {
           Deadline: <input defaultValue={this.props.deadline}
             maxLength="80" type="text" ref="deadline"/>
           <hr/>
-          <button type="submit" onClick={(e) => this._handleClick(e)}>Edit</button>
         </form>
-        <h3>{this.state.error}</h3>
+        {/* <h3>{this.state.error}</h3> */}
+        <button type="submit" onClick={(e) => this._handleClick(e)}>Edit</button>
     </div>
     );
   }

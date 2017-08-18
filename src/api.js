@@ -39,7 +39,8 @@ class Api {
     superagent
     .patch(`${API_HOST}/projects/${id}`)
     .set('Authorization', `token ${token}`)
-    .send({title,description,deadline})
+    .send({title,description,deadline, token})
+    .then(console.log('HELLO api', id, title, description, deadline, token))
   )
 
   getProjects = (id) => (
@@ -56,10 +57,10 @@ class Api {
 
   )
 
-  editTasks = (id, title, description, deadline, priority) => (
+  editTasks = (id, title, description, deadline, priority, token) => (
     superagent
-    .post(`${API_HOST}/projects/${id}/tasks`)
-    .set('Authorization', `token ${localStorage.token}`)
+    .patch(`${API_HOST}/tasks/${id}`)
+    .set('Authorization', `token ${token}`)
     .send({title, description, deadline, priority})
   )
 

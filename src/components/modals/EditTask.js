@@ -14,26 +14,30 @@ export default class EditTask extends Component {
 
   _fetchData = () =>{
     if(this.refs.title.value){
-      console.log('Edit Projects 19 ',this.refs.title.value);
-      api.editProjects(
+      // console.log('MUAHHAHAHAHAHA');
+        api.editTasks(
         this.props.id,
         this.refs.title.value,
         this.refs.description.value,
         this.refs.deadline.value,
+        this.refs.priority.value,
         localStorage.token)
-
       .then(res => {
-          history.push(`/`)
+        console.log('EditTask 27 ');
+        history.push(`/projects/${this.props.id}`)
       })
+      .catch(console.log("I AM NOT WORKING, I'm a CATCH in EditTask.js"));
     }
     else {
+      console.log( ' +++++++++ _______ +++++++ ');
       console.error("Must have a title, description, deadline")
       this.setState({error:"Must have a title and description"})
     }
   }
 
   render(){
-    //{this.state.inputValue.length}/80
+    //{this.state.inputValue.length}/80\
+    console.log(this.props);
     return (
       <div className="createNewProject">
         <form>
@@ -45,9 +49,12 @@ export default class EditTask extends Component {
           Deadline: <input defaultValue={this.props.deadline}
             maxLength="80" type="text" ref="deadline"/>
           <hr/>
-          <button type="submit" onClick={(e) => this._handleClick(e)}>Edit</button>
+          priority: <input defaultValue={this.props.priority} maxLength="80" type="text" ref="priority"/>
+          <hr/>
+
         </form>
-        <h3>{this.state.error}</h3>
+          <button type="submit" onClick={(e) => this._handleClick(e)}>Edit</button>
+        {/* <h3>{this.state.error}</h3> */}
     </div>
     );
   }
