@@ -2,18 +2,10 @@ import React, {Component} from 'react';
 import {browserHistory as history} from 'react-router';
 import api from '../../api';
 
-export default class EditBookmark extends Component {
+export default class EditTask extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      inputValue:''
-    };
-  }
-  _handleInput = (e) => {
-    e.preventDefault()
-      this.setState({
-        inputValue:e.target.value
-      })
+    this.state = {};
   }
 
   _handleClick = (e) => {
@@ -21,31 +13,50 @@ export default class EditBookmark extends Component {
     }
 
   _fetchData = () =>{
-    if(this.refs.title.value || this.refs.description.value || this.refs.deadline.value){
-      api.editTasks(this.props.id, this.refs.title.value, this.refs.description.value, this.refs.deadline.value, localStorage.token)
+    if(this.refs.title.value){
+      // console.log('MUAHHAHAHAHAHA');
+        api.editTasks(
+        this.props.id,
+        this.refs.title.value,
+        this.refs.description.value,
+        this.refs.deadline.value,
+        this.refs.priority.value,
+        localStorage.token)
       .then(res => {
-          history.push(`/projects/${this.props.id}/tasks`)
+        console.log('EditTask 27 ');
+        history.push(`/projects/${this.props.id}`)
       })
+      .catch(console.log("I AM NOT WORKING, I'm a CATCH in EditTask.js"));
     }
     else {
-      console.error("Must have a title url, and description")
+      console.log( ' +++++++++ _______ +++++++ ');
+      console.error("Must have a title, description, deadline")
       this.setState({error:"Must have a title and description"})
     }
   }
+
   render(){
+    //{this.state.inputValue.length}/80\
+    console.log(this.props);
     return (
-      <div>
+      <div className="createNewProject">
         <form>
-          TITLE: <input type="text" ref="title" maxLength="20"/>
+          Title: <input defaultValue={this.props.title} maxLength="80" type="text" ref="title"/>
           <hr/>
-          DESCRIPTION: <input type="text" ref="description" value={this.state.inputValue} onInput={(e)=>this._handleInput(e)} maxLength="200"/>
-          {80-this.state.inputValue.length}
+          Description: <input defaultValue={this.props.description}
+            maxLength="80" type="text" ref="description"/>
           <hr/>
-          DEADLINE: <input type="text" ref="deadline" maxLength="100"/>
+          Deadline: <input defaultValue={this.props.deadline}
+            maxLength="80" type="text" ref="deadline"/>
           <hr/>
-          <button type="submit" onClick={(e) => this._handleClick(e)}>Edit</button>
+          priority: <input defaultValue={this.props.priority} maxLength="80" type="text" ref="priority"/>
+          <hr/>
+
         </form>
-      </div>
+          <button type="submit" onClick={(e) => this._handleClick(e)}>Edit</button>
+        {/* <h3>{this.state.error}</h3> */}
+    </div>
     );
   }
+
 }

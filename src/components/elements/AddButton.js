@@ -20,7 +20,6 @@ export default class AddButton extends Component {
 
 
   render(){
-
     return (
       <div>
         <FloatingActionButton secondary={true} style={style} onClick={this.props.buttonClick}><ContentAdd /></FloatingActionButton>

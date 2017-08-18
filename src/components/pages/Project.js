@@ -34,9 +34,8 @@ export default class Project extends Component {
         api.getMe(localStorage.token)
       ])
       .then(data => {
-        var project = data[0].body;
+        var project = data[0].body[0];
         var user = data[1].body;
-
         this.setState({
           isAdmin: user.users_id === project.adminUserId,
           userId: user.users_id
@@ -69,7 +68,7 @@ export default class Project extends Component {
         ) : <h1>Add tasks</h1> }
 
         {this.state.isAdmin?  <AddButton addButtonClick={this._createTaskForm} /> : null}
-        {this.state.createTask ? <CreateTask projectId={this.props.params.id}/> : null}
+        {this.state.createTask ? <CreateTask onCreate={this.fetchData} projectId={this.props.params.id}/> : null}
 
       </div>
     );
