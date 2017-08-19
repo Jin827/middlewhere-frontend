@@ -23,19 +23,12 @@ export default class ProjectCard extends Component {
     };
   }
 
-    handleOpen = () => {
-      this.setState({open: true});
-    };
-
-    handleClose = () => {
-      this.setState({open: false});
-    };
-
     _editProjectForm = () =>{
         this.setState({
           editProject: true
         })
     }
+    
     _handleFormSubmitted = () => {
       this.setState({editProject:false})
     }
@@ -60,7 +53,7 @@ export default class ProjectCard extends Component {
             </Card>
 
           {this.state.editProject ? <EditProject id={id} title={title}
-          description={description} deadline={deadline} onCreate={() => {this.handleClose()}}  openState={this.handleOpen}  closeForm={this._handleFormSubmitted}/> : null}
+          description={description} deadline={deadline} closeForm={this._handleFormSubmitted}/> : null}
       </div>
     );
 

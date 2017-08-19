@@ -47,7 +47,7 @@ export default class CreateTask extends Component {
     e.preventDefault()
     this._fetchData()
     }
-  
+
   _handleChange = (e, date) => {
     this.setState ({
       date:date
@@ -110,7 +110,7 @@ export default class CreateTask extends Component {
     return (
       <div className="createNewProject">
         <Dialog
-         title="Dialog With Actions"
+         title="Create A Task"
          actions={actions}
          modal={false}
          open={this.props.openState}
@@ -120,7 +120,7 @@ export default class CreateTask extends Component {
 
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e,date) => this._handleChange(e, date)}/>
 
-          <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="500" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
+          <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="140" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
           {140 - this.state.inputValue.length}
 
           <TextField floatingLabelText="Priority: " type="text" ref="priority" maxLength='10'/>

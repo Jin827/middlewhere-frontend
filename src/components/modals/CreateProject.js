@@ -66,9 +66,9 @@ export default class CreateProject extends Component {
         actions={actions} modal={false} open={this.props.openState} onRequestClose={this.props.closeState}>
           <TextField floatingLabelText="Title: " type="text" ref="title" maxLength="100"/>
 
-          <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
+          <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e, date) => this._handleChange(e, date)}/>
 
-          <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="500" onInput={e => this.handleInput(e)} value={this.state.inputValue}/> {140 - this.state.inputValue.length}
+          <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="140" onInput={e => this.handleInput(e)} value={this.state.inputValue}/> {140 - this.state.inputValue.length}
 
         </Dialog>
       </div>

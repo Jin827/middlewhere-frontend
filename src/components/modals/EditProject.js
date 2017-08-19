@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './CreateProject.css';
 import {browserHistory as history} from 'react-router';
 import api from '../../api';
+import moment from 'moment';
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
@@ -17,14 +18,14 @@ export default class EditProject extends Component {
     };
   }
 
-  handleInput = (e) => {
+  _handleInput = (e) => {
     e.preventDefault()
     this.setState({
       inputValue: e.target.value
     })
   }
 
-  handleClose = () => {
+  _handleClose = () => {
       this.props.closeForm()
   }
 
@@ -59,33 +60,28 @@ export default class EditProject extends Component {
   }
 
   render(){
-        console.log(this.props.description)
     const actions = [
-      < FlatButton label = "Cancel" primary = {true}
-      onClick = {this.handleClose} />,
-      < FlatButton label = "Submit" primary = {true} keyboardFocused = {true}
-      onClick = {(e) => this._handleClick(e)} />
+      < FlatButton label="Cancel" primary={true}
+      onClick={this._handleClose} />,
+      < FlatButton label="Submit" primary={true} keyboardFocused={true}
+      onClick={(e) => this._handleClick(e)} />
     ];
     return (
       <div>
-          <Dialog title="Edit Project"
-          actions={actions} modal={false} open={this.props.openState} onRequestClose={this.handleClose} >
+          <Dialog
+            title="Edit Project"
+            actions={actions}
+            modal={false}
+            open={true}
+            onRequestClose={this._handleClose} >
             <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100'/>
             <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
-            <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="500" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
-
-        </Dialog>
+            <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
+            {140 - this.state.inputValue.length}
+          </Dialog>
       </div>
 
     );
   }
 
 }
-
-// <Dialog
-//   title="Dialog With Actions"
-//   actions={actions}
-//   modal={false}
-//   open={this.props.openState}
-//   onRequestClose={this.props.closeState}>
-//  {{this.state.error}}
