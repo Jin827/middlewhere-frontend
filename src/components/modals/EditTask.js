@@ -1,27 +1,64 @@
 import React, {Component} from 'react';
 import {browserHistory as history} from 'react-router';
 import api from '../../api';
+import TextField from 'material-ui/TextField'
+import FlatButton from 'material-ui/FlatButton';
+import DatePicker from 'material-ui/DatePicker';
+import Dialog from 'material-ui/Dialog';
 
 export default class EditTask extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      open: false,
+      inputValue:''
+    };
   }
 
+  _handleInput = (e) => {
+    e.preventDefault()
+    this.setState({
+      inputValue: e.target.value
+    })
+  }
+
+  _handleChange = (e, date) => {
+    this.setState({date: date})
+  }
+
+
   _handleClick = (e) => {
+    console.log("the handleclick happened fuck")
+    e.preventDefault()
     this._fetchData()
     }
 
+  _handleClose = () => {
+      this.props.closeForm()
+  }
+
   _fetchData = () =>{
-    if(this.refs.title.value){
+    // console.log(
+    // this.props.projectId,
+    // this.props.id,
+    //   this.refs.title.getValue(),
+    //   this.refs.description.getValue(),
+    //   this.state.date ?
+    //     this.state.date.toISOString().substring(0, 10) : '',
+    //   this.refs.priority.getValue(),
+    //   localStorage.token)
+    if(this.refs.title.getValue()){
         api.editTasks(
+        this.props.projectId,
         this.props.id,
-        this.refs.title.value,
-        this.refs.description.value,
-        this.refs.deadline.value,
-        this.refs.priority.value,
+        this.refs.title.getValue(),
+        this.refs.description.getValue(),
+        this.state.date ?
+          this.state.date.toISOString().substring(0, 10) : '',
+        this.refs.priority.getValue(),
         localStorage.token)
       .then(res => {
+        console.log("res happened")
         this.props.closeForm();
         //history.push(`/projects/${this.props.id}`)
       })
@@ -34,25 +71,30 @@ export default class EditTask extends Component {
   }
 
   render(){
-    //{this.state.inputValue.length}/80\
-    console.log(this.props);
+    const actions = [
+      < FlatButton label="Cancel" primary={true}
+      onClick={this._handleClose} />,
+      < FlatButton label="Submit" primary={true} keyboardFocused={true}
+      onClick={(e) => this._handleClick(e)} />
+    ];
+
+
     return (
       <div className="createNewProject">
-        <form>
-          Title: <input defaultValue={this.props.title} maxLength="80" type="text" ref="title"/>
-          <hr/>
-          Description: <input defaultValue={this.props.description}
-            maxLength="80" type="text" ref="description"/>
-          <hr/>
-          Deadline: <input defaultValue={this.props.deadline}
-            maxLength="80" type="text" ref="deadline"/>
-          <hr/>
-          priority: <input defaultValue={this.props.priority} maxLength="80" type="text" ref="priority"/>
-          <hr/>
-
-        </form>
-          <button type="submit" onClick={(e) => this._handleClick(e)}>Edit</button>
-        {/* <h3>{this.state.error}</h3> */}
+        <div>
+            <Dialog
+              title="Edit Task"
+              actions={actions}
+              modal={false}
+              open={true}
+              onRequestClose={this._handleClose} >
+              <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100'/>
+              <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
+              <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
+              {140 - this.state.inputValue.length}
+              <TextField floatingLabelText="Priority: " defaultValue={this.props.priority} type="text" ref="priority" maxLength='50'/>
+            </Dialog>
+        </div>
     </div>
     );
   }
