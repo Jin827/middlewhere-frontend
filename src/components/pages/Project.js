@@ -67,10 +67,8 @@ export default class Project extends Component {
 
   render() {
     let { tasks } = this.state;
-    console.log('p');
     return (
       <div className="tasks">
-        HELLO
          { tasks ? tasks.map(b =>
           <TaskCard
             isAdmin={this.state.isAdmin}

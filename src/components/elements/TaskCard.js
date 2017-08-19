@@ -64,7 +64,7 @@ export default class TaskCard extends Component {
           <div className="info">
             <p>{ description }</p>
             <p className="deadline">deadline  { deadline }</p>
-            <p>priority{ priority }</p>
+            <p>priority: { priority }</p>
             <input type="text" ref="assignee"/>
             <button>search</button>
           </div>
