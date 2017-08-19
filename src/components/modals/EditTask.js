@@ -14,7 +14,6 @@ export default class EditTask extends Component {
 
   _fetchData = () =>{
     if(this.refs.title.value){
-      // console.log('MUAHHAHAHAHAHA');
         api.editTasks(
         this.props.id,
         this.refs.title.value,
@@ -23,13 +22,12 @@ export default class EditTask extends Component {
         this.refs.priority.value,
         localStorage.token)
       .then(res => {
-        console.log('EditTask 27 ');
-        history.push(`/projects/${this.props.id}`)
+        this.props.closeForm();
+        //history.push(`/projects/${this.props.id}`)
       })
       .catch(console.log("I AM NOT WORKING, I'm a CATCH in EditTask.js"));
     }
     else {
-      console.log( ' +++++++++ _______ +++++++ ');
       console.error("Must have a title, description, deadline")
       this.setState({error:"Must have a title and description"})
     }

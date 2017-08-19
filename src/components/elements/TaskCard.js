@@ -3,14 +3,15 @@ import EditButton from './EditButton';
 import EditTask from '../modals/EditTask';
 import CompleteButton from '../elements/CompleteButton';
 import auth from '../../auth';
-import api from '../../api'
+import api from '../../api';
 import './TaskCard.css';
 
 export default class TaskCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editTask:false
+      editTask:false,
+      completed: 1
     };
   }
 
@@ -27,29 +28,53 @@ export default class TaskCard extends Component {
   //   // })
   // }
 
+  _completedTask = () => {
+    console.log("TaskCard 32 ...", this.props.id, this.state.completed);
+
+    if (!this.state.completed) {
+      this.setState({
+        completed: 1
+      })
+    } else {
+      this.setState({
+        completed: 0
+      })
+    }
+
+    api.completedTasks(this.props.id, this.state.completed, localStorage.token).then(console.log)
+  }
+
   _editTaskForm = () =>{
       this.setState({
         editTask: true
       })
+    }
+  _closeTaskForm = () =>{
+      this.setState({
+        editTask: false
+      })
+      this.props.ReRenderProject();
     }
 
   render() {
     let { id, title, description, deadline, priority} = this.props
     return (
         <div>
-          <h2 className="task-card">{ title } <CompleteButton/></h2>
+          <h2 className="task-card">{ title }</h2>
           <div className="info">
             <p>{ description }</p>
             <p className="deadline">deadline  { deadline }</p>
             <p>priority{ priority }</p>
-
             <input type="text" ref="assignee"/>
-            <button onClick={this._handleClick}>search</button>
+            <button>search</button>
           </div>
+          <br/>
+          <CompleteButton completeButtonClick={this._completedTask}/>
           <br/>
           {this.props.isAdmin ?  <EditButton editButtonClick={this._editTaskForm} /> : null}
           {this.state.editTask ? <EditTask id={id} title={title}
-          description={description} deadline={deadline} priority={priority} /> : null}
+          description={description} deadline={deadline} priority={priority}
+          closeForm={this._closeTaskForm}/> : null}
         </div>
     );
   }

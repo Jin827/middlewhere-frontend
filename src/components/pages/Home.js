@@ -16,7 +16,6 @@ export default class Home extends Component {
       projects: [],
       open:false,
       me : null
-
     };
   }
 
