@@ -9,11 +9,11 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import auth from '../auth';
 import FlatButton from 'material-ui/FlatButton';
 import {browserHistory as history} from 'react-router';
+import SideMenu from './modals/SideMenu'
+
 // import getMuiTheme from 'material-ui/styles/getMuiTheme';
 //import {cyan500,pink100} from 'material-ui/styles/colors';
 // import MobileTearSheet from '../../../MobileTearSheet';
-
-
 
 // const muiTheme = getMuiTheme({
 //   palette: {
@@ -30,12 +30,11 @@ class App extends Component {
     super(props)
     this.state = {
       logged: true,
-      // isMenuOpen: false
+      open: false,
+
      }
   }
 
-  // closeMenu = () => {console.log('ihappened')}
-  //this.setState({ isMenuOpen: false })
   _logOut = () => {
     auth.logout()
     history.push(`/login`)
@@ -45,17 +44,20 @@ class App extends Component {
     history.push(`/signup`)
   }
 
+  handleToggle = () => this.setState({open: !this.state.open});
+
+  handleClose = () => this.setState({open: false});
+
   render() {
-    let {isMenuOpen} = this.state
     return (
       <MuiThemeProvider>
         <div className="App row">
           <AppBar title="MiddleWhere"
-            onLeftIconButtonTouchTap={this.ListExampleSimple}
+            onLeftIconButtonTouchTap={this.handleToggle}
             iconElementRight={auth.isLoggedIn() ?
               <FlatButton label= "Logout" onClick={this._logOut}/> : <FlatButton label= "Signup" onClick={this._signUp}/>}
           />
-
+          {this.state.open ? <SideMenu menuState = {this.state.open} closeState = {this.handleClose}/> : null}
 
           {this.props.children}
           </div>

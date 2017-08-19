@@ -47,13 +47,12 @@ export default class CreateTask extends Component {
     e.preventDefault()
     this._fetchData()
     }
-
-
-
+  
   _handleChange = (e, date) => {
     this.setState ({
       date:date
     })
+
   }
 
 

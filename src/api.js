@@ -39,8 +39,8 @@ class Api {
     superagent
     .patch(`${API_HOST}/projects/${id}`)
     .set('Authorization', `token ${token}`)
-    .send({title,description,deadline, token})
-    //.then(console.log('HELLO api', id, title, description, deadline, token))
+    .send({title,description,deadline})
+    
   )
 
   getProjects = (id) => (
@@ -94,3 +94,4 @@ class Api {
 }
 
 export default new Api();
+
