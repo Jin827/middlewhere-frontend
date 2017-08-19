@@ -39,7 +39,9 @@ export default class ProjectCard extends Component {
       <div>
           <Link to={`/projects/${id}`}>
             <Card className='project-card'>
-              <CardHeader textStyle={{ paddingRight: 0}} title={title} />
+              <CardHeader 
+                textStyle={{ paddingRight: 0}} 
+                title={title} />
               <CardText>{time}</CardText>
               <CardText>{description}</CardText>
               <LinearProgress mode="determinate" value={progress} />

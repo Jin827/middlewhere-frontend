@@ -15,9 +15,9 @@ export default class Home extends Component {
     this.state = {
       projects: [],
 
-      open:false
+      open:false,
 
-      me : null
+      me: null
 
     };
   }
