@@ -25,7 +25,7 @@ export default class CompleteButton extends Component {
   // }
 
   render(){
-    console.log("CompleteCard 28 ...", this.props.completeButtonClick);
+    
     return (
       <div>
         <div className="edit-button">

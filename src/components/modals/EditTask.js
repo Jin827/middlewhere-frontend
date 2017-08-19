@@ -14,6 +14,13 @@ export default class EditTask extends Component {
 
   _fetchData = () =>{
     if(this.refs.title.value){
+console.log(this.props.id,
+        this.refs.title.value,
+        this.refs.description.value,
+        this.refs.deadline.value,
+        this.refs.priority.value,
+        localStorage.token)
+ 
         api.editTasks(
         this.props.id,
         this.refs.title.value,
@@ -22,6 +29,7 @@ export default class EditTask extends Component {
         this.refs.priority.value,
         localStorage.token)
       .then(res => {
+        
         this.props.closeForm();
         //history.push(`/projects/${this.props.id}`)
       })
@@ -35,7 +43,7 @@ export default class EditTask extends Component {
 
   render(){
     //{this.state.inputValue.length}/80\
-    console.log(this.props);
+    
     return (
       <div className="createNewProject">
         <form>
