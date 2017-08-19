@@ -1,16 +1,12 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
-import auth from '../../auth';
-import EditButton from './EditButton';
 import EditProject from '../modals/EditProject'
-import {Card, CardHeader, CardText, CardActions, LinearProgress, FlatButton} from 'material-ui';
-import FontIcon from 'material-ui/FontIcon';
+import {Card, CardHeader, CardText, CardActions, LinearProgress} from 'material-ui';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import './ProjectCard.css';
 import '../App.css';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 
 // import EditButton from './EditButton';
 // import EditProject from '../modals/EditProject'
@@ -28,7 +24,7 @@ export default class ProjectCard extends Component {
           editProject: true
         })
     }
-    
+
     _handleFormSubmitted = () => {
       this.setState({editProject:false})
     }
