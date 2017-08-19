@@ -18,14 +18,14 @@ export default class EditProject extends Component {
     };
   }
 
-  handleInput = (e) => {
+  _handleInput = (e) => {
     e.preventDefault()
     this.setState({
       inputValue: e.target.value
     })
   }
 
-  handleClose = () => {
+  _handleClose = () => {
       this.props.closeForm()
   }
 
@@ -40,7 +40,6 @@ export default class EditProject extends Component {
 
 
   _fetchData = () =>{
-    console.log(this.state.date)
     if(this.refs.title.getValue()){
       api.editProjects(
         this.props.id,
@@ -63,22 +62,23 @@ export default class EditProject extends Component {
   render(){
     const actions = [
       < FlatButton label="Cancel" primary={true}
-      onClick={this.handleClose} />,
+      onClick={this._handleClose} />,
       < FlatButton label="Submit" primary={true} keyboardFocused={true}
       onClick={(e) => this._handleClick(e)} />
     ];
     return (
       <div>
-
-
-          <Dialog title="Edit Project"
-          actions={actions} modal={false} open={this.props.openState} onRequestClose={this.handleClose} >
+          <Dialog
+            title="Edit Project"
+            actions={actions}
+            modal={false}
+            open={true}
+            onRequestClose={this._handleClose} >
             <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100'/>
             <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
-            <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this.handleInput(e)} onChange={this.state.inputValue}/>
+            <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
             {140 - this.state.inputValue.length}
-
-        </Dialog>
+          </Dialog>
       </div>
 
     );
