@@ -27,7 +27,6 @@ export default class Home extends Component {
     this.setState({open: false});
   };
 
-
   componentDidMount() {
     this._fetchData();
   }
@@ -35,7 +34,9 @@ export default class Home extends Component {
   _fetchData = () => {
     api.getMe(localStorage.token)
     .then(yoSoy => {
-      this.setState({me : yoSoy.body.users_id})
+      this.setState({
+        me : yoSoy.body.users_id
+      })
     })
     .then(() => api.getProjectsList())
     .then(data => {
@@ -50,8 +51,6 @@ export default class Home extends Component {
       createProject: true
     })
   }
-
-
 
   render() {
     let { projects } = this.state
@@ -72,7 +71,7 @@ export default class Home extends Component {
         ) : <h1>No projects yet</h1>}
 
         {auth.isLoggedIn() ?  <AddButton buttonClick={this.handleOpen}  /> : null}
-        {this.state.open ? <CreateProject openState={this.handleOpen} closeState={this.handleClose}/> : null}
+        {this.state.open ? <CreateProject onCreate={() => {this._fetchData(); this.handleClose()}} openState={this.handleOpen} closeState={this.handleClose}/> : null}
 
       </div>
     );
