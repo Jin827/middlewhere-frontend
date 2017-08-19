@@ -81,6 +81,7 @@ export default class Project extends Component {
             description={b.description}
             deadline={b.deadline}
             priority={b.priority}
+            ReRenderProject={this.fetchData}
           />
         ) : <h1>Add tasks</h1> }
 

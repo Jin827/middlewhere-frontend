@@ -17,7 +17,6 @@ export default class CompleteButton extends Component {
       showComponent:false,
     }
   }
-
   // _handleClick = (e) => {
   //   e.preventDefault();
   //   this.setState({
@@ -26,14 +25,12 @@ export default class CompleteButton extends Component {
   // }
 
   render(){
-
+    console.log("CompleteCard 28 ...", this.props.completeButtonClick);
     return (
       <div>
-        <form>
-          <input type = "checkbox"
-                 id = "chkHam"
-                 value = "ham" />
-        </form>
+        <div className="edit-button">
+          <FloatingActionButton primary={true} onClick={this.props.completeButtonClick}><ContentAdd /></FloatingActionButton>
+        </div>
       </div>
   )}
   // render(){
