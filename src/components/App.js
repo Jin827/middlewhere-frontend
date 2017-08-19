@@ -10,16 +10,17 @@ import auth from '../auth';
 import FlatButton from 'material-ui/FlatButton';
 import {browserHistory as history} from 'react-router';
 import SideMenu from './modals/SideMenu'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {orange300,amber600, purple100,pink100,grey500,lightBlue500} from 'material-ui/styles/colors';
 
-// import getMuiTheme from 'material-ui/styles/getMuiTheme';
-//import {cyan500,pink100} from 'material-ui/styles/colors';
-// import MobileTearSheet from '../../../MobileTearSheet';
-
+//
 // const muiTheme = getMuiTheme({
 //   palette: {
-//     primary1Color:pink100,
-//     textColor: cyan500,
-//     backgroundColor: cyan500,
+//
+//     primary1Color:lightBlue500,
+//     accent1Color:grey500,
+//     // textColor: cyan500,
+//     // backgroundColor: cyan500,
 //   },
 //
 // });
@@ -31,7 +32,6 @@ class App extends Component {
     this.state = {
       logged: true,
       open: false,
-
      }
   }
 
@@ -44,20 +44,21 @@ class App extends Component {
     history.push(`/signup`)
   }
 
-  handleToggle = () => this.setState({open: !this.state.open});
 
-  handleClose = () => this.setState({open: false});
+  handleToggle=() => this.setState({open: !this.state.open});
+
+  handleClose=() => this.setState({open: false});
 
   render() {
     return (
-      <MuiThemeProvider>
+      <MuiThemeProvider >
         <div className="App row">
           <AppBar title="MiddleWhere"
             onLeftIconButtonTouchTap={this.handleToggle}
             iconElementRight={auth.isLoggedIn() ?
-              <FlatButton label= "Logout" onClick={this._logOut}/> : <FlatButton label= "Signup" onClick={this._signUp}/>}
+              <FlatButton label= "Logout" onClick={this._logOut}/> : <FlatButton label="Signup" onClick={this._signUp}/>}
           />
-          {this.state.open ? <SideMenu menuState = {this.state.open} closeState = {this.handleClose}/> : null}
+          {this.state.open ? <SideMenu menuState={this.state.open} closeState={this.handleClose}/> : null}
 
           {this.props.children}
           </div>

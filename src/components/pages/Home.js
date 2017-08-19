@@ -1,12 +1,9 @@
 import React, {Component} from 'react';
-import moment from 'moment';
 import api from '../../api';
 import ProjectCard from '../elements/ProjectCard';
 import AddButton from '../elements/AddButton';
-import AddForm from '../elements/AddForm'
 import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
-import Paper from 'material-ui/Paper'
 import './Home.css';
 
 export default class Home extends Component {
@@ -60,7 +57,7 @@ export default class Home extends Component {
     return (
       <div className="home">
         { projects ? projects.map(p =>
-          <div className = "single-proj col-large-3 col-medium-6 col-small-12">
+          <div className="single-proj col-large-3 col-medium-6 col-small-12">
             <ProjectCard
               isAdmin={p.adminUserId==this.state.me}
               key={p.id}
