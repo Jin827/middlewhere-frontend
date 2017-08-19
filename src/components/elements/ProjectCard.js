@@ -28,6 +28,7 @@ export default class ProjectCard extends Component {
           editProject: true
         })
     }
+    
     _handleFormSubmitted = () => {
       this.setState({editProject:false})
     }

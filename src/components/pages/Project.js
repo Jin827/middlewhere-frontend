@@ -70,18 +70,21 @@ export default class Project extends Component {
     return (
       <div className="tasks">
          { tasks ? tasks.map(b =>
-          <TaskCard
-            isAdmin={this.state.isAdmin}
-            userId={this.state.userId}
-            key={b.id}
-            id={b.id}
-            title={b.title}
-            description={b.description}
-            deadline={b.deadline}
-            priority={b.priority}
-            ReRenderProject={this.fetchData}
-          />
-        ) : <h1>Add tasks</h1> }
+           <div className = "single-proj col-large-3 col-medium-6 col-small-12">
+            <TaskCard
+              projectId={this.props.params.id}
+              isAdmin={this.state.isAdmin}
+              userId={this.state.userId}
+              key={b.id}
+              id={b.id}
+              title={b.title}
+              description={b.description}
+              deadline={b.deadline}
+              priority={b.priority}
+              ReRenderProject={this.fetchData}
+            />
+            </div>
+          ) : <h1>Add tasks</h1> }
 
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}

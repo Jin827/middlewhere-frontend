@@ -10,6 +10,7 @@ export default class EditTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      open: false,
       inputValue:''
     };
   }
@@ -27,6 +28,8 @@ export default class EditTask extends Component {
 
 
   _handleClick = (e) => {
+    console.log("the handleclick happened fuck")
+    e.preventDefault()
     this._fetchData()
     }
 
@@ -35,8 +38,18 @@ export default class EditTask extends Component {
   }
 
   _fetchData = () =>{
+    // console.log(
+    // this.props.projectId,
+    // this.props.id,
+    //   this.refs.title.getValue(),
+    //   this.refs.description.getValue(),
+    //   this.state.date ?
+    //     this.state.date.toISOString().substring(0, 10) : '',
+    //   this.refs.priority.getValue(),
+    //   localStorage.token)
     if(this.refs.title.getValue()){
         api.editTasks(
+        this.props.projectId,
         this.props.id,
         this.refs.title.getValue(),
         this.refs.description.getValue(),
@@ -64,25 +77,24 @@ export default class EditTask extends Component {
       < FlatButton label="Submit" primary={true} keyboardFocused={true}
       onClick={(e) => this._handleClick(e)} />
     ];
-    //{this.state.inputValue.length}/80\
+
 
     return (
       <div className="createNewProject">
         <div>
             <Dialog
-              title="Edit Project"
+              title="Edit Task"
               actions={actions}
               modal={false}
               open={true}
               onRequestClose={this._handleClose} >
               <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100'/>
               <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
-              <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this.handleInput(e)} onChange={this.state.inputValue}/>
+              <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
+              {140 - this.state.inputValue.length}
               <TextField floatingLabelText="Priority: " defaultValue={this.props.priority} type="text" ref="priority" maxLength='50'/>
             </Dialog>
         </div>
-          <button type="submit" onClick={(e) => this._handleClick(e)}>Edit</button>
-        {/* <h3>{this.state.error}</h3> */}
     </div>
     );
   }

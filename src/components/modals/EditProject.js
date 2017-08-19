@@ -85,11 +85,3 @@ export default class EditProject extends Component {
   }
 
 }
-
-// <Dialog
-//   title="Dialog With Actions"
-//   actions={actions}
-//   modal={false}
-//   open={this.props.openState}
-//   onRequestClose={this.props.closeState}>
-//  {{this.state.error}}
