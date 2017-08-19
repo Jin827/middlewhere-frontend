@@ -11,13 +11,28 @@ export default class Project extends Component {
     super(props);
     this.state = {
       tasks: [],
+      open:false,
       isAdmin: false
     };
   }
 
+
   componentDidMount() {
     this.fetchData()
   }
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
+  _handleFormSubmitted = () => {
+    this.setState({createTask : false})
+  }
+
 
   fetchData = () => {
       api.getTasks(this.props.params.id)
@@ -52,8 +67,10 @@ export default class Project extends Component {
 
   render() {
     let { tasks } = this.state;
+    console.log('p');
     return (
       <div className="tasks">
+        HELLO
          { tasks ? tasks.map(b =>
           <TaskCard
             isAdmin={this.state.isAdmin}
@@ -64,11 +81,15 @@ export default class Project extends Component {
             description={b.description}
             deadline={b.deadline}
             priority={b.priority}
+            ReRenderProject={this.fetchData}
           />
         ) : <h1>Add tasks</h1> }
 
-        {this.state.isAdmin?  <AddButton addButtonClick={this._createTaskForm} /> : null}
-        {this.state.createTask ? <CreateTask onCreate={this.fetchData} projectId={this.props.params.id}/> : null}
+        {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
+        {this.state.createTask ? <CreateTask onCreate={this.fetchData}
+          projectId={this.props.params.id}
+          openState={this.handleOpen} closeState={this.handleClose}
+          closeForm={this._handleFormSubmitted}/> : null}
 
       </div>
     );
