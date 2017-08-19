@@ -4,9 +4,13 @@ import moment from 'moment';
 import auth from '../../auth';
 import EditButton from './EditButton';
 import EditProject from '../modals/EditProject'
-import {Card, CardHeader, CardText, LinearProgress} from 'material-ui';
+import {Card, CardHeader, CardText, CardActions, LinearProgress, FlatButton} from 'material-ui';
+import FontIcon from 'material-ui/FontIcon';
+import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import './ProjectCard.css';
 import '../App.css';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 // import EditButton from './EditButton';
 // import EditProject from '../modals/EditProject'
@@ -15,20 +19,19 @@ export default class ProjectCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      editProject:false
+      open:false
     };
-
   }
 
-  _editProjectForm = () =>{
-      this.setState({
-        editProject: true
-      })
-  }
-  //
-  // _callFetchData = () => {
-  //   this.props.onCreate();
-  // }
+    _editProjectForm = () =>{
+        this.setState({
+          editProject: true
+        })
+    }
+    
+    _handleFormSubmitted = () => {
+      this.setState({editProject:false})
+    }
 
   render() {
     let { id, progress, title, deadline, description } = this.props
@@ -37,20 +40,24 @@ export default class ProjectCard extends Component {
     }
     return (
       <div>
-          <Link to={`/projects/${id}`}>
             <Card className='project-card'>
-              <CardHeader textStyle={{ paddingRight: 0}} title={title} />
-              <CardText>{time}</CardText>
-              <CardText>{description}</CardText>
+              <Link to={`/projects/${id}`}>
+                <CardHeader textStyle={{ paddingRight: 0}} title={title} />
+                <CardText>{time}</CardText>
+                <CardText>{description}</CardText>
+              </Link>
+              <CardActions>
+               {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editProjectForm}><EditorModeEdit/></FloatingActionButton> :null}
+             </CardActions>
               <LinearProgress mode="determinate" value={progress} />
             </Card>
-          </Link>
-          {this.props.isAdmin ?  <EditButton editButtonClick={this._editProjectForm} /> : null}
-          {this.state.editProject ? <EditProject onCreate={this.props.onCreate} id={id} title={title}
-          description={description} deadline={deadline} /> : null}
+
+          {this.state.editProject ? <EditProject id={id} title={title}
+          description={description} deadline={deadline} closeForm={this._handleFormSubmitted}/> : null}
       </div>
     );
 
   }
 
 }
+// {this.props.isAdmin ? <FlatButton primary={true} icon={<EditorModeEdit/>} onClick={this._editProjectForm}/> :null}
