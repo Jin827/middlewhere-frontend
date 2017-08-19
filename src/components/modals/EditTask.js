@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {browserHistory as history} from 'react-router';
 import api from '../../api';
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton';
@@ -38,15 +37,6 @@ export default class EditTask extends Component {
   }
 
   _fetchData = () =>{
-    // console.log(
-    // this.props.projectId,
-    // this.props.id,
-    //   this.refs.title.getValue(),
-    //   this.refs.description.getValue(),
-    //   this.state.date ?
-    //     this.state.date.toISOString().substring(0, 10) : '',
-    //   this.refs.priority.getValue(),
-    //   localStorage.token)
     if(this.refs.title.getValue()){
         api.editTasks(
         this.props.projectId,
