@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import './CreateTask.css';
 import api from '../../api';
-import {browserHistory as history} from 'react-router';
-
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';

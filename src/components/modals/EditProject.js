@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import './CreateProject.css';
-import {browserHistory as history} from 'react-router';
 import api from '../../api';
-import moment from 'moment';
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
