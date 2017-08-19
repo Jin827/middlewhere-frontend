@@ -59,6 +59,7 @@ export default class EditProject extends Component {
   }
 
   render(){
+        console.log(this.props.description)
     const actions = [
       < FlatButton label = "Cancel" primary = {true}
       onClick = {this.handleClose} />,
