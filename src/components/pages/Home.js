@@ -35,7 +35,9 @@ export default class Home extends Component {
   _fetchData = () => {
     api.getMe(localStorage.token)
     .then(yoSoy => {
-      this.setState({me : yoSoy.body.users_id})
+      this.setState({
+        me : yoSoy.body.users_id
+      })
     })
     .then(() => api.getProjectsList())
     .then(data => {
@@ -50,8 +52,6 @@ export default class Home extends Component {
       createProject: true
     })
   }
-
-
 
   render() {
     let { projects } = this.state
