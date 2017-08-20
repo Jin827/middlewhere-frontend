@@ -87,10 +87,9 @@ export default class TaskCard extends Component {
       <div>
             <Card className="task-card">
                 <CardTitle title={ title }  actAsExpander={true} showExpandableButton={true}/>
-                {deadline ? <CardText expandable={true} textStyle={{fontWeight:"bold"}}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
+                {deadline ? <CardText expandable={true}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
                 <CardText expandable={true}> <strong>Description </strong>  <br/>  { description } </CardText>
                 {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
-
                 <AutoComplete
                     floatingLabelText="Team Members"
                     filter={AutoComplete.caseInsensitiveFilter}
