@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './CreateProject.css';
 import api from '../../api'
-import {browserHistory as history} from 'react-router';
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
@@ -44,18 +43,18 @@ export default class CreateProject extends Component {
   }
 
   render() {
-    const actions = [ < FlatButton label = "Cancel" primary = {
+    const actions=[ < FlatButton label="Cancel" primary={
         true
       }
-      onClick = {
+      onClick={
         this.props.closeState
-      } />, < FlatButton label = "Submit" primary = {
+      } />, < FlatButton label="Submit" primary={
         true
       }
-      keyboardFocused = {
+      keyboardFocused={
         true
       }
-      onClick = {
+      onClick={
         (e) => this._handleClick(e)
       } />
     ];

@@ -1,20 +1,18 @@
 import React, {Component} from 'react';
-import EditButton from './EditButton';
 import EditTask from '../modals/EditTask';
-import CompleteButton from '../elements/CompleteButton';
-import auth from '../../auth';
 import api from '../../api';
 import './TaskCard.css';
 import {Card, CardHeader, CardTitle, CardText, CardActions, LinearProgress, FlatButton} from 'material-ui';
 import FontIcon from 'material-ui/FontIcon';
+
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
-import './ProjectCard.css';
-import '../App.css';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
 import moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import AutoComplete from 'material-ui/AutoComplete';
+import './TaskCard.css';
+import './ProjectCard.css';
+import '../App.css';
 
 export default class TaskCard extends Component {
   constructor(props) {
@@ -23,26 +21,28 @@ export default class TaskCard extends Component {
       editTask:false,
       completed: 1,
       open: false,
+      dataSource:[]
     };
   }
 
-  _handleClick = () => {
+  componentDidMount = () => {
     this.fetchData()
   }
 
   fetchData = () => {
-    api.getAll
-    // var assigneeId = this.props.userId
-    // api.assignTask(taskId, assigneeId)
-    // .then(res => {
-    //   console.log(res)
-    // })
+    api.getAll()
+    .then(res => {
+      this.setState({
+        dataSource:res.body
+      })
+    })
+    .then(
+      console.log(this.state.dataSource, "datasource inside fetchData")
+    )
   }
-
 
   _completedTask = () => {
     console.log("TaskCard 32 ...", this.props.id, this.state.completed);
-
     if (!this.state.completed) {
       this.setState({
         completed: 1
@@ -52,7 +52,6 @@ export default class TaskCard extends Component {
         completed: 0
       })
     }
-
     api.completedTasks(this.props.id, this.state.completed, localStorage.token).then(console.log)
   }
 
@@ -68,14 +67,16 @@ export default class TaskCard extends Component {
       })
         this.props.ReRenderProject();
     }
-  // _closeTaskForm = () =>{
-  //     this.setState({
-  //       editTask: false
-  //     })
-  //     this.props.ReRenderProject();
-  //   }
+
 
   render() {
+    const dataSource = this.state.dataSource
+
+    const dataSourceConfig = {
+      text: 'firstName',
+      value: 'userId'
+    };
+
     let { id, title, description, deadline, priority} = this.props
 
     if(deadline) {
@@ -89,6 +90,17 @@ export default class TaskCard extends Component {
                 {deadline ? <CardText expandable={true} textStyle={{fontWeight:"bold"}}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
                 <CardText expandable={true}> <strong>Description </strong>  <br/>  { description } </CardText>
                 {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
+
+                <AutoComplete
+                    floatingLabelText="Team Members"
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    openOnFocus={false}
+                    dataSource={dataSource}
+                    dataSourceConfig={dataSourceConfig}
+                    maxSearchResults={5}
+                    animated={true}
+                    onNewRequest={this._handleChange}
+                />
 
               <CardActions>
                {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}
@@ -105,24 +117,3 @@ export default class TaskCard extends Component {
   }
 
 }
-// <br/>
-// <CompleteButton completeButtonClick={this._completedTask}/>
-// <br/>
-
-// <div>
-//   <h2 className="task-card">{ title }</h2>
-//   <div className="info">
-//     <p>{ description }</p>
-//     <p className="deadline">deadline  { deadline }</p>
-//     <p>priority: { priority }</p>
-//     <input type="text" ref="assignee"/>
-//     <button>search</button>
-//   </div>
-//   <br/>
-//   <CompleteButton completeButtonClick={this._completedTask}/>
-//   <br/>
-//   {this.props.isAdmin ?  <EditButton editButtonClick={this._editTaskForm} /> : null}
-//   {this.state.editTask ? <EditTask id={id} title={title}
-//   description={description} deadline={deadline} priority={priority}
-//   closeForm={this._closeTaskForm}/> : null}
-// </div>
