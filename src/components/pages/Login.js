@@ -42,9 +42,10 @@ export default class Login extends Component {
     // if (this.state && this.state.error) {
     //   this.setState({ error: null })
     // }
-    if (e.keyCode===ENTER) {
-      this._handleLogin()
-    }
+    // if (e.keyCode===ENTER) {
+    //   this._handleLogin()
+    // }
+    this._handleLogin()
   }
 
   render() {

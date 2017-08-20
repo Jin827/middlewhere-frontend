@@ -23,10 +23,11 @@ export default class SignUp extends Component {
   _handleTyping = (e) => {
     // if (this.state && this.state.error) {
     //   this.setState({ error: null})
-    }
-    if (e.keyCode===ENTER) {
-      this._handleSignup()
-    }
+    // }
+    // if (e.keyCode===ENTER) {
+    //   this._handleSignup()
+    // }
+    this._handleSignup()
   }
 
   _handleSignup = (e) => {
@@ -38,7 +39,7 @@ export default class SignUp extends Component {
       }
     })
     .catch(
-      this.setState({error:"Please put in a valid email or password(12 characters)"})
+      this.setState({error:true})
     )
 
   }
@@ -53,10 +54,10 @@ export default class SignUp extends Component {
             <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
           <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
-          {this.state.error? <div>{this.state.error}</div> : null}
-        </Paper>
+          {this.state.error ? <div>Please put in a valid email or password(12 characters)</div> : null}
+        </Paper>a
 
-      </div>
+      </div>//SAL
 
 
     );
