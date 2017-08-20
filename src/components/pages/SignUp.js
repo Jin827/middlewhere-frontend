@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import auth from '../../auth'
 import './SignUp.css';
 import api from "../../api";
 import TextField from 'material-ui/TextField';
@@ -17,30 +16,25 @@ const style = {
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {error:false};
   }
 
-  _handleTyping = (e) => {
-    if (this.state && this.state.error) {
-      this.setState({ error: null})
-    }
-    if (e.keyCode===ENTER) {
-      this._handleSignup()
-    }
-  }
-
-  _handleSignup = (e) => {
-    e.preventDefault();
+  _handleSignup = () => {
     api.requestSignup(this.refs.firstName.getValue(), this.refs.lastName.getValue(), this.refs.email.getValue(), this.refs.password.getValue())
     .then(res => {
       if(this.refs.firstName.getValue() && this.refs.lastName.getValue() && this.refs.email.getValue() && this.refs.password.getValue()){
         this.props.router.push('/login')
       }
     })
-    .catch(
-      this.setState({error:"Please put in a valid email or password(12 characters)"})
-    )
+    .catch( ()=> {
+       this.setState({error:true})
+    })
+  }
 
+  _handleTyping = (e) => {
+      if (e.keyCode===ENTER) {
+        this._handleSignup()
+      }  
   }
 
   render() {
@@ -53,7 +47,7 @@ export default class SignUp extends Component {
             <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
           <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
-          <h3>{this.state.error}</h3>
+          {this.state.error ? <div>Please put in a valid email or password(12 characters)</div> : null}
         </Paper>
 
       </div>

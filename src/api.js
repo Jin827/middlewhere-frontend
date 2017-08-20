@@ -53,7 +53,7 @@ class Api {
     superagent
     .post(`${API_HOST}/projects/${id}/tasks`)
     .set('Authorization', `token ${localStorage.token}`)
-    .send({title, description, deadline, priority})
+    .send({id,title, description, deadline, priority})
 
   )
 
