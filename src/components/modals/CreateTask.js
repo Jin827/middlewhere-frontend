@@ -63,7 +63,8 @@ export default class CreateTask extends Component {
       this.props.projectId,
       this.refs.title.getValue(),
       this.refs.description.getValue(),
-      this.state.date.toISOString().substring(0,10),
+      this.state.date ?
+        this.state.date.toISOString().substring(0, 10) : '',
       this.state.value)
     .then(data => {
       this.props.onCreate();
@@ -121,7 +122,7 @@ export default class CreateTask extends Component {
        >
           <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='100'/>
 
-          <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e,date) => this._handleChange(e, date)}/>
+          <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e,date) => this._handleChange(e, date)}/>
 
           <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="140" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
           {140 - this.state.inputValue.length}

@@ -14,6 +14,7 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import AssignedList from './AssignedList'
 import {pinkA200} from 'material-ui/styles/colors';
+import List from 'material-ui/List/List';
 import './TaskCard.css';
 import './ProjectCard.css';
 import '../App.css';
@@ -123,16 +124,16 @@ export default class TaskCard extends Component {
                 {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
 
                 { assignedUsers ? assignedUsers.map(u =>
-                  <div>
+                  <List>
                     <AssignedList
                       key={u.id}
                       id={u.id}
                       firstName={u.firstName}
                       lastName={u.lastName}
                       email={u.email}
-                      avatar={u.avatarUrl}
+                      avatarUrl={u.avatarUrl}
                     />
-                  </div>
+                  </List>
                 ) : <h4>No assigned users </h4>}
 
                 <AutoComplete
