@@ -7,7 +7,9 @@ module.exports = {
     }
     else {
       return api.requestLogin(email, pass)
-      .then(res => localStorage.token = res.body.token)
+      .then(res => {
+        localStorage.token = res.body.token
+      })
     }
   },
 
