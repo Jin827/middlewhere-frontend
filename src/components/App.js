@@ -35,6 +35,12 @@ class App extends Component {
      }
   }
 
+  _login = () => {
+    auth.login(
+    history.push(`/login`)
+    )
+  }
+
   _logOut = () => {
     auth.logout()
     history.push(`/login`)
@@ -44,6 +50,7 @@ class App extends Component {
     history.push(`/signup`)
   }
 
+  
 
   handleToggle=() => this.setState({open: !this.state.open});
 
@@ -56,7 +63,7 @@ class App extends Component {
           <AppBar title="MiddleWhere"
             onLeftIconButtonTouchTap={this.handleToggle}
             iconElementRight={auth.isLoggedIn() ?
-              <FlatButton label= "Logout" onClick={this._logOut}/> : <FlatButton label="Signup" onClick={this._signUp}/>}
+              <FlatButton label= "Logout" onClick={this._logOut}/> : <FlatButton lable="Login" onClick={this._signUp}/> "/" <FlatButton label="Signup" onClick={this._signUp}/>}
           />
           {this.state.open ? <SideMenu menuState={this.state.open} closeState={this.handleClose}/> : null}
 

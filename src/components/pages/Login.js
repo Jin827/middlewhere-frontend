@@ -15,6 +15,11 @@ const style = {
 };
 
 export default class Login extends Component {
+  constructor(props) {
+    super(props)
+    this.state={error:false}
+  }
+  
 
   _handleLogin = () => {
     // deep destructuring equivalent to (let email = this.refs.email.value;)
@@ -34,9 +39,9 @@ export default class Login extends Component {
   }
 
   _handleTyping = (e) => {
-    if (this.state && this.state.error) {
-      this.setState({ error: null })
-    }
+    // if (this.state && this.state.error) {
+    //   this.setState({ error: null })
+    // }
     if (e.keyCode===ENTER) {
       this._handleLogin()
     }
@@ -50,13 +55,12 @@ export default class Login extends Component {
             <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
             <RaisedButton className="button-pad" label="Let's Go" secondary={true} onClick={this._handleLogin}/>
-
         </Paper>
-
+        {this.state.error? <h3>{this.state.error}</h3> : null}
       </div>
 
     );
   }
 
 }
-  //<h3>{this.state.error}</h3>
+
