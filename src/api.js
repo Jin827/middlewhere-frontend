@@ -97,6 +97,14 @@ class Api {
    .set('Authorization', `token ${localStorage.token}`)
  )
 
+ getAutoComplete = (queryTerm) => (
+   superagent
+   .get(`${API_HOST}/auth/autocomplete/?queryTerm=${queryTerm}`)
+   .set('Authorization', `token ${localStorage.token}`)
+ )
+
+
+
 }
 
 export default new Api();
