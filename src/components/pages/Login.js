@@ -56,7 +56,7 @@ export default class Login extends Component {
             <br/>
             <RaisedButton className="button-pad" label="Let's Go" secondary={true} onClick={this._handleLogin}/>
         </Paper>
-        {this.state.error? <h3>{this.state.error}</h3> : null}
+        {this.state.error? <div>{this.state.error}</div> : null}
       </div>
 
     );

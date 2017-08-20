@@ -53,7 +53,7 @@ export default class SignUp extends Component {
             <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
           <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
-          {this.state.error? <h3>{this.state.error}</h3> : null}
+          {this.state.error? <div>{this.state.error}</div> : null}
         </Paper>
 
       </div>
