@@ -20,32 +20,30 @@ export default class SignUp extends Component {
     this.state = {error:false};
   }
 
-  _handleTyping = (e) => {
-    // if (this.state.error) {
-    //   this.setState({ error: null})
-    // }
-    if (e.keyCode===ENTER) {
-      this._handleSignup()
-    }
-  }
+  // _handleTyping = (e) => {
+    
+  //   // if (this.state.error) {
+  //   //   this.setState({ error: null})
+  //   // }
+  //   if (e.keyCode===ENTER) {
+  //     this._handleSignup()
+  //   } else {this._handleSignup()}
+  // } 
 
   _handleSignup = (e) => {
     e.preventDefault();
     api.requestSignup(this.refs.firstName.getValue(), this.refs.lastName.getValue(), this.refs.email.getValue(), this.refs.password.getValue())
     .then(res => {
+      console.log("SIUGNUP")
       if(this.refs.firstName.getValue() && this.refs.lastName.getValue() && this.refs.email.getValue() && this.refs.password.getValue()){
         this.props.router.push('/login')
       }
     })
     .catch( ()=> {
        this.setState({error:true})
-    }
-     
-      
-    )
-
+    })
   }
-// onKeyUp={this._handleTyping}
+
   render() {
     return (
       <div className="signup row">
@@ -55,7 +53,7 @@ export default class SignUp extends Component {
             <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
             <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
-          <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleTyping}/>
+          <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
           {this.state.error ? <div>Please put in a valid email or password(12 characters)</div> : null}
         </Paper>
 
