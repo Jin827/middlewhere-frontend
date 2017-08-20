@@ -58,8 +58,6 @@ export default class CreateTask extends Component {
 
   _handlePriority = (event, index, value) => this.setState({value});
 
-
-
   _fetchData = () => {
     api.createTasks(
       this.props.projectId,

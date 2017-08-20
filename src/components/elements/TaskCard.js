@@ -78,8 +78,7 @@ export default class TaskCard extends Component {
     }
 
     _assignTask(searchText){
-      console.log(searchText)
-      
+      api.assignTask(this.props.id, searchText.userId)
     }
 
 
