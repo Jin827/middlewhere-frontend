@@ -12,9 +12,9 @@ class Menu extends Component {
     this.props.closeMenu();
   }
 
-  _logOut = () => {
-    auth.logout()
-  }
+  // _logOut = () => {
+  //   auth.logout()
+  // }
 
   render() {
     let { closeMenu, show } = this.props
@@ -25,32 +25,32 @@ class Menu extends Component {
         <div className="menu__header">
           <img src="" alt="profile-pic" className="menu__avatar"/>
         </div>
+ 
+           <div className="menu__list">  
 
-        <div className="menu__list">
-
-          <Link to="/" className="menu__item" onClick={closeMenu}>
+          {/* <Link to="/" className="menu__item" onClick={closeMenu}>
             Home
-          </Link>
+          </Link> */}
 
-          {!isLoggedIn ?
+          {/* {!isLoggedIn ?
             <Link to="/login" className="menu__item" onClick={closeMenu}>
               Login
             </Link>
-          : null}
+          : null} */}
 
-          {!isLoggedIn ?
+          {/* {!isLoggedIn ?
             <Link to="/signup" className="menu__item" onClick={closeMenu}>
               Signup
             </Link>
-          : null}
-
-          {isLoggedIn ?
-            <Link to="/login" className="menu__item" onClick={this._logOut.bind(this)}>
+          : null}    */}
+{/* 
+            {isLoggedIn ?
+            <Link to="/" className="menu__item" onClick={this._logOut.bind(this)}>
               Logout
-            </Link>
-          : null}
+            </Link> 
+          : null}  */}
 
-        </div>
+          </div>   
       </div>
     );
   }
