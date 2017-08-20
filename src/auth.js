@@ -8,7 +8,6 @@ module.exports = {
     else {
       return api.requestLogin(email, pass)
       .then(res => {
-        console.log(res)
         localStorage.token = res.body.token
       })
     }

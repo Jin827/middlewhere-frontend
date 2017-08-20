@@ -42,7 +42,6 @@ class App extends Component {
   }
 
   _login = () => {
-    auth.login()
     history.push(`login`)
   }
 

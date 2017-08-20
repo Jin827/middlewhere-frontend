@@ -40,14 +40,11 @@ export default class Login extends Component {
     }
   }
 
-  // _handleTyping = (e) => {
-  //     // if ( this.state&&this.state.error) {
-  //     //   this.setState({ error: false})
-  //     // }
-  //     if (e.keyCode===ENTER) {
-  //       this._handleLogin()
-  //     }  
-  // }
+  _handleTyping = (e) => {
+      if (e.keyCode===ENTER) {
+        this._handleLogin()
+      }  
+  }
 
   render() {
     return (
@@ -56,7 +53,7 @@ export default class Login extends Component {
             <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
             <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
-            <RaisedButton className="button-pad" label="Let's Go" secondary={true} onClick={this._handleLogin}/>
+            <RaisedButton className="button-pad" label="Let's Go" secondary={true} onClick={this._handleLogin} />
             {this.state.error? <div>Please enter an valid email and password</div> : null}
         </Paper>
         

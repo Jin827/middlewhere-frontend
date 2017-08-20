@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import auth from '../../auth'
 import './SignUp.css';
 import api from "../../api";
 import TextField from 'material-ui/TextField';
@@ -20,21 +19,9 @@ export default class SignUp extends Component {
     this.state = {error:false};
   }
 
-  // _handleTyping = (e) => {
-    
-  //   // if (this.state.error) {
-  //   //   this.setState({ error: null})
-  //   // }
-  //   if (e.keyCode===ENTER) {
-  //     this._handleSignup()
-  //   } else {this._handleSignup()}
-  // } 
-
-  _handleSignup = (e) => {
-    e.preventDefault();
+  _handleSignup = () => {
     api.requestSignup(this.refs.firstName.getValue(), this.refs.lastName.getValue(), this.refs.email.getValue(), this.refs.password.getValue())
     .then(res => {
-      console.log("SIUGNUP")
       if(this.refs.firstName.getValue() && this.refs.lastName.getValue() && this.refs.email.getValue() && this.refs.password.getValue()){
         this.props.router.push('/login')
       }
@@ -42,6 +29,12 @@ export default class SignUp extends Component {
     .catch( ()=> {
        this.setState({error:true})
     })
+  }
+
+  _handleTyping = (e) => {
+      if (e.keyCode===ENTER) {
+        this._handleSignup()
+      }  
   }
 
   render() {

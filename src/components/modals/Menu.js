@@ -1,60 +1,60 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import onClickOutside from 'react-onclickoutside';
-import auth from '../../auth';
-import './Menu.css';
+// import React, { Component } from 'react';
+// // import { Link } from 'react-router';
+// import onClickOutside from 'react-onclickoutside';
+// import auth from '../../auth';
+// import './Menu.css';
 
 
 
-class Menu extends Component {
+// class Menu extends Component {
 
-  handleClickOutside = () => {
-    this.props.closeMenu();
-  }
+//   handleClickOutside = () => {
+//     this.props.closeMenu();
+//   }
 
-  // _logOut = () => {
-  //   auth.logout()
-  // }
-
-  render() {
-    let { closeMenu, show } = this.props
-    const isLoggedIn = auth.isLoggedIn()
-    return (
-      <div className={`menu ${show?"show":""}`}>
-
-        <div className="menu__header">
-          <img src="" alt="profile-pic" className="menu__avatar"/>
-        </div>
+//   _logOut = () => {
+//     auth.logout()
+//   }
  
-           <div className="menu__list">  
+//   render() {
+//     let { closeMenu, show } = this.props
+//     const isLoggedIn = auth.isLoggedIn()
+//     return (
+//       <div className={`menu ${show?"show":""}`}>
 
-          {/* <Link to="/" className="menu__item" onClick={closeMenu}>
-            Home
-          </Link> */}
+//         <div className="menu__header">
+//           <img src="" alt="profile-pic" className="menu__avatar"/>
+//         </div>
+ 
+//            <div className="menu__list">  
 
-          {/* {!isLoggedIn ?
-            <Link to="/login" className="menu__item" onClick={closeMenu}>
-              Login
-            </Link>
-          : null} */}
+//              <Link to="/" className="menu__item" onClick={closeMenu}>
+//             Home
+//           </Link> 
+ 
+//            {!isLoggedIn ?
+//             <Link to="/login" className="menu__item" onClick={closeMenu}>
+//               Login
+//             </Link>
+//           : null} 
 
-          {/* {!isLoggedIn ?
-            <Link to="/signup" className="menu__item" onClick={closeMenu}>
-              Signup
-            </Link>
-          : null}    */}
-{/* 
-            {isLoggedIn ?
-            <Link to="/" className="menu__item" onClick={this._logOut.bind(this)}>
-              Logout
-            </Link> 
-          : null}  */}
+//            {!isLoggedIn ?
+//             <Link to="/signup" className="menu__item" onClick={closeMenu}>
+//               Signup
+//             </Link>
+//           : null}     
 
-          </div>   
-      </div>
-    );
-  }
+//              {isLoggedIn ?
+//             <Link to="/" className="menu__item" onClick={this._logOut.bind(this)}>
+//               Logout
+//             </Link> 
+//           : null}    
 
-}
+//           </div>   
+//       </div>
+//     );
+//   }
 
-export default onClickOutside(Menu);
+// }
+
+// export default onClickOutside(Menu);
