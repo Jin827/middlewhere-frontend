@@ -63,6 +63,7 @@ export default class Home extends Component {
               title={p.title}
               deadline={p.deadline}
               description={p.description}
+              editProject={this._fetchData}
             />
           </div>
         ) : <h1>No projects yet</h1>}
