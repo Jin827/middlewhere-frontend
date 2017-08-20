@@ -72,9 +72,15 @@ export default class TaskCard extends Component {
    }
 
     handleRequest = (searchText) => {
+      console.log(searchText, 'in handleRequest')
       this.setState( { searchText: '' })
+      this._assignTask(searchText)
     }
 
+    _assignTask(searchText){
+      console.log(searchText)
+      
+    }
 
 
   render() {
@@ -108,7 +114,6 @@ export default class TaskCard extends Component {
                     searchText={this.state.searchText}
                     onUpdateInput={this.handleUpdateInput.bind(this)}
                     onNewRequest={this.handleRequest}
-
                 />
 
               <CardActions>
