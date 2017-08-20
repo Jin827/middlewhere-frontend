@@ -26,7 +26,8 @@ export default class ProjectCard extends Component {
     }
 
     _handleFormSubmitted = () => {
-      this.setState({editProject:false})
+      this.setState({editProject:false});
+      this.props.editProject();
     }
 
   render() {
