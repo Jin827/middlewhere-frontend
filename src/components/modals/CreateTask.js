@@ -2,18 +2,19 @@ import React, {Component} from 'react';
 import './CreateTask.css';
 import api from '../../api';
 import {browserHistory as history} from 'react-router';
-
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
 import Dialog from 'material-ui/Dialog';
-
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 export default class CreateTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue:''
+      inputValue:'',
+
     };
   }
 
@@ -55,13 +56,17 @@ export default class CreateTask extends Component {
 
   }
 
+  _handlePriority = (event, index, value) => this.setState({value});
+
+
 
   _fetchData = () => {
-    api.createTasks(this.props.projectId,
+    api.createTasks(
+      this.props.projectId,
       this.refs.title.getValue(),
       this.refs.description.getValue(),
       this.state.date.toISOString().substring(0,10),
-      this.refs.priority.getValue())
+      this.state.value)
     .then(data => {
       this.props.onCreate();
     })
@@ -113,8 +118,8 @@ export default class CreateTask extends Component {
          title="Create A Task"
          actions={actions}
          modal={false}
-         open={this.props.openState}
-         onRequestClose={this.props.closeState}
+         open={true}
+         onRequestClose={this.props.closeForm}
        >
           <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='100'/>
 
@@ -122,9 +127,17 @@ export default class CreateTask extends Component {
 
           <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="140" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
           {140 - this.state.inputValue.length}
-
-          <TextField floatingLabelText="Priority: " type="text" ref="priority" maxLength='10'/>
-
+          <br/>
+          <SelectField
+              floatingLabelText="Priority"
+              onChange={this._handlePriority}
+              value={this.state.value}
+              autoWidth={true}
+            >
+              <MenuItem value={null} primaryText="None" />
+              <MenuItem value={"low"} primaryText="Low" />
+              <MenuItem value={"high"} primaryText="High" />
+            </SelectField>
           </Dialog>
       </div>
     );

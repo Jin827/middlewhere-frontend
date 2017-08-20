@@ -5,13 +5,16 @@ import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
 import Dialog from 'material-ui/Dialog';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
 
 export default class EditTask extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
-      inputValue:''
+      inputValue:'',
+      value:' '
     };
   }
 
@@ -28,7 +31,6 @@ export default class EditTask extends Component {
 
 
   _handleClick = (e) => {
-    console.log("the handleclick happened fuck")
     e.preventDefault()
     this._fetchData()
     }
@@ -36,6 +38,7 @@ export default class EditTask extends Component {
   _handleClose = () => {
       this.props.closeForm()
   }
+  _handlePriority = (event, index, value) => this.setState({value});
 
   _fetchData = () =>{
     // console.log(
@@ -55,7 +58,7 @@ export default class EditTask extends Component {
         this.refs.description.getValue(),
         this.state.date ?
           this.state.date.toISOString().substring(0, 10) : '',
-        this.refs.priority.getValue(),
+        this.state.value,
         localStorage.token)
       .then(res => {
         console.log("res happened")
@@ -92,7 +95,16 @@ export default class EditTask extends Component {
               <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
               <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
               {140 - this.state.inputValue.length}
-              <TextField floatingLabelText="Priority: " defaultValue={this.props.priority} type="text" ref="priority" maxLength='50'/>
+              <SelectField
+                  floatingLabelText="Priority"
+                  onChange={this._handlePriority}
+                  value={this.state.value}
+                  autoWidth={true}
+                >
+                  <MenuItem value={null} primaryText=" " />
+                  <MenuItem value={"low"} primaryText="Low" />
+                  <MenuItem value={"high"} primaryText="High" />
+                </SelectField>
             </Dialog>
         </div>
     </div>

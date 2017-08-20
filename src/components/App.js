@@ -10,19 +10,19 @@ import auth from '../auth';
 import FlatButton from 'material-ui/FlatButton';
 import {browserHistory as history} from 'react-router';
 import SideMenu from './modals/SideMenu'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {cyan500,pink100} from 'material-ui/styles/colors';
 
-// import getMuiTheme from 'material-ui/styles/getMuiTheme';
-//import {cyan500,pink100} from 'material-ui/styles/colors';
-// import MobileTearSheet from '../../../MobileTearSheet';
 
-// const muiTheme = getMuiTheme({
-//   palette: {
-//     primary1Color:pink100,
-//     textColor: cyan500,
-//     backgroundColor: cyan500,
-//   },
-//
-// });
+const muiTheme = getMuiTheme({
+  palette: {
+    primary1Color:pink100,
+    textColor: cyan500,
+
+
+  },
+
+});
 
 
 class App extends Component {

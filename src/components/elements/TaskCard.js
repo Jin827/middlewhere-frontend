@@ -5,7 +5,7 @@ import CompleteButton from '../elements/CompleteButton';
 import auth from '../../auth';
 import api from '../../api';
 import './TaskCard.css';
-import {Card, CardHeader, CardText, CardActions, LinearProgress, FlatButton} from 'material-ui';
+import {Card, CardHeader, CardTitle, CardText, CardActions, LinearProgress, FlatButton} from 'material-ui';
 import FontIcon from 'material-ui/FontIcon';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import './ProjectCard.css';
@@ -77,20 +77,24 @@ export default class TaskCard extends Component {
 
   render() {
     let { id, title, description, deadline, priority} = this.props
-    if(deadline){
+
+    if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
+
     return (
       <div>
             <Card className="task-card">
-                <CardHeader textStyle={{ paddingRight: 0}} title={ title }  actAsExpander={true} showExpandableButton={true}/>
-                <CardText expandable={true}>{ time }</CardText>
-                <CardText expandable={true}>{ description }</CardText>
-                <CardText expandable={true}>{ priority }</CardText>
+                <CardTitle title={ title }  actAsExpander={true} showExpandableButton={true}/>
+                {deadline ? <CardText expandable={true} textStyle={{fontWeight:"bold"}}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
+                <CardText expandable={true}> <strong>Description </strong>  <br/>  { description } </CardText>
+                {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
+
               <CardActions>
                {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}
                {this.props.isAdmin ? <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> :null}
              </CardActions>
+
             </Card>
 
           {this.state.editTask ? <EditTask projectId={this.props.projectId} id={id} title={title}
