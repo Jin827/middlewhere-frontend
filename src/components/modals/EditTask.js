@@ -103,6 +103,7 @@ export default class EditTask extends Component {
                 >
                   <MenuItem value={null} primaryText=" " />
                   <MenuItem value={"low"} primaryText="Low" />
+                  <MenuItem value={"normal"} primaryText="Normal" />
                   <MenuItem value={"high"} primaryText="High" />
                 </SelectField>
             </Dialog>
