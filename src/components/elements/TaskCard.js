@@ -5,12 +5,15 @@ import './TaskCard.css';
 import {Card, CardHeader, CardTitle, CardText, CardActions, LinearProgress, FlatButton} from 'material-ui';
 import FontIcon from 'material-ui/FontIcon';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
+import Face from 'material-ui/svg-icons/action/face';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import AssignedList from './AssignedList'
+import {pinkA200} from 'material-ui/styles/colors';
 import './TaskCard.css';
 import './ProjectCard.css';
 import '../App.css';
@@ -24,6 +27,7 @@ export default class TaskCard extends Component {
       open: false,
       dataSource:[],
       searchText : '',
+      assignedUsers:[]
     };
   }
 
@@ -79,8 +83,20 @@ export default class TaskCard extends Component {
 
     _assignTask(searchText){
       api.assignTask(this.props.id, searchText.userId)
+      .then(() => {
+        this._fetchUsers()
+      })
     }
 
+    _fetchUsers(taskId){
+      api.getAssignedUsers(this.props.id)
+      .then(data => {
+        console.log(data)
+        this.setState({
+          assignedUsers:data.body
+        })
+      })
+    }
 
   render() {
     const dataSource = this.state.dataSource
@@ -92,6 +108,7 @@ export default class TaskCard extends Component {
   }
 
     let { id, title, description, deadline, priority} = this.props
+    let { assignedUsers } = this.state
 
     if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
@@ -104,6 +121,20 @@ export default class TaskCard extends Component {
                 {deadline ? <CardText expandable={true}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
                 <CardText expandable={true}> <strong>Description </strong>  <br/>  { description } </CardText>
                 {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
+
+                { assignedUsers ? assignedUsers.map(u =>
+                  <div>
+                    <AssignedList
+                      key={u.id}
+                      id={u.id}
+                      firstName={u.firstName}
+                      lastName={u.lastName}
+                      email={u.email}
+                      avatar={u.avatarUrl}
+                    />
+                  </div>
+                ) : <h4>No assigned users </h4>}
+
                 <AutoComplete
                     floatingLabelText="Team Members"
                     filter={AutoComplete.caseInsensitiveFilter}
@@ -114,6 +145,9 @@ export default class TaskCard extends Component {
                     onUpdateInput={this.handleUpdateInput.bind(this)}
                     onNewRequest={this.handleRequest}
                 />
+                <br/>
+                <Face color={pinkA200} />
+
 
               <CardActions>
                {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}

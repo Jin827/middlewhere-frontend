@@ -85,6 +85,12 @@ class Api {
     .send({assigneeId})
   )
 
+  getAssignedUsers = (id) => (
+    superagent
+    .get(`${API_HOST}/tasks/${id}/assigned`)
+    .set('Authorization', `token ${localStorage.token}`)
+
+  )
    getMe = (token) => (
     superagent
     .get(`${API_HOST}/auth/me`)
