@@ -84,6 +84,11 @@ export default class CreateTask extends Component {
     )
   }
 
+  _clearErrorState = () => {
+    if(this.refs.title.getValue()){
+      this.setState({titleError: ""})
+    }
+  }
   // render() {
   //   return (
   //     <div>
@@ -126,7 +131,7 @@ export default class CreateTask extends Component {
          open={true}
          onRequestClose={this.props.closeForm}
        >
-          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='50' errorText= {this.state.titleError}/>
+          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='50' errorText= {this.state.titleError} onChange={this._clearErrorState}/>
 
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e,date) => this._handleChange(e, date)}/>
 

@@ -48,12 +48,6 @@ export default class SignUp extends Component {
         })
       }
       
-      // api.requestLogin(email, password)
-      // .catch(()=> {
-      //     this.setState({existingUser:
-
-      //   })
-      // })
       api.requestSignup(firstName, lastName, email, password)
       .then(()=> {
         if(firstName && lastName && email && password){
@@ -64,7 +58,36 @@ export default class SignUp extends Component {
         this.setState({error:true})
       })
   } 
-    
+  
+  // _clearErrorState = () => {
+  //   var firstName = this.refs.firstName.getValue()
+  //   var lastName = this.refs.lastName.getValue()
+  //   var email = this.refs.email.getValue()
+  //   var password = this.refs.password.getValue()
+
+  //   if(firstName){
+  //       this.setState({
+  //       firstNameError:""
+  //       })
+  //     }
+  //     else if(lastName){
+  //       this.setState({
+  //       lastNameError:""
+  //       })
+  //     }
+  //     else if(email){
+  //       this.setState({
+  //       emailError:"",
+  //       emailHint:""
+  //       })
+  //     }
+  //     else if(password){
+  //       this.setState({
+  //       passwordError:"",
+  //       passwordHint:""
+  //       })
+  //     }
+  // }
 
   _handleTyping = (e) => {
       if (e.keyCode===ENTER) {
@@ -76,10 +99,10 @@ export default class SignUp extends Component {
     return (
       <div className="signup row">
         <Paper style={style} className="col-large-6 paper-frame" zDepth={2}>
-            <TextField className="col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" errorText= {this.state.firstNameError} onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" errorText= {this.state.lastNameError} onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" errorText= {this.state.emailError} hintText={this.state.emailHint} onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" errorText= {this.state.passwordError} hintText={this.state.passwordHint} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" errorText= {this.state.firstNameError} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" errorText= {this.state.lastNameError} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" errorText= {this.state.emailError} hintText={this.state.emailHint} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" errorText= {this.state.passwordError} hintText={this.state.passwordHint} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
             <br/>
           <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
           {this.state.error ? <div>Please fill out the form completely</div> : null}
