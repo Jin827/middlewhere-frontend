@@ -3,6 +3,9 @@ import api from '../../api';
 import TaskCard from '../elements/TaskCard';
 import CreateTask from '../modals/CreateTask';
 import AddButton from '../elements/AddButton';
+import { Link } from 'react-router';
+import auth from '../../auth'
+import ReturnButton from './ReturnButton'
 import './Project.css';
 
 
@@ -85,7 +88,7 @@ export default class Project extends Component {
             />
             </div>
           ) : <h1>Add tasks</h1> }
-
+          {auth.isLoggedIn() ? <Link to={`/`}> <ReturnButton /> </Link> : null}
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
           projectId={this.props.params.id}
