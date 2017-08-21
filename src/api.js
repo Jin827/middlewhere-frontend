@@ -57,11 +57,11 @@ class Api {
 
   )
 
-  editTasks = (id, title, description, deadline, priority, token) => (
+  editTasks = (projectId, id, title, description, deadline, priority, token) => (
     superagent
     .patch(`${API_HOST}/tasks/${id}`)
     .set('Authorization', `token ${token}`)
-    .send({title, description, deadline, priority, token})
+    .send({projectId, id, title, description, deadline, priority, token})
   )
 
   getTasks = (id) => (

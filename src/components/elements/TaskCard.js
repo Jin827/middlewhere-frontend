@@ -94,7 +94,6 @@ export default class TaskCard extends Component {
     _fetchUsers(taskId){
       api.getAssignedUsers(this.props.id)
       .then(data => {
-        console.log(data)
         this.setState({
           assignedUsers:data.body
         })
