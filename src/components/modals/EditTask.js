@@ -51,6 +51,7 @@ export default class EditTask extends Component {
         this.state.value,
         localStorage.token)
       .then(res => {
+        console.log("ihappened")
         this.props.closeForm();
         //history.push(`/projects/${this.props.id}`)
       })
