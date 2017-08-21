@@ -27,7 +27,7 @@ module.exports = {
     return !!localStorage.token
   },
 
-  
-  
-  
+
+
+
 }

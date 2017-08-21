@@ -120,7 +120,7 @@ export default class CreateTask extends Component {
          open={true}
          onRequestClose={this.props.closeForm}
        >
-          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='100'/>
+          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='50'/>
 
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e,date) => this._handleChange(e, date)}/>
 
@@ -133,7 +133,7 @@ export default class CreateTask extends Component {
               value={this.state.value}
               autoWidth={true}
             >
-            
+
               <MenuItem value={"low"} primaryText="Low" />
               <MenuItem value={"normal"} primaryText="Normal" />
               <MenuItem value={"high"} primaryText="High" />

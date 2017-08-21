@@ -88,7 +88,7 @@ export default class Project extends Component {
             />
             </div>
           ) : <h1>Add tasks</h1> }
-          {auth.isLoggedIn() ? <Link to={`/`}> <ReturnButton /> </Link> : null}
+          {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton /> </Link> : null}
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
           projectId={this.props.params.id}
