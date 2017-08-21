@@ -17,8 +17,9 @@ import {orange300,amber600, purple100,pink100,grey500,lightBlue500} from 'materi
 const muiTheme = getMuiTheme({
   palette: {
 
-    primary1Color:lightBlue500,
-    accent1Color:grey500,
+    primary1Color:'#45ada8',
+
+    accent1Color:'#9de0ad',
     // textColor: cyan500,
     // backgroundColor: cyan500,
   },
