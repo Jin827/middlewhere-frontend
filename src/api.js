@@ -57,11 +57,11 @@ class Api {
 
   )
 
-  editTasks = (projectId, id, title, description, deadline, priority, token) => (
+  editTasks = (id, title, description, deadline, priority, token) => (
     superagent
     .patch(`${API_HOST}/tasks/${id}`)
     .set('Authorization', `token ${token}`)
-    .send({projectId, title, description, deadline, priority, token})
+    .send({title, description, deadline, priority, token})
   )
 
   getTasks = (id) => (
@@ -82,9 +82,15 @@ class Api {
     superagent
     .post(`${API_HOST}/tasks/${id}/assigned`)
     .set('Authorization', `token ${localStorage.token}`)
-    .send(assigneeId)
+    .send({assigneeId})
   )
 
+  getAssignedUsers = (id) => (
+    superagent
+    .get(`${API_HOST}/tasks/${id}/assigned`)
+    .set('Authorization', `token ${localStorage.token}`)
+
+  )
    getMe = (token) => (
     superagent
     .get(`${API_HOST}/auth/me`)
@@ -96,6 +102,14 @@ class Api {
    .get(`${API_HOST}/auth/all`)
    .set('Authorization', `token ${localStorage.token}`)
  )
+
+ getAutoComplete = (queryTerm) => (
+   superagent
+   .get(`${API_HOST}/auth/autocomplete/?queryTerm=${queryTerm}`)
+   .set('Authorization', `token ${localStorage.token}`)
+ )
+
+
 
 }
 
