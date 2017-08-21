@@ -43,14 +43,8 @@ export default class Login extends Component {
         passwordError:"Password is required"
       })
     }
-    // else if(!email&&!password){
-    //   this.setState({
-    //     error:true,
-    //     emailError:"Email is required",
-    //     passwordError:"Password is required"
-    //   })
-    // }
-    else if(email && password) {
+    
+    else if(email && password) { 
       //check if input is valid info
       api.requestLogin(email, password)
       //process login and push it to the homepage
