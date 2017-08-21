@@ -22,7 +22,7 @@ export default class Login extends Component {
       error:false
     };
   }
-  
+
 
   _handleLogin = () => {
     // deep destructuring equivalent to (let email = this.refs.email.value;)
@@ -52,7 +52,7 @@ export default class Login extends Component {
       .then(() => {
         this.setState({error:false})
         this.props.router.push('/')})
-      .catch((error) => 
+      .catch((error) =>
         this.setState({error:true})
       )
     }
@@ -69,7 +69,6 @@ export default class Login extends Component {
     return (
       <div className="signup row">
         <Paper style={style} className="col-large-6 paper-frame" zDepth={2}>
-          
             <TextField className="col-large-6" floatingLabelText="Email" errorText= {this.state.emailError} ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
             <TextField className="col-large-6" floatingLabelText="Password" errorText= {this.state.passwordError} ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
@@ -77,11 +76,10 @@ export default class Login extends Component {
             {this.state.error? <div>Please enter an valid email and password</div> : null}
           
         </Paper>
-        
+
       </div>
 
     );
   }
 
 }
-

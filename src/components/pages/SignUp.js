@@ -65,7 +65,7 @@ export default class SignUp extends Component {
   _handleTyping = (e) => {
       if (e.keyCode===ENTER) {
         this._handleSignup()
-      }  
+      }
   }
 
   render() {

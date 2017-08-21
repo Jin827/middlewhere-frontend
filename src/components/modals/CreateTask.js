@@ -133,7 +133,7 @@ export default class CreateTask extends Component {
               value={this.state.value}
               autoWidth={true}
             >
-              <MenuItem value={null} primaryText="None" />
+            
               <MenuItem value={"low"} primaryText="Low" />
               <MenuItem value={"normal"} primaryText="Normal" />
               <MenuItem value={"high"} primaryText="High" />
