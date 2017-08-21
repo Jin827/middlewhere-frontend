@@ -13,6 +13,7 @@ export default class Conversation extends React.Component {
   componentDidMount () {
     this.socket = io(`http://localhost:3000`)
     this.socket.on('message', message => {
+      console.log(">>>>>>>>>>>>>>>>>", message);
       this.setState({ messages: [message, ...this.state.messages] })
     })
     api.conversationalize('stuff').catch(console.log('AN ERROR'));
@@ -20,10 +21,13 @@ export default class Conversation extends React.Component {
   }
 
   handleSubmit = event => {
-    const body = event.target.value
+    const body = {
+      'text': event.target.value,
+      'convoid': 5
+    }
     if (event.keyCode === 13 && body) {
       const message = {
-        body,
+        body: body.text,
         from: 'Me'
       }
       this.setState({ messages: [message, ...this.state.messages] })
