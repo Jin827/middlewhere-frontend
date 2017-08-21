@@ -40,9 +40,9 @@ export default class EditTask extends Component {
   _handlePriority = (event, index, value) => this.setState({value});
 
   _fetchData = () =>{
+    console.log("I happened before api")
     if(this.refs.title.getValue()){
         api.editTasks(
-        this.props.projectId,
         this.props.id,
         this.refs.title.getValue(),
         this.refs.description.getValue(),
@@ -51,7 +51,7 @@ export default class EditTask extends Component {
         this.state.value,
         localStorage.token)
       .then(res => {
-        console.log("ihappened")
+        console.log("ihappened after")
         this.props.closeForm();
         //history.push(`/projects/${this.props.id}`)
       })
@@ -91,7 +91,7 @@ export default class EditTask extends Component {
                   value={this.state.value}
                   autoWidth={true}
                 >
-                  <MenuItem value={null} primaryText=" " />
+              
                   <MenuItem value={"low"} primaryText="Low" />
                   <MenuItem value={"normal"} primaryText="Normal" />
                   <MenuItem value={"high"} primaryText="High" />

@@ -56,17 +56,21 @@ class App extends Component {
     history.push(`/signup`)
   }
 
-  
+
 
   handleToggle=() => this.setState({open: !this.state.open});
 
   handleClose=() => this.setState({open: false});
-
   render() {
+    let style = {
+      position:'fixed',
+      top:0
+    }
     return (
       <MuiThemeProvider >
         <div className="App row">
           <AppBar title="MiddleWhere"
+            style={style}
             onLeftIconButtonTouchTap={this.handleToggle}
             iconElementRight={auth.isLoggedIn() ?
              <FlatButton label= "Logout" onClick={this._logOut}/> : <div><FlatButton label= "Login" onClick={this._login}/><FlatButton label="Signup" onClick={this._signUp}/></div> }

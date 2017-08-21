@@ -31,6 +31,9 @@ export default class TaskCard extends Component {
       assignedUsers:[]
     };
   }
+  componentDidMount(){
+    this._fetchAvatar()
+  }
 
   fetchData = () => {
     api.getAutoComplete(this.state.searchText)
@@ -77,7 +80,6 @@ export default class TaskCard extends Component {
    }
 
     handleRequest = (searchText) => {
-      console.log(searchText, 'in handleRequest')
       this.setState( { searchText: '' })
       this._assignTask(searchText)
     }
@@ -99,6 +101,16 @@ export default class TaskCard extends Component {
       })
     }
 
+    _fetchAvatar(taskId){
+      api.getAssignedUsers(this.props.id)
+      .then(data => {
+        console.log(data)
+        this.setState({
+          assignedUsers:data.body
+        })
+      })
+    }
+
   render() {
     const dataSource = this.state.dataSource
     const newDataSource = dataSource.map(item => {
@@ -110,7 +122,7 @@ export default class TaskCard extends Component {
 
     let { id, title, description, deadline, priority} = this.props
     let { assignedUsers } = this.state
-
+    console.log(assignedUsers, "assusers")
     if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
@@ -123,18 +135,6 @@ export default class TaskCard extends Component {
                 <CardText expandable={true}> <strong>Description </strong>  <br/>  { description } </CardText>
                 {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
 
-                { assignedUsers ? assignedUsers.map(u =>
-                  <List>
-                    <AssignedList
-                      key={u.id}
-                      id={u.id}
-                      firstName={u.firstName}
-                      lastName={u.lastName}
-                      email={u.email}
-                      avatarUrl={u.avatarUrl}
-                    />
-                  </List>
-                ) : <h4>No assigned users </h4>}
 
                 <AutoComplete
                     floatingLabelText="Team Members"
@@ -149,6 +149,18 @@ export default class TaskCard extends Component {
                 <br/>
                 <Face color={pinkA200} />
 
+                { assignedUsers ? assignedUsers.map(u =>
+                  <List>
+                    <AssignedList
+                      key={u.id}
+                      id={u.id}
+                      firstName={u.firstName}
+                      lastName={u.lastName}
+                      email={u.email}
+                      avatarUrl={u.avatarUrl}
+                    />
+                  </List>
+                ) : <h4>No assigned users </h4>}
 
               <CardActions>
                {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}

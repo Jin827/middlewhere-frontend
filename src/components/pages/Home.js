@@ -5,6 +5,7 @@ import AddButton from '../elements/AddButton';
 import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
 import './Home.css';
+import '../App.css'
 
 export default class Home extends Component {
   constructor(props) {

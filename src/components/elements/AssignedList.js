@@ -19,6 +19,7 @@ export default class AssignedList extends Component {
     return (
       <div>
         <Avatar src={`${avatarUrl}`} />
+        <CardText>{firstName}</CardText>
       </div>
     );
 
