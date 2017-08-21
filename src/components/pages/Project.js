@@ -7,6 +7,7 @@ import { Link } from 'react-router';
 import auth from '../../auth'
 import ReturnButton from './ReturnButton'
 import './Project.css';
+import Conversation from '../elements/Conversation'
 
 
 export default class Project extends Component {
@@ -72,6 +73,7 @@ export default class Project extends Component {
     let { tasks } = this.state;
     return (
       <div className="tasks">
+        <Conversation/>
          { tasks ? tasks.map(b =>
            <div className="single-proj col-large-3 col-medium-6 col-small-12">
             <TaskCard
