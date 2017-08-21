@@ -18,7 +18,9 @@ const style = {
 export default class Login extends Component {
   constructor(props) {
     super(props)
-    this.state={error:false};
+    this.state={
+      error:false
+    };
   }
 
 
@@ -26,13 +28,29 @@ export default class Login extends Component {
     // deep destructuring equivalent to (let email = this.refs.email.value;)
     let email = this.refs.email.getValue()
     let password = this.refs.password.getValue()
-    if (!email || !password){
-      this.setState({error:true})
+   
+    if(!email){
+      this.setState({
+        //throw error message(<div>Please enter an valid email and password</div>)
+        error:true,
+        //throw errorText message(MUI)
+        emailError:"Email is required"
+      })
     }
-    else if(email && password) {
+    else if(!password){
+      this.setState({
+        error:true,
+        passwordError:"Password is required"
+      })
+    }
+    
+    else if(email && password) { 
+      //check if input is valid info
       api.requestLogin(email, password)
+      //process login and push it to the homepage
       auth.login(email, password)
       .then(() => {
+        this.setState({error:false})
         this.props.router.push('/')})
       .catch((error) =>
         this.setState({error:true})
@@ -43,19 +61,20 @@ export default class Login extends Component {
   _handleTyping = (e) => {
       if (e.keyCode===ENTER) {
         this._handleLogin()
-      }
+      }   
   }
 
   render() {
+   
     return (
       <div className="signup row">
         <Paper style={style} className="col-large-6 paper-frame" zDepth={2}>
-            <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
-            <br/>
-            <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Email" errorText= {this.state.emailError} ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Password" errorText= {this.state.passwordError} ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
             <RaisedButton className="button-pad" label="Let's Go" secondary={true} onClick={this._handleLogin} />
             {this.state.error? <div>Please enter an valid email and password</div> : null}
+          
         </Paper>
 
       </div>
