@@ -40,6 +40,15 @@ export default class EditTask extends Component {
   _handlePriority = (event, index, value) => this.setState({value});
 
   _fetchData = () =>{
+    console.log('Edit task ', this.props.projectId,
+    this.props.id,
+    this.refs.title.getValue(),
+    this.refs.description.getValue(),
+    this.state.date ?
+      this.state.date.toISOString().substring(0, 10) : '',
+    this.state.value,
+    localStorage.token);
+    
     if(this.refs.title.getValue()){
         api.editTasks(
         this.props.projectId,
