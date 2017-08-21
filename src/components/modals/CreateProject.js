@@ -35,7 +35,9 @@ export default class CreateProject extends Component {
 
   //put required title
   _fetchData = () => {
-    api.createProjects(this.refs.title.getValue(), this.state.date
+    api.createProjects(
+      this.refs.title.getValue(),
+      this.state.date
       ? this.state.date.toISOString().substring(0, 10)
       : '', this.refs.description.getValue(), localStorage.token).then(res => {
       this.props.onCreate()
