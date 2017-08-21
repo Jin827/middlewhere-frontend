@@ -16,7 +16,10 @@ const style = {
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
-    this.state = {error:false};
+    this.state = {
+      error:false,
+      existingUser:false
+    };
   }
 
   _handleSignup = () => {
@@ -27,7 +30,7 @@ export default class SignUp extends Component {
 
      if(!firstName){
         this.setState({
-        firstNameError:"Frist Name is required"
+        firstNameError:"First Name is required"
         })
       }
       else if(!lastName){
@@ -47,20 +50,52 @@ export default class SignUp extends Component {
         passwordHint:"Password should be minimum 12 charactors"
         })
       }
-      
-      
-      api.requestSignup(firstName, lastName, email, password)
-      
-      .then(()=> {
-        if(firstName && lastName && email && password){
+
+      //User Email validation
+      else if(firstName && lastName && email && password){
+        console.log(firstName, lastName, email, password)
+        api.requestSignup(firstName, lastName, email, password)
+        .then(()=> {
+          
+          console.log('signed up')
           this.props.router.push('/login')
-        }
-      })
-      .catch(()=> {
-        this.setState({error:true})
-      })
+        })
+        .catch((existingUser)=> {
+          console.log('existing user email')
+          this.setState({existingUser:true})
+        })
+      }   
   } 
-    
+  
+  _clearErrorState = () => {
+    var firstName = this.refs.firstName.getValue()
+    var lastName = this.refs.lastName.getValue()
+    var email = this.refs.email.getValue()
+    var password = this.refs.password.getValue()
+
+    if(firstName){
+        this.setState({
+        firstNameError:""
+        })
+      }
+      else if(lastName){
+        this.setState({
+        lastNameError:""
+        })
+      }
+      else if(email){
+        this.setState({
+        emailError:"",
+        emailHint:""
+        })
+      }
+      else if(password){
+        this.setState({
+        passwordError:"",
+        passwordHint:""
+        })
+      }
+  }
 
   _handleTyping = (e) => {
       if (e.keyCode===ENTER) {
@@ -72,13 +107,14 @@ export default class SignUp extends Component {
     return (
       <div className="signup row">
         <Paper style={style} className="col-large-6 paper-frame" zDepth={2}>
-            <TextField className="col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" errorText= {this.state.firstNameError} onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" errorText= {this.state.lastNameError} onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" errorText= {this.state.emailError} hintText={this.state.emailHint} onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" errorText= {this.state.passwordError} hintText={this.state.passwordHint} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" errorText= {this.state.firstNameError} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" errorText= {this.state.lastNameError} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" errorText= {this.state.emailError} hintText={this.state.emailHint} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" errorText= {this.state.passwordError} hintText={this.state.passwordHint} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
             <br/>
           <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
           {this.state.error ? <div>Please fill out the form completely</div> : null}
+          {this.state.existingUser ? <div>User email already exists</div> : null}
         </Paper>
 
       </div>

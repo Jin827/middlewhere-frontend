@@ -42,6 +42,8 @@ class App extends Component {
     history.push(`login`)
   }
 
+  //To get the Login/SignUp Flat buttons, use '.then(redirect the page)' ; Asynchronous complex
+  //It makes sure that the page is redirected after the localStorage token is deleted.
   _logOut = () => {
     auth.logout().then(() => history.push(`/`))
   }
