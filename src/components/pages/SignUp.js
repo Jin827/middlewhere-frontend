@@ -16,7 +16,10 @@ const style = {
 export default class SignUp extends Component {
   constructor(props) {
     super(props);
-    this.state = {error:false};
+    this.state = {
+      error:false,
+      existingUser:false
+    };
   }
 
   _handleSignup = () => {
@@ -47,47 +50,52 @@ export default class SignUp extends Component {
         passwordHint:"Password should be minimum 12 charactors"
         })
       }
-      
-      api.requestSignup(firstName, lastName, email, password)
-      .then(()=> {
-        if(firstName && lastName && email && password){
+
+      //User Email validation
+      else if(firstName && lastName && email && password){
+        console.log(firstName, lastName, email, password)
+        api.requestSignup(firstName, lastName, email, password)
+        .then(()=> {
+          
+          console.log('signed up')
           this.props.router.push('/login')
-        }
-      })
-      .catch(()=> {
-        this.setState({error:true})
-      })
+        })
+        .catch((existingUser)=> {
+          console.log('existing user email')
+          this.setState({existingUser:true})
+        })
+      }   
   } 
   
-  // _clearErrorState = () => {
-  //   var firstName = this.refs.firstName.getValue()
-  //   var lastName = this.refs.lastName.getValue()
-  //   var email = this.refs.email.getValue()
-  //   var password = this.refs.password.getValue()
+  _clearErrorState = () => {
+    var firstName = this.refs.firstName.getValue()
+    var lastName = this.refs.lastName.getValue()
+    var email = this.refs.email.getValue()
+    var password = this.refs.password.getValue()
 
-  //   if(firstName){
-  //       this.setState({
-  //       firstNameError:""
-  //       })
-  //     }
-  //     else if(lastName){
-  //       this.setState({
-  //       lastNameError:""
-  //       })
-  //     }
-  //     else if(email){
-  //       this.setState({
-  //       emailError:"",
-  //       emailHint:""
-  //       })
-  //     }
-  //     else if(password){
-  //       this.setState({
-  //       passwordError:"",
-  //       passwordHint:""
-  //       })
-  //     }
-  // }
+    if(firstName){
+        this.setState({
+        firstNameError:""
+        })
+      }
+      else if(lastName){
+        this.setState({
+        lastNameError:""
+        })
+      }
+      else if(email){
+        this.setState({
+        emailError:"",
+        emailHint:""
+        })
+      }
+      else if(password){
+        this.setState({
+        passwordError:"",
+        passwordHint:""
+        })
+      }
+  }
 
   _handleTyping = (e) => {
       if (e.keyCode===ENTER) {
@@ -106,6 +114,7 @@ export default class SignUp extends Component {
             <br/>
           <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
           {this.state.error ? <div>Please fill out the form completely</div> : null}
+          {this.state.existingUser ? <div>User email already exists</div> : null}
         </Paper>
 
       </div>
