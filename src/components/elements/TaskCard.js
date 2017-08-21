@@ -32,7 +32,7 @@ export default class TaskCard extends Component {
     };
   }
   componentDidMount(){
-    this._fetchAvatar()
+    this._fetchAvatar();
   }
 
   fetchData = () => {
