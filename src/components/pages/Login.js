@@ -19,10 +19,7 @@ export default class Login extends Component {
   constructor(props) {
     super(props)
     this.state={
-      // email: "",
-      // password: "",
-      error:false,
-      errorText: ""
+      error:false
     };
   }
   
@@ -31,21 +28,32 @@ export default class Login extends Component {
     // deep destructuring equivalent to (let email = this.refs.email.value;)
     let email = this.refs.email.getValue()
     let password = this.refs.password.getValue()
-    // if (!email || !password){
+   
     if(!email){
       this.setState({
+        //throw error message(<div>Please enter an valid email and password</div>)
         error:true,
-        emailError:"This field is required"
+        //throw errorText message(MUI)
+        emailError:"Email is required"
       })
     }
     else if(!password){
       this.setState({
         error:true,
-        passwordError:"This field is required"
+        passwordError:"Password is required"
       })
     }
+    // else if(!email&&!password){
+    //   this.setState({
+    //     error:true,
+    //     emailError:"Email is required",
+    //     passwordError:"Password is required"
+    //   })
+    // }
     else if(email && password) {
+      //check if input is valid info
       api.requestLogin(email, password)
+      //process login and push it to the homepage
       auth.login(email, password)
       .then(() => {
         this.setState({error:false})
@@ -55,17 +63,6 @@ export default class Login extends Component {
       )
     }
   }
-
-  // _text = (e) => {
-  // e.preventDefault()
-  //   let email = this.refs.email.getValue()
-  //   let password = this.refs.password.getValue()
-  //   if (!email || !password){
-  //     this.setState({errorText:"This field is required"})
-  //   } else {
-  //     this.setState({errorText:""})
-  //   }
-  // } 
 
   _handleTyping = (e) => {
       if (e.keyCode===ENTER) {
