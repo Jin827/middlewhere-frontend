@@ -82,9 +82,15 @@ class Api {
     superagent
     .post(`${API_HOST}/tasks/${id}/assigned`)
     .set('Authorization', `token ${localStorage.token}`)
-    .send(assigneeId)
+    .send({assigneeId})
   )
 
+  getAssignedUsers = (id) => (
+    superagent
+    .get(`${API_HOST}/tasks/${id}/assigned`)
+    .set('Authorization', `token ${localStorage.token}`)
+
+  )
    getMe = (token) => (
     superagent
     .get(`${API_HOST}/auth/me`)
@@ -96,6 +102,14 @@ class Api {
    .get(`${API_HOST}/auth/all`)
    .set('Authorization', `token ${localStorage.token}`)
  )
+
+ getAutoComplete = (queryTerm) => (
+   superagent
+   .get(`${API_HOST}/auth/autocomplete/?queryTerm=${queryTerm}`)
+   .set('Authorization', `token ${localStorage.token}`)
+ )
+
+
 
 }
 
