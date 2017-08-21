@@ -20,7 +20,7 @@ export default class Login extends Component {
     super(props)
     this.state={error:false};
   }
-  
+
 
   _handleLogin = () => {
     // deep destructuring equivalent to (let email = this.refs.email.value;)
@@ -34,7 +34,7 @@ export default class Login extends Component {
       auth.login(email, password)
       .then(() => {
         this.props.router.push('/')})
-      .catch((error) => 
+      .catch((error) =>
         this.setState({error:true})
       )
     }
@@ -43,7 +43,7 @@ export default class Login extends Component {
   _handleTyping = (e) => {
       if (e.keyCode===ENTER) {
         this._handleLogin()
-      }  
+      }
   }
 
   render() {
@@ -51,16 +51,16 @@ export default class Login extends Component {
       <div className="signup row">
         <Paper style={style} className="col-large-6 paper-frame" zDepth={2}>
             <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
+            <br/>
             <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
             <RaisedButton className="button-pad" label="Let's Go" secondary={true} onClick={this._handleLogin} />
             {this.state.error? <div>Please enter an valid email and password</div> : null}
         </Paper>
-        
+
       </div>
 
     );
   }
 
 }
-
