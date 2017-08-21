@@ -49,7 +49,7 @@ class App extends Component {
 
   _logOut = () => {
     auth.logout()
-    history.push(`login`)
+    history.push(`/`)
   }
 
   _signUp = () => {
