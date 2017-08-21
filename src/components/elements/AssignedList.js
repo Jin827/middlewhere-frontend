@@ -18,18 +18,7 @@ export default class AssignedList extends Component {
 
     return (
       <div>
-        <ListItem
-          disabled={true}
-          insetChildren={true}
-          leftAvatar={
-            <Avatar src={`${avatarUrl}`} />
-          }
-
-        >
-
-        </ListItem>
-
-
+        <Avatar src={`${avatarUrl}`} />
       </div>
     );
 
