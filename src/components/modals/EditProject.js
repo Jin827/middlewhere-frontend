@@ -38,23 +38,21 @@ export default class EditProject extends Component {
 
 
   _fetchData = () =>{
-    if(this.refs.title.getValue()){
+    if(!this.refs.title.getValue()){
+      this.setState({titleError: "Title is required"})
+    }
+    else(
       api.editProjects(
         this.props.id,
         this.refs.title.getValue(),
         this.refs.description.getValue(),
-        this.state.date ?
-          this.state.date.toISOString().substring(0, 10) : '',
+        this.state.date ? this.state.date.toISOString().substring(0, 10) : '',
         localStorage.token)
       .then(res => {
         this.props.closeForm();
       })
-      .catch(error => console.log(error));
-    }
-    else {
-      console.error("Must have a title, description, deadline")
-      this.setState({error:"Must have a title and description"})
-    }
+      .catch(error=> console.log(error)) 
+    )
   }
 
   render(){
@@ -72,7 +70,7 @@ export default class EditProject extends Component {
             modal={false}
             open={true}
             onRequestClose={this._handleClose} >
-            <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100'/>
+            <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100' errorText= {this.state.titleError}/>
             <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
             <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
             {140 - this.state.inputValue.length}

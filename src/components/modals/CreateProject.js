@@ -35,11 +35,16 @@ export default class CreateProject extends Component {
 
   //put required title
   _fetchData = () => {
-    api.createProjects(this.refs.title.getValue(), this.state.date
-      ? this.state.date.toISOString().substring(0, 10)
-      : '', this.refs.description.getValue(), localStorage.token).then(res => {
-      this.props.onCreate()
-    })
+    if(!this.refs.title.getValue()){
+      this.setState({titleError: "Title is required"})
+    }
+    else(
+      api.createProjects(this.refs.title.getValue(), this.state.date? this.state.date.toISOString().substring(0, 10): '', this.refs.description.getValue(), localStorage.token)
+      .then(res => {
+        this.props.onCreate()
+      })
+      .catch(error=> console.log(error)) 
+    )
   }
 
   render() {
@@ -63,7 +68,7 @@ export default class CreateProject extends Component {
       <div className="createNewProject">
         <Dialog title="Create Project"
         actions={actions} modal={false} open={this.props.openState} onRequestClose={this.props.closeState}>
-          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength="50"/>
+          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength="50" errorText= {this.state.titleError}/>
 
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e, date) => this._handleChange(e, date)}/>
 

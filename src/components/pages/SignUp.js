@@ -27,7 +27,7 @@ export default class SignUp extends Component {
 
      if(!firstName){
         this.setState({
-        firstNameError:"Frist Name is required"
+        firstNameError:"First Name is required"
         })
       }
       else if(!lastName){
@@ -48,9 +48,13 @@ export default class SignUp extends Component {
         })
       }
       
-      
+      // api.requestLogin(email, password)
+      // .catch(()=> {
+      //     this.setState({existingUser:
+
+      //   })
+      // })
       api.requestSignup(firstName, lastName, email, password)
-      
       .then(()=> {
         if(firstName && lastName && email && password){
           this.props.router.push('/login')
