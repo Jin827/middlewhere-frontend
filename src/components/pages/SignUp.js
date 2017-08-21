@@ -32,7 +32,7 @@ export default class SignUp extends Component {
       }
       else if(!lastName){
         this.setState({
-        lastNameError:"Last Name is required",
+        lastNameError:"Last Name is required"
         })
       }
       else if(!email){
@@ -44,19 +44,23 @@ export default class SignUp extends Component {
       else if(!password){
         this.setState({
         passwordError:"Password is required",
-        passwordHint:"Password should be minimum 12 characters"
+        passwordHint:"Password should be minimum 12 charactors"
         })
       }
-      else if(firstName && lastName && email && password){
-         api.requestSignup(firstName, lastName, email, password)
-          .then(res => {
-            this.props.router.push('/login')
-          })
-          .catch( ()=> {
-            this.setState({error:true})
-          })
-      }
-  }
+      
+      
+      api.requestSignup(firstName, lastName, email, password)
+      
+      .then(()=> {
+        if(firstName && lastName && email && password){
+          this.props.router.push('/login')
+        }
+      })
+      .catch(()=> {
+        this.setState({error:true})
+      })
+  } 
+    
 
   _handleTyping = (e) => {
       if (e.keyCode===ENTER) {
@@ -74,12 +78,10 @@ export default class SignUp extends Component {
             <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" errorText= {this.state.passwordError} hintText={this.state.passwordHint} onKeyUp={this._handleTyping}/>
             <br/>
           <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
-          {this.state.error ? <div>Please fill out the form completely </div> : null}
+          {this.state.error ? <div>Please fill out the form completely</div> : null}
         </Paper>
 
       </div>
-
-
     );
   }
 
