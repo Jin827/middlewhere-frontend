@@ -109,7 +109,11 @@ class Api {
    .set('Authorization', `token ${localStorage.token}`)
  )
 
-
+ getUserAvatar = (userId) => (
+  superagent
+   .get(`${API_HOST}/auth/avatar/${userId}`)
+   .set('Authorization', `token ${localStorage.token}`)
+ )
 
 }
 
