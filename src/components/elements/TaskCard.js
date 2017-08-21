@@ -28,11 +28,12 @@ export default class TaskCard extends Component {
       open: false,
       dataSource:[],
       searchText : '',
-      assignedUsers:[]
+
     };
   }
+
   componentDidMount(){
-    this._fetchAvatar();
+    this._fetchUsers();
   }
 
   fetchData = () => {
@@ -56,7 +57,7 @@ export default class TaskCard extends Component {
         completed: 0
       })
     }
-    api.completedTasks(this.props.id, this.state.completed, localStorage.token).then(console.log)
+    api.completedTasks(this.props.id, this.state.completed, localStorage.token)
   }
 
   _editTaskForm = () =>{
@@ -80,7 +81,9 @@ export default class TaskCard extends Component {
    }
 
     handleRequest = (searchText) => {
-      this.setState( { searchText: '' })
+      this.setState( {
+        searchText: '',
+      })
       this._assignTask(searchText)
     }
 
@@ -95,20 +98,13 @@ export default class TaskCard extends Component {
       api.getAssignedUsers(this.props.id)
       .then(data => {
         this.setState({
-          assignedUsers:data.body
+          assignedUsers:data.body,
+          count:data.body.length
         })
       })
     }
 
-    _fetchAvatar(taskId){
-      api.getAssignedUsers(this.props.id)
-      .then(data => {
-        console.log(data)
-        this.setState({
-          assignedUsers:data.body
-        })
-      })
-    }
+
 
   render() {
     const dataSource = this.state.dataSource
@@ -119,9 +115,10 @@ export default class TaskCard extends Component {
       value: 'userId'
   }
 
+
     let { id, title, description, deadline, priority} = this.props
-    let { assignedUsers } = this.state
-    console.log(assignedUsers, "assusers")
+    let { assignedUsers, count } = this.state
+
     if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
@@ -130,26 +127,9 @@ export default class TaskCard extends Component {
       <div>
             <Card className="task-card">
                 <CardTitle title={ title }  actAsExpander={true} showExpandableButton={true}/>
-                {deadline ? <CardText expandable={true}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
-                <CardText expandable={true}> <strong>Description</strong>  <br/>  { description } </CardText>
-                {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
-
-
-                <AutoComplete
-                    floatingLabelText="Team Members"
-                    filter={AutoComplete.caseInsensitiveFilter}
-                    openOnFocus={false}
-                    dataSource={newDataSource}
-                    dataSourceConfig={dataSourceConfig}
-                    searchText={this.state.searchText}
-                    onUpdateInput={this.handleUpdateInput.bind(this)}
-                    onNewRequest={this.handleRequest}
-                />
-                <br/>
-                <Face color={pinkA200} />
-
                 { assignedUsers ? assignedUsers.map(u =>
-                  <List>
+                  <List
+                  expandable={true}>
                     <AssignedList
                       key={u.id}
                       id={u.id}
@@ -160,10 +140,29 @@ export default class TaskCard extends Component {
                     />
                   </List>
                 ) : <h4>No assigned users </h4>}
+                <CardText expandable={true}> <strong> Task Description </strong>  <br/>  { description } </CardText>
+                {deadline ? <CardText expandable={true}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
+
+                {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
+
+                { this.props.isAdmin ? <AutoComplete
+                    floatingLabelText="Team Members"
+                    filter={AutoComplete.caseInsensitiveFilter}
+                    openOnFocus={false}
+                    dataSource={newDataSource}
+                    dataSourceConfig={dataSourceConfig}
+                    searchText={this.state.searchText}
+                    onUpdateInput={this.handleUpdateInput.bind(this)}
+                    onNewRequest={this.handleRequest}
+                /> : null
+              }
+                <br/>
+
+                <Face color={pinkA200} /><CardText color={pinkA200}> {count}</CardText>
 
               <CardActions>
                {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}
-               {this.props.isAdmin ? <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> :null}
+               <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>
              </CardActions>
 
             </Card>
