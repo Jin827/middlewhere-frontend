@@ -11,26 +11,19 @@ import FlatButton from 'material-ui/FlatButton';
 import {browserHistory as history} from 'react-router';
 import SideMenu from './modals/SideMenu'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-
-
-
-
-
-
-
 import {orange300,amber600, purple100,pink100,grey500,lightBlue500} from 'material-ui/styles/colors';
 
-//
-// const muiTheme = getMuiTheme({
-//   palette: {
-//
-//     primary1Color:lightBlue500,
-//     accent1Color:grey500,
-//     // textColor: cyan500,
-//     // backgroundColor: cyan500,
-//   },
-//
-// });
+
+const muiTheme = getMuiTheme({
+  palette: {
+
+    primary1Color:lightBlue500,
+    accent1Color:grey500,
+    // textColor: cyan500,
+    // backgroundColor: cyan500,
+  },
+
+});
 
 
 
@@ -38,18 +31,18 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      logged: true,
       open: false,
      }
   }
+
+
 
   _login = () => {
     history.push(`login`)
   }
 
   _logOut = () => {
-    auth.logout()
-    history.push(`/`)
+    auth.logout().then(() => history.push(`/`))
   }
 
   _signUp = () => {
@@ -67,16 +60,15 @@ class App extends Component {
       top:0
     }
     return (
-      <MuiThemeProvider >
+      <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App row">
           <AppBar title="MiddleWhere"
             style={style}
             onLeftIconButtonTouchTap={this.handleToggle}
             iconElementRight={auth.isLoggedIn() ?
-             <FlatButton label= "Logout" onClick={this._logOut}/> : <div><FlatButton label= "Login" onClick={this._login}/><FlatButton label="Signup" onClick={this._signUp}/></div> }
+               <FlatButton label= "Logout" onClick={this._logOut}/>: <div><FlatButton label= "Login" onClick={this._login}/><FlatButton label="Signup" onClick={this._signUp}/></div> }
           />
           {this.state.open ? <SideMenu menuState={this.state.open} closeState={this.handleClose}/> : null}
-
           {this.props.children}
           </div>
       </MuiThemeProvider>
