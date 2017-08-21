@@ -24,3 +24,9 @@
 .card-title {
   max-width: 80%;
 }
+
+.editButton {
+  position: relative;
+  right:120px;
+  top: 15px;
+}
