@@ -63,7 +63,7 @@ export default class CreateProject extends Component {
       <div className="createNewProject">
         <Dialog title="Create Project"
         actions={actions} modal={false} open={this.props.openState} onRequestClose={this.props.closeState}>
-          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength="100"/>
+          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength="50"/>
 
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e, date) => this._handleChange(e, date)}/>
 
