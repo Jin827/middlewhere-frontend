@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
+import MenuItem from 'material-ui/MenuItem';
 import './Me.css';
 // import EditProject from '../modals/EditProject'
 // import {Card, CardHeader, CardText, CardActions, LinearProgress} from 'material-ui';
@@ -32,20 +33,23 @@ export default class Coworkers extends Component {
   //   }
 
   render() {
+    let coworkers = this.props.coworkers.filter
+                  (coworker => coworker.id!==this.props.me);
     return (
-      <div>
-        {this.props.coworkers.map(coworker =>
-          <div>
-            <figure className='user-info'>
-              <img
-                className='user-info__avatar'
-                src={coworker.avatarUrl}
-                alt="..."/>
-              <figcaption> User </figcaption>
-            </figure>
-         </div>
-       )}
-      </div>
+        <div>
+          {coworkers.map(coworker =>
+            <MenuItem>
+              <figure className='user-info'>
+                <img
+                  className='user-info__avatar'
+                  src={coworker.avatarUrl}
+                  alt="..."/>
+                <figcaption> {coworker.firstName}({coworker.status})</figcaption>
+
+              </figure>
+           </MenuItem>
+         )}
+        </div>
     );
 
   }

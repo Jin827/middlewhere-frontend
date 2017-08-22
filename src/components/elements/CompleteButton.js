@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../App';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import FlatButton from 'material-ui/FlatButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
 const style = {
@@ -28,8 +28,8 @@ export default class CompleteButton extends Component {
     
     return (
       <div>
-        <div className="edit-button">
-          <FloatingActionButton primary={true} onClick={this.props.completeButtonClick}><ContentAdd /></FloatingActionButton>
+        <div className="Complete-button">
+          <FlatButton label="Complete Task" primary={true} onClick={this.props.completeButtonClick}><ContentAdd /></FlatButton>
         </div>
       </div>
   )}
