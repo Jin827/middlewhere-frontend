@@ -11,7 +11,7 @@ export default class Conversation extends React.Component {
   }
 
   componentDidMount () {
-    this.socket = io(`http://localhost:3000`)
+    this.socket = io(`https://69862b10.ngrok.io`) // https://69862b10.ngrok.io   // http://localhost:3000
     console.log(">>>>>>>>>>>>>>>>>");
     this.socket.on('message', message => {
       console.log(">>>>>>>>>>>>>>>>>", message);
