@@ -14,6 +14,7 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import AssignedList from './AssignedList'
 import {pinkA200, cyan500} from 'material-ui/styles/colors';
+import {cyan800} from 'material-ui/styles/colors';
 import List from 'material-ui/List/List';
 import './TaskCard.css';
 import './ProjectCard.css';
@@ -167,7 +168,7 @@ export default class TaskCard extends Component {
               }
                 <br/>
 
-                <Face color={pinkA200} /><CardText color={pinkA200}> {count}</CardText>
+                <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
               <CardActions>
 

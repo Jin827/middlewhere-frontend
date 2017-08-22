@@ -10,6 +10,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import api from '../../api';
 import {pinkA200, cyan500} from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
+import {deepOrange900,orange300} from 'material-ui/styles/colors';
 
 // import EditButton from './EditButton';
 // import EditProject from '../modals/EditProject'
@@ -68,6 +69,7 @@ export default class ProjectCard extends Component {
               <div className="project-card-relative">
                 <Avatar className='project-card-avatar' src={`${this.state.avatarUrl}`}/>
                 <CardHeader textStyle={{ paddingRight: 0}} title={title} />
+
                 {deadline ? <CardText>Deadline: {time}</CardText> : <CardText>Deadline: N/A </CardText>}
               </div>
                 <div className="project-card-desc">
@@ -75,7 +77,6 @@ export default class ProjectCard extends Component {
                     Description: {description}
                   </CardText>
                 </div>
-
 
               <LinearProgress mode="determinate" value={progress} />
 

@@ -74,12 +74,14 @@ export default class EditProject extends Component {
           <Dialog
             title="Edit Project"
             actions={actions}
+            paperClassName="dialogPaper"
+            autoScrollBodyContent={true}
             modal={false}
             open={true}
             onRequestClose={this._handleClose} >
             <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100' errorText= {this.state.titleError} onChange={this._clearErrorState}/>
             <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
-            <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
+            <TextField floatingLabelText="Description: " multiLine={true} defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
             {140 - this.state.inputValue.length}
           </Dialog>
       </div>
