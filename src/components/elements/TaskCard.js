@@ -126,15 +126,19 @@ export default class TaskCard extends Component {
     }
     let style = {
       fontSize: '1.25rem',
-      // fontWeight:'bold'
-
+    }
+    let editTaskStyle = {
+      height: '44px',
+      width: '44px',
+      color:'rgba(100, 181, 246,0.4)',
+      cursor:'pointer'
     }
 
     return (
       <div>
             <Card className="task-card">
               <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit cursor="pointer" color="rgba(100, 181, 246,0.4)" className="task-edit-button" onClick={this._editTaskForm}/>:null}
+                {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle} className="task-edit-button" onClick={this._editTaskForm}/>:null}
               </CardActions>
                 <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
                 { assignedUsers ? assignedUsers.map(u =>
