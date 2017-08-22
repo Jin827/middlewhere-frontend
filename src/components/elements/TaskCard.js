@@ -57,6 +57,7 @@ export default class TaskCard extends Component {
         completed: 0
       })
     }
+    console.log(this.state.completed)
     api.completedTasks(this.props.id, this.state.completed, localStorage.token)
   }
 

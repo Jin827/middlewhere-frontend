@@ -41,36 +41,29 @@ export default class EditTask extends Component {
   _handlePriority = (event, index, value) => this.setState({value});
 
   _fetchData = () =>{
-
-    console.log('Edit task ', this.props.projectId,
-    this.props.id,
-    this.refs.title.getValue(),
-    this.refs.description.getValue(),
-    this.state.date ?
-      this.state.date.toISOString().substring(0, 10) : '',
-    this.state.value,
-    localStorage.token);
-    
-
-    if(this.refs.title.getValue()){
-        api.editTasks(
-        this.props.id,
-        this.refs.title.getValue(),
-        this.refs.description.getValue(),
-        this.state.date ?
-          this.state.date.toISOString().substring(0, 10) : '',
-        this.state.value,
-        localStorage.token)
-      .then(res => {
-        console.log("ihappened after")
-        this.props.closeForm();
-        //history.push(`/projects/${this.props.id}`)
-      })
-      .catch(console.log("I AM NOT WORKING, I'm a CATCH in EditTask.js"));
+    if(!this.refs.title.getValue()){
+      this.setState({titleError: "Title is required"})
     }
-    else {
-      console.error("Must have a title, description, deadline")
-      this.setState({error:"Must have a title and description"})
+    else(
+      api.editTasks(
+      this.props.projectId,
+      this.props.id,
+      this.refs.title.getValue(),
+      this.refs.description.getValue(),
+      this.state.date ? this.state.date.toISOString().substring(0, 10) : '',
+      this.state.value,
+      localStorage.token)
+    .then(res => {
+      this.props.closeForm();
+      //history.push(`/projects/${this.props.id}`)
+    })
+    .catch(error=> console.log(error))
+    )
+  }
+
+  _clearErrorState = () => {
+    if(this.refs.title.getValue()){
+      this.setState({titleError: ""})
     }
   }
 
@@ -93,7 +86,7 @@ export default class EditTask extends Component {
               modal={false}
               open={true}
               onRequestClose={this._handleClose} >
-              <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100'/>
+              <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100' errorText= {this.state.titleError} onChange={this._clearErrorState}/>
               <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
               <TextField floatingLabelText="Description: " defaultValue={this.props.description}  multiLine={true} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
               {140 - this.state.inputValue.length}
@@ -103,7 +96,7 @@ export default class EditTask extends Component {
                   value={this.state.value}
                   autoWidth={true}
                 >
-              
+
                   <MenuItem value={"low"} primaryText="Low" />
                   <MenuItem value={"normal"} primaryText="Normal" />
                   <MenuItem value={"high"} primaryText="High" />

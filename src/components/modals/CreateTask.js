@@ -59,25 +59,36 @@ export default class CreateTask extends Component {
   _handlePriority = (event, index, value) => this.setState({value});
 
   _fetchData = () => {
-    api.createTasks(
-      this.props.projectId,
-      this.refs.title.getValue(),
-      this.refs.description.getValue(),
-      this.state.date ?
-        this.state.date.toISOString().substring(0, 10) : '',
-      this.state.value)
-    .then(data => {
-      this.props.onCreate();
-    })
-    .then(data => {
-      console.log('WILL CLOSE TASK FORM');
-      this.props.closeState();
-    })
-    .then(data => {
-      this.props.closeForm();
-    })
+    if(!this.refs.title.getValue()){
+      this.setState({titleError: "Title is required"})
+    }
+    else(
+        api.createTasks(
+          this.props.projectId,
+          this.refs.title.getValue(),
+          this.refs.description.getValue(),
+          this.state.date ?
+            this.state.date.toISOString().substring(0, 10) : '',
+          this.state.value)
+        .then(data => {
+          this.props.onCreate();
+        })
+        .then(data => {
+          console.log('WILL CLOSE TASK FORM');
+          this.props.closeState();
+        })
+        .then(data => {
+          this.props.closeForm();
+        })
+        .catch(error=> console.log(error)) 
+    )
   }
 
+  _clearErrorState = () => {
+    if(this.refs.title.getValue()){
+      this.setState({titleError: ""})
+    }
+  }
   // render() {
   //   return (
   //     <div>
@@ -121,7 +132,7 @@ export default class CreateTask extends Component {
          open={true}
          onRequestClose={this.props.closeForm}
        >
-          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='50'/>
+          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='50' errorText= {this.state.titleError} onChange={this._clearErrorState}/>
 
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e,date) => this._handleChange(e, date)}/>
 
