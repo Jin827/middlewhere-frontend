@@ -11,7 +11,7 @@ export default class Conversation extends React.Component {
   }
 
   componentDidMount () {
-    this.socket = io(`http://localhost:3000`)
+    this.socket = io(API_HOST)
     this.socket.on('message', message => {
       console.log(">>>>>>>>>>>>>>>>>", message);
       this.setState({ messages: [message, ...this.state.messages] })
