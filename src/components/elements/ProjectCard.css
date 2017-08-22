@@ -9,10 +9,42 @@
 
 .single-proj {
   padding:2%;
-
 }
 
 .project-card{
   text-align: center;
   padding:0;
+}
+
+
+.project-card-title {
+  max-width: 80%;
+}
+
+.project-edit-button {
+  position: absolute;
+  left:15px;
+  top:10px;
+  color:rgba(100, 181, 246,0.1)
+}
+
+.project-card-desc {
+  display:flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  justify-content: center;
+}
+
+.desc-width {
+  max-width: 100%;
+}
+
+.project-card-relative{
+  position:relative;
+}
+
+.project-card-avatar {
+  position: absolute;
+  right:20px;
+  top: 5px;
 }
