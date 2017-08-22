@@ -55,7 +55,7 @@ export default class EditTask extends Component {
       this.props.closeForm();
       //history.push(`/projects/${this.props.id}`)
     })
-    .catch(error=> console.log(error)) 
+    .catch(error=> console.log(error))
     )
   }
 
@@ -93,7 +93,7 @@ export default class EditTask extends Component {
                   value={this.state.value}
                   autoWidth={true}
                 >
-              
+
                   <MenuItem value={"low"} primaryText="Low" />
                   <MenuItem value={"normal"} primaryText="Normal" />
                   <MenuItem value={"high"} primaryText="High" />
