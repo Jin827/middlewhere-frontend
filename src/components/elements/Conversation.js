@@ -12,25 +12,32 @@ export default class Conversation extends React.Component {
 
   componentDidMount () {
     this.socket = io(`http://localhost:3000`)
+    console.log(">>>>>>>>>>>>>>>>>");
     this.socket.on('message', message => {
       console.log(">>>>>>>>>>>>>>>>>", message);
-      this.setState({ messages: [message, ...this.state.messages] })
+      if ( parseInt(message.projectId) ===  parseInt(this.props.projectId) ) {
+        this.setState({ messages: [message, ...this.state.messages] })
+
+      }
+
+
     })
-    api.conversationalize('stuff').catch(console.log('AN ERROR'));
-    console.log("Updates ___________________ ");
+    // api.conversationalize('stuff').catch(console.log('AN ERROR'));
+    //console.log("Updates ___________________ ");
   }
 
   handleSubmit = event => {
     const body = {
       'text': event.target.value,
-      'convoid': 5
+      'projectId': this.props.projectId,
+      'from': this.props.userId
     }
     if (event.keyCode === 13 && body) {
       const message = {
         body: body.text,
         from: 'Me'
       }
-      this.setState({ messages: [message, ...this.state.messages] })
+      // this.setState({ messages: [message, ...this.state.messages] })
       this.socket.emit('message', body)
       event.target.value = ''
     }
@@ -39,7 +46,7 @@ export default class Conversation extends React.Component {
   render () {
     const messages = this.state.messages.map((message, index) => {
       const img = message.img ? <img src={message.img} width='200px' /> : null
-      return <li key={index}><b>{message.from}:</b>{message.body} {img}</li>
+      return <li key={index}><b>{message.from}:</b>{message.text} {img}</li>
     })
     return (
       <div>
