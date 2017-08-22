@@ -13,7 +13,7 @@ import AutoComplete from 'material-ui/AutoComplete';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import AssignedList from './AssignedList'
-import {pinkA200} from 'material-ui/styles/colors';
+import {cyan800} from 'material-ui/styles/colors';
 import List from 'material-ui/List/List';
 import './TaskCard.css';
 import './ProjectCard.css';
@@ -159,10 +159,10 @@ export default class TaskCard extends Component {
               }
                 <br/>
 
-                <Face color={pinkA200} /><CardText color={pinkA200}> {count}</CardText>
+                <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
               <CardActions>
-               {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}
+               {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} backgroundColor="#64b5f6" onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}
                <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>
              </CardActions>
 
