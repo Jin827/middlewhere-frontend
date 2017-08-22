@@ -11,17 +11,16 @@ import FlatButton from 'material-ui/FlatButton';
 import {browserHistory as history} from 'react-router';
 import SideMenu from './modals/SideMenu'
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import {orange300,amber600, purple100,pink100,grey500,lightBlue500} from 'material-ui/styles/colors';
+import {orange300,amber600, purple100,pink100,grey500,lightBlue500,cyan800,deepOrange900} from 'material-ui/styles/colors';
 
 
 const muiTheme = getMuiTheme({
   palette: {
 
-    primary1Color:'#45ada8',
+    primary1Color:"#999",
 
-    accent1Color:'#9de0ad',
-    // textColor: cyan500,
-    // backgroundColor: cyan500,
+    accent1Color:orange300,
+   textColor: '#000'
   },
 
 });
@@ -56,15 +55,19 @@ class App extends Component {
 
   handleClose=() => this.setState({open: false});
   render() {
+    
     let style = {
       position:'fixed',
-      top:0
+      top:0,
     }
+    
+
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App row">
-          <AppBar title="MiddleWhere"
+          <AppBar title="MiddleWhere" className="appBar"
             style={style}
+            titleStyle={{color:'#000'}}
             onLeftIconButtonTouchTap={this.handleToggle}
             iconElementRight={auth.isLoggedIn() ?
                <FlatButton label= "Logout" onClick={this._logOut}/>: <div><FlatButton label= "Login" onClick={this._login}/><FlatButton label="Signup" onClick={this._signUp}/></div> }
@@ -79,3 +82,4 @@ class App extends Component {
 
 
 export default App;
+// iconStyleLeft={{color: '#000', fill:'rgb(0,0,0)'}}

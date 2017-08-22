@@ -115,6 +115,7 @@ export default class CreateTask extends Component {
       <div className="createNewProject">
         <Dialog
          title="Create A Task"
+         paperClassName="dialogPaper"
          actions={actions}
          modal={false}
          open={true}
@@ -124,7 +125,7 @@ export default class CreateTask extends Component {
 
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e,date) => this._handleChange(e, date)}/>
 
-          <TextField floatingLabelText="Description: " type="text" ref="description" maxLength="140" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
+          <TextField floatingLabelText="Description: " type="text" ref="description" multiLine={true} maxLength="140" onInput={e => this.handleInput(e)} value={this.state.inputValue}/>
           {140 - this.state.inputValue.length}
           <br/>
           <SelectField
