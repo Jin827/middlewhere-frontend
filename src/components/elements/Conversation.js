@@ -11,7 +11,11 @@ export default class Conversation extends React.Component {
   }
 
   componentDidMount () {
+<<<<<<< HEAD
     this.socket = io(API_HOST)
+=======
+    this.socket = io(`https://69862b10.ngrok.io`) // https://69862b10.ngrok.io   // http://localhost:3000
+>>>>>>> 364bfd69fab984b608c72cf344572ff17ba75810
     console.log(">>>>>>>>>>>>>>>>>");
     this.socket.on('message', message => {
       console.log(">>>>>>>>>>>>>>>>>", message);

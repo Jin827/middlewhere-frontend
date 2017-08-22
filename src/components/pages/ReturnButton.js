@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import '../App';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import FlatButton from 'material-ui/FlatButton';
+
 const style = {
-    margin: 0,
-    right: 100,
-    bottom: 100,
+    // margin: 0,
+    // right: 100,
+    // bottom: 100,
     position: 'fixed'
 };
 export default class ReturnButton extends Component {
@@ -17,7 +17,9 @@ export default class ReturnButton extends Component {
   render(){
     return (
       <div>
-        <FloatingActionButton secondary={true} style={style} onClick={this.props.buttonClick}><ContentAdd/></FloatingActionButton>
+        <h1>
+        <FlatButton label= {this.props.projectTitle} primary={true} style={style}></FlatButton>
+        </h1>
       </div>
   )}
 }
