@@ -26,7 +26,6 @@ export default class ProjectCard extends Component {
   }
 
     componentDidMount() {
-      console.log('i mount')
       this._fetchAvatar()
     }
 
@@ -37,14 +36,12 @@ export default class ProjectCard extends Component {
     }
 
     _fetchAvatar = () => {
-      console.log(this.props.projectAdmin, "admin")
       api.getUserAvatar(this.props.projectAdmin)
       .then((data)=>{
         this.setState({
           avatarUrl:data.body.avatarUrl
         })
       })
-
     }
 
 
@@ -62,6 +59,11 @@ export default class ProjectCard extends Component {
     return (
       <div>
             <Card className='project-card'>
+            <CardHeader
+               title="URL Avatar"
+               subtitle="Subtitle"
+               avatar="images/jsa-128.jpg"
+             />
               <CardActions>
                 {this.props.isAdmin ? <EditorModeEdit cursor="pointer" color="rgba(100, 181, 246,0.4)" className="project-edit-button" onClick={this._editProjectForm}/>:null}
               </CardActions>
