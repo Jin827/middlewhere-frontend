@@ -1,87 +1,67 @@
-
-*, *:before, *:after {
-  box-sizing: border-box;
+/*body {
+  font-family: sans-serif;
+  font-weight:bold;
+  color:#424242;
 }
 
-body *, body *:before, body *:after { box-sizing: inherit; }
-body {
-  margin: 0px;
-  padding:0px;
-  background-color: rgb(225, 225, 225);
+.section-one{
+  padding: 0% 10% 0% 10%;
 }
 
-a {
-  text-decoration: none !important;
-  color: inherit;
-  justify-content: center;
-}
-.appBar{
-    background-color: rgba(255, 255, 255, 1) !important;
-}
-#root {
-  margin:0px;
-  padding:0px;
-}
-.appBar button div svg{
-    fill: black !important;
-}
-
-
-button{
-    color: black !important;
-}
-
-/*.header {
-  background-color: #00acc1 ;
-  display:flex;
-  padding: 1em;
-}*/
-
-
-.home {
-
-  /*flex-direction: row;
-  flex-wrap: wrap;*/
-
-  margin-top: 4rem;
-}
-
-.tasks {
-  margin-top: 4rem;
-
-}
-
-.signup {
-  margin-top: 8rem;
-}
-/*.project {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-}*/
-
-.add-button{
+header,  .section-one, .section-two, .section-three, .section-four, .section-five {
   display: flex;
+}
+.whole{
+  margin-top: 4rem;
+}
+
+.header-image {
+  display:flex;
+  min-height:40vh;
+  width:100%;
+  display:flex;
+  background-image: url("overview.jpg");
+  background-size:cover;
+  background-repeat: space;
+  padding:5%;
+}
+
+.section-one {
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: space-between;
+  min-height:60vh;
+  padding:2%;
+  background-color:#f5f5f6;
+}
+
+.rocket-header {
+  font-size: 3rem;
+}
+
+.index-page-row {
+  display:flex;
+  justify-content: center;
+  height:100%
+}
+
+.feature{
+  height:auto;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content: center;
   align-items: center;
+  padding:1%;
+  text-align:center;
 }
 
 
-/*.project-card:hover{
-  transform: scale(1.1);
-}*/
-.add-board-button{
-  min-height:50px;
-  min-width:50px;
-  border-radius: 50%;
-  padding:0;
-  background-color: #F63838;
-  transition: all .2s ease-in-out;
+.paragraph {
+  width:100%;
+  font-size:1rem;
+  font-weight: normal;
+  padding-top:1%;
 }
-
-.add-board-button:hover{
-  background-color: #FA9999;
-}
-
 
 .responsive-img {
   max-width: 100%;
@@ -90,6 +70,7 @@ button{
     text-align: center;
 
 }
+
 /* Small and up columns */
 
 /* If an element needs all twelve columns, then its width is 100%. Easy. */
@@ -227,4 +208,4 @@ button{
   .col-large-1 {
       width: 8.333%;
   }
-}
+}*/
