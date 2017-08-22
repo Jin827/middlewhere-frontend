@@ -3,9 +3,9 @@ import '../App';
 import FlatButton from 'material-ui/FlatButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 const style = {
-    margin: 0,
-    right: 100,
-    bottom: 100,
+    // margin: 0,
+    // right: 100,
+    // bottom: 100,
     position: 'fixed'
 };
 export default class ReturnButton extends Component {
@@ -17,7 +17,9 @@ export default class ReturnButton extends Component {
   render(){
     return (
       <div>
-        <FlatButton label= "projectName" secondary={true} style={style} onClick={this.props.buttonClick}></FlatButton>
+        <h1>
+        <FlatButton label= {this.props.projectTitle} primary={true} style={style}></FlatButton>
+        </h1>
       </div>
   )}
 }

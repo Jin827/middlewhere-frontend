@@ -71,7 +71,7 @@ export default class Project extends Component {
   }
 
   render() {
-    let { tasks } = this.state;
+    let { tasks, projectTitle } = this.state;
 
     return (
       <div className="tasks">
@@ -91,8 +91,8 @@ export default class Project extends Component {
               ReRenderProject={this.fetchData}
             />
             </div>
-          ) : <h1>Add tasks</h1> }
-          {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton /> </Link> : null}
+          ) : <h2>Add tasks</h2> }
+          {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton projectTitle={projectTitle}/> </Link> : null}
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
           projectId={this.props.params.id}
