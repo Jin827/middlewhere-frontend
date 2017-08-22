@@ -14,7 +14,7 @@ export default class Project extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: [],   
+      tasks: [],
       open: false,
       isAdmin: false
     };
@@ -41,7 +41,7 @@ export default class Project extends Component {
   fetchData = () => {
       api.getTasks(this.props.params.id)
       .then(res => {
-        
+
         this.setState({
           tasks: res.body
         })
@@ -75,7 +75,9 @@ export default class Project extends Component {
 
     return (
       <div className="tasks">
-         <Conversation projectId={this.props.params.id} userId={this.state.userId} /> 
+        {
+          //<Conversation projectId={this.props.params.id} userId={this.state.userId} />
+         }
          { tasks.length !==0 ? tasks.map(b =>
            <div className="single-proj col-large-3 col-medium-6 col-small-12">
             <TaskCard
