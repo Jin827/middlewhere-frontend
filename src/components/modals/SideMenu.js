@@ -28,11 +28,16 @@ export default class DrawerUndockedExample extends React.Component {
       })
     })
     .then(() => {
-      api.getAll(localStorage.token)
+      console.log("MOMOMOMOMOMO SIDEMENU31");
+      return api.getAll(localStorage.token)
     })
-    .then((coworkers) => this.setState({
-      coworkers : coworkers.body
-    }))
+    .then((coworkers) => {
+      console.log(coworkers);
+      if (coworkers) {
+        this.setState({coworkers : coworkers.body});
+      }
+    }
+  )
   }
 
   render() {
@@ -49,17 +54,17 @@ export default class DrawerUndockedExample extends React.Component {
               lasteName={this.state.me.lasteName}
               avatarUrl={this.state.me.avatarUrl} /> : null}
           </MenuItem>
-            
-          { this.state.coworkers ? <CoworkerTab coworkers={this.state.coworkers}/> : null}
+
+          { this.state.coworkers ? <CoworkerTab coworkers={this.state.coworkers} me={this.state.me.users_id}/> : null}
 
 
-          { this.state.coworkers ? this.state.coworkers.map(b =>
+          {/* { this.state.coworkers ? this.state.coworkers.map(b =>
             <div className="coworkers">
               <MenuItem>
                 <CoworkerTab coworkers={this.state.coworkers}/>
               </MenuItem>
              </div>
-           ) : <h4>No Coworkers <br/> to Show </h4> }
+           ) : <h4>No Coworkers <br/> to Show </h4> } */}
         </Drawer>
       </div>
     );

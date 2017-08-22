@@ -16,8 +16,8 @@ export default class Conversation extends React.Component {
       console.log(">>>>>>>>>>>>>>>>>", message);
       this.setState({ messages: [message, ...this.state.messages] })
     })
-    api.conversationalize('stuff').catch(console.log('AN ERROR'));
-    console.log("Updates ___________________ ");
+    // api.conversationalize('stuff').catch(console.log('AN ERROR'));
+    // console.log("Updates ___________________ ");
   }
 
   handleSubmit = event => {
