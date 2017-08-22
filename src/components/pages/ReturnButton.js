@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../App';
 import FlatButton from 'material-ui/FlatButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+
 const style = {
     // margin: 0,
     // right: 100,

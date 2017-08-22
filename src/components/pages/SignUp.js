@@ -28,7 +28,7 @@ export default class SignUp extends Component {
     var email = this.refs.email.getValue()
     var password = this.refs.password.getValue()
 
-    this._clearErrorState();
+    // this._clearErrorState();
 
      if(!firstName){
         this.setState({
@@ -54,7 +54,7 @@ export default class SignUp extends Component {
       }
 
       //User Email validation
-      else if(firstName && lastName && email && password){
+      if(firstName && lastName && email && password){
         console.log(firstName, lastName, email, password)
         api.requestSignup(firstName, lastName, email, password)
         .then(()=> {
