@@ -7,7 +7,7 @@ import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import './ProjectCard.css';
 import '../App.css';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
-<<<<<<< HEAD
+
 import api from '../../api';
 import {pinkA200, cyan500} from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
@@ -54,7 +54,7 @@ export default class ProjectCard extends Component {
     }
 
   render() {
-    //console.log(this.props.projectAdmin)
+
     let { id, progress, title, deadline, description } = this.props
     if(deadline){
       var time = moment(deadline).format("DD-MM-YYYY")
@@ -62,18 +62,27 @@ export default class ProjectCard extends Component {
     return (
       <div>
             <Card className='project-card'>
-              <CardActions>{this.props.isAdmin ? <EditorModeEdit cursor="pointer" color={cyan500} className="editButton" onClick={this._editProjectForm}/>:null}</CardActions>
-              <Link to={`/projects/${id}`}>
-                <CardText>Admin:</CardText>
-                <Avatar src={`${this.state.avatarUrl}`}/>
-                <CardHeader textStyle={{ paddingRight: 0}} title={title} />
-                <CardText>{time}</CardText>
-                <CardText>{description}</CardText>
-              </Link>
               <CardActions>
-               {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} backgroundColor="#64b5f6" onClick={this._editProjectForm}><EditorModeEdit/></FloatingActionButton> :null}
-             </CardActions>
+                {this.props.isAdmin ? <EditorModeEdit cursor="pointer" color="rgba(100, 181, 246,0.4)" className="project-edit-button" onClick={this._editProjectForm}/>:null}
+              </CardActions>
+
+
+              <Link to={`/projects/${id}`}>
+              <div className="project-card-relative">
+                <Avatar className='project-card-avatar' src={`${this.state.avatarUrl}`}/>
+                <CardHeader textStyle={{ paddingRight: 0}} title={title} />
+
+                {deadline ? <CardText>Deadline: {time}</CardText> : <CardText>Deadline: N/A </CardText>}
+              </div>
+                <div className="project-card-desc">
+                  <CardText className="desc-width">
+                    Description: {description}
+                  </CardText>
+                </div>
+
               <LinearProgress mode="determinate" value={progress} />
+
+              </Link>
             </Card>
 
           {this.state.editProject ? <EditProject id={id} title={title}
@@ -85,3 +94,6 @@ export default class ProjectCard extends Component {
 
 }
 // {this.props.isAdmin ? <FlatButton primary={true} icon={<EditorModeEdit/>} onClick={this._editProjectForm}/> :null}
+// <CardActions>
+//  {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editProjectForm}><EditorModeEdit/></FloatingActionButton> :null}
+// </CardActions>

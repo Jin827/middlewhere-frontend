@@ -59,7 +59,7 @@ export default class Home extends Component {
     return (
       <div className="home">
         { projects ? projects.map(p =>
-          <div className="single-proj col-large-3 col-medium-6 col-small-12">
+          <div className="single-proj col-large-4 col-medium-6 col-small-12">
             <ProjectCard
               isAdmin={p.adminUserId==this.state.me}
               projectAdmin={p.adminUserId}

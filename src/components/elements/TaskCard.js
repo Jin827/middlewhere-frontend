@@ -13,11 +13,8 @@ import AutoComplete from 'material-ui/AutoComplete';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import AssignedList from './AssignedList'
-<<<<<<< HEAD
 import {pinkA200, cyan500} from 'material-ui/styles/colors';
-=======
 import {cyan800} from 'material-ui/styles/colors';
->>>>>>> 364ab793ac86d2bcb7956cb39ac4af266402fb59
 import List from 'material-ui/List/List';
 import './TaskCard.css';
 import './ProjectCard.css';
@@ -136,9 +133,9 @@ export default class TaskCard extends Component {
     return (
       <div>
             <Card className="task-card">
-            <CardActions>
-              {this.props.isAdmin ? <EditorModeEdit color={cyan500} cursor="pointer" className="editButton" onClick={this._editTaskForm}/>:null}
-            </CardActions>
+              <CardActions>
+                {this.props.isAdmin ? <EditorModeEdit cursor="pointer" color="rgba(100, 181, 246,0.4)" className="task-edit-button" onClick={this._editTaskForm}/>:null}
+              </CardActions>
                 <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
                 { assignedUsers ? assignedUsers.map(u =>
                   <List
