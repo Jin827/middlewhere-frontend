@@ -14,8 +14,8 @@ export default class Project extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: [],
-      open:false,
+      tasks: [],   
+      open: false,
       isAdmin: false
     };
   }
@@ -41,9 +41,9 @@ export default class Project extends Component {
   fetchData = () => {
       api.getTasks(this.props.params.id)
       .then(res => {
-        let resultTasks = res.body
+        
         this.setState({
-          tasks: resultTasks
+          tasks: res.body
         })
       })
       .catch(console.error)
@@ -71,10 +71,11 @@ export default class Project extends Component {
 
   render() {
     let { tasks } = this.state;
+
     return (
       <div className="tasks">
-        <Conversation/>
-         { tasks ? tasks.map(b =>
+         <Conversation projectId={this.props.params.id} userId={this.state.userId} /> 
+         { tasks.length !==0 ? tasks.map(b =>
            <div className="single-proj col-large-3 col-medium-6 col-small-12">
             <TaskCard
               projectId={this.props.params.id}
@@ -89,7 +90,7 @@ export default class Project extends Component {
               ReRenderProject={this.fetchData}
             />
             </div>
-          ) : <div>Add tasks</div> }
+          ) : <h1>Add tasks</h1> }
           {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton /> </Link> : null}
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
