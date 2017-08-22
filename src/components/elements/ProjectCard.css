@@ -23,9 +23,11 @@
 
 .project-edit-button {
   position: absolute;
-  left:15px;
-  top:10px;
-  color:rgba(100, 181, 246,0.1)
+  left: 0;
+  top: 0;
+  padding:10px;
+  z-index: 10;
+
 }
 
 .project-card-desc {
