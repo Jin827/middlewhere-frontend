@@ -7,9 +7,12 @@ import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import './ProjectCard.css';
 import '../App.css';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
+<<<<<<< HEAD
 import api from '../../api';
 import {pinkA200, cyan500} from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
+
+import {deepOrange900,orange300} from 'material-ui/styles/colors';
 
 // import EditButton from './EditButton';
 // import EditProject from '../modals/EditProject'
@@ -68,7 +71,7 @@ export default class ProjectCard extends Component {
                 <CardText>{description}</CardText>
               </Link>
               <CardActions>
-               {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editProjectForm}><EditorModeEdit/></FloatingActionButton> :null}
+               {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} backgroundColor="#64b5f6" onClick={this._editProjectForm}><EditorModeEdit/></FloatingActionButton> :null}
              </CardActions>
               <LinearProgress mode="determinate" value={progress} />
             </Card>

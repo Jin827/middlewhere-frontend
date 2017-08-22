@@ -13,7 +13,11 @@ import AutoComplete from 'material-ui/AutoComplete';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import AssignedList from './AssignedList'
+<<<<<<< HEAD
 import {pinkA200, cyan500} from 'material-ui/styles/colors';
+=======
+import {cyan800} from 'material-ui/styles/colors';
+>>>>>>> 364ab793ac86d2bcb7956cb39ac4af266402fb59
 import List from 'material-ui/List/List';
 import './TaskCard.css';
 import './ProjectCard.css';
@@ -167,7 +171,7 @@ export default class TaskCard extends Component {
               }
                 <br/>
 
-                <Face color={pinkA200} /><CardText color={pinkA200}> {count}</CardText>
+                <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
               <CardActions>
 
