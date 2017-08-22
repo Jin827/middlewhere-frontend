@@ -28,23 +28,25 @@ export default class SignUp extends Component {
     var email = this.refs.email.getValue()
     var password = this.refs.password.getValue()
 
+    this._clearErrorState();
+
      if(!firstName){
         this.setState({
         firstNameError:"First Name is required"
         })
       }
-      else if(!lastName){
+       if(!lastName){
         this.setState({
         lastNameError:"Last Name is required"
         })
       }
-      else if(!email){
+       if(!email){
         this.setState({
         emailError:"Email is required",
         emailHint:"Enter a valid Email"
         })
       }
-      else if(!password){
+       if(!password){
         this.setState({
         passwordError:"Password is required",
         passwordHint:"Password should be minimum 12 charactors"
@@ -78,18 +80,18 @@ export default class SignUp extends Component {
         firstNameError:""
         })
       }
-      else if(lastName){
+       if(lastName){
         this.setState({
         lastNameError:""
         })
       }
-      else if(email){
+       if(email){
         this.setState({
         emailError:"",
         emailHint:""
         })
       }
-      else if(password){
+       if(password){
         this.setState({
         passwordError:"",
         passwordHint:""

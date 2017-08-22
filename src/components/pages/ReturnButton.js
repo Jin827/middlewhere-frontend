@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import '../App';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import FlatButton from 'material-ui/FlatButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 const style = {
     margin: 0,
@@ -17,7 +17,7 @@ export default class ReturnButton extends Component {
   render(){
     return (
       <div>
-        <FloatingActionButton secondary={true} style={style} onClick={this.props.buttonClick}><ContentAdd/></FloatingActionButton>
+        <FlatButton label= "projectName" secondary={true} style={style} onClick={this.props.buttonClick}></FlatButton>
       </div>
   )}
 }

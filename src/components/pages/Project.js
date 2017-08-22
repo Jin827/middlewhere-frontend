@@ -57,7 +57,8 @@ export default class Project extends Component {
         var user = data[1].body;
         this.setState({
           isAdmin: user.users_id === project.adminUserId,
-          userId: user.users_id
+          userId: user.users_id,
+          projectTitle: project.title
         })
       })
 
