@@ -89,7 +89,7 @@ export default class Project extends Component {
               ReRenderProject={this.fetchData}
             />
             </div>
-          ) : <h1>Add tasks</h1> }
+          ) : <div>Add tasks</div> }
           {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton /> </Link> : null}
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
