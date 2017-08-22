@@ -73,7 +73,9 @@ export default class Project extends Component {
     let { tasks } = this.state;
     return (
       <div className="tasks">
-        <Conversation projectId={this.props.params.id} userId={this.state.userId} />
+        <div className="single-proj col-large-3 col-medium-6 col-small-12">
+          <Conversation projectId={this.props.params.id} userId={this.state.userId} />
+        </div>
          { tasks ? tasks.map(b =>
            <div className="single-proj col-large-3 col-medium-6 col-small-12">
             <TaskCard

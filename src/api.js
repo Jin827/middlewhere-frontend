@@ -22,6 +22,12 @@ class Api {
     .set('Authorization', `token ${token}`)
   )
 
+  // setUserStatus = (email, password) => (
+  //   superagent
+  //   .patch(`${API_HOST}/auth/sessions`)
+  //   .send({ email, password })
+  // )
+
   getProjectsList = (page, count) => (
     superagent
     .get(`${API_HOST}/projects`)

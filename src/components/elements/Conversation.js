@@ -1,8 +1,8 @@
 import React from 'react';
-//import ReactDOM from 'react-dom'
 import io from 'socket.io-client';
 import { API_HOST } from '../../config';
 import api from '../../api';
+//import './Conversation.css';
 
 export default class Conversation extends React.Component {
   constructor (props) {
@@ -11,7 +11,7 @@ export default class Conversation extends React.Component {
   }
 
   componentDidMount () {
-    this.socket = io(`http://localhost:3000`)
+    this.socket = io(API_HOST)
     console.log(">>>>>>>>>>>>>>>>>");
     this.socket.on('message', message => {
       console.log(">>>>>>>>>>>>>>>>>", message);
@@ -19,8 +19,6 @@ export default class Conversation extends React.Component {
         this.setState({ messages: [message, ...this.state.messages] })
 
       }
-
-
     })
     // api.conversationalize('stuff').catch(console.log('AN ERROR'));
     //console.log("Updates ___________________ ");
@@ -50,8 +48,7 @@ export default class Conversation extends React.Component {
     })
     return (
       <div>
-        <h3>Start a conversation : </h3>
-        <input type='text' placeholder='Ask/Answer...' onKeyUp={this.handleSubmit} />
+        <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
         {messages}
       </div>
     )

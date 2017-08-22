@@ -11,22 +11,26 @@ export default class Updates extends React.Component {
   }
 
   componentDidMount () {
-    this.socket = io(`http://localhost:3000`)
+    this.socket = io(API_HOST)
     this.socket.on('message', message => {
-      this.setState({ messages: [message, ...this.state.messages] })
+      if ( parseInt(message.projectId) === parseInt(this.props.projectId) ) {
+        this.setState({ messages: [message, ...this.state.messages] })
+      }
     })
-    api.conversationalize('stuff').catch(console.log('AN ERROR'));
-    console.log("Updates ___________________ ");
   }
 
   handleSubmit = event => {
-    const body = event.target.value
+    const body = {
+      'text': event.target.value,
+      'projectId': this.props.projectId,
+      'from': this.props.userId
+    }
     if (event.keyCode === 13 && body) {
       const message = {
-        body,
+        body: body.text,
         from: 'Me'
       }
-      this.setState({ messages: [message, ...this.state.messages] })
+      // this.setState({ messages: [message, ...this.state.messages] })
       this.socket.emit('message', body)
       event.target.value = ''
     }
@@ -35,12 +39,12 @@ export default class Updates extends React.Component {
   render () {
     const messages = this.state.messages.map((message, index) => {
       const img = message.img ? <img src={message.img} width='200px' /> : null
-      return <li key={index}><b>{message.from}:</b>{message.body} {img}</li>
+      return <li key={index}><b>{message.from}:</b>{message.text} {img}</li>
     })
     return (
       <div>
         <h3>Start a conversation : </h3>
-        <input type='text' placeholder='Ask/Answer ...' onKeyUp={this.handleSubmit} />
+        <input type='text' placeholder='Ask/Answer...' onKeyUp={this.handleSubmit} />
         {messages}
       </div>
     )
