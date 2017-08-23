@@ -75,11 +75,7 @@ export default class Project extends Component {
     return (
       <div className="tasks">
 
-        
-          
-         
-
-         { tasks.length != 0 ? tasks.map(b =>
+         { tasks.length !== 0 ? tasks.map(b =>
            <div className="single-proj col-large-3 col-medium-6 col-small-12">
             <TaskCard
               projectId={this.props.params.id}

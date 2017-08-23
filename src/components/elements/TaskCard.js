@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import EditTask from '../modals/EditTask';
+// import CompleteButton from './CompleteButton'
 import api from '../../api';
 import './TaskCard.css';
 import {Card, CardHeader, CardTitle, CardText, CardActions, LinearProgress, FlatButton} from 'material-ui';
@@ -25,7 +26,7 @@ export default class TaskCard extends Component {
     super(props);
     this.state = {
       editTask:false,
-      completed: 1,
+      completed: 0,
       open: false,
       dataSource:[],
       searchText : '',
@@ -48,13 +49,13 @@ export default class TaskCard extends Component {
 
 
   _completedTask = () => {
-    if (!this.state.completed) {
+    if (this.state.completed) {
       this.setState({
-        completed: 1
+        completed: 0
       })
     } else {
       this.setState({
-        completed: 0
+        completed: 1
       })
     }
     console.log(this.state.completed, "TaskCard.js 61")
@@ -119,8 +120,8 @@ export default class TaskCard extends Component {
 
 
     let { id, title, description, deadline, priority} = this.props
-    let { assignedUsers, count } = this.state
-    console.log(this.state.assignedUsers, "assignedUsers")
+    let { assignedUsers, count, completed } = this.state
+    console.log(this.state.assignedUsers, "assignedUsers, TaskCard.js 124")
     if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
@@ -138,7 +139,7 @@ export default class TaskCard extends Component {
       <div>
             <Card className="task-card">
               <CardActions>
-                {this.props.isAdmin != 0 ? <EditorModeEdit style={editTaskStyle} className="task-edit-button" onClick={this._editTaskForm}/>:null}
+                {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle} className="task-edit-button" onClick={this._editTaskForm}/>:null}
               </CardActions>
                 <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
                 <List
@@ -177,9 +178,8 @@ export default class TaskCard extends Component {
                 <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
               <CardActions>
-
-               <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>
-             </CardActions>
+                 {completed === 0 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>}
+              </CardActions> 
 
             </Card>
 

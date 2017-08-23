@@ -91,8 +91,8 @@ export default class Login extends Component {
     return (
       <div className="signup row">
         <Paper style={style} className="col-large-6 paper-frame" zDepth={2}>
-            <TextField className="col-large-6" floatingLabelText="Email" errorText= {this.state.emailError} onChange={this._clearErrorState} ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Password" errorText= {this.state.passwordError} onChange={this._clearErrorState}  ref="password" type="password" onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Email" errorText={this.state.emailError} onChange={this._clearErrorState} ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Password" errorText={this.state.passwordError} onChange={this._clearErrorState}  ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
             <RaisedButton className="button-pad" label="Let's Go" secondary={true} onClick={this._handleLogin} />
             {this.state.error? <div>Please enter an valid email and password</div> : null}
