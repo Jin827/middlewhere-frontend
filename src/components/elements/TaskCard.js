@@ -131,7 +131,7 @@ export default class TaskCard extends Component {
     let editTaskStyle = {
       height: '44px',
       width: '44px',
-      color:'rgba(100, 181, 246,0.4)',
+      color:'#80CBC4',
       cursor:'pointer'
     }
 
@@ -178,7 +178,8 @@ export default class TaskCard extends Component {
                 <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
               <CardActions>
-                  <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> 
+                  <RaisedButton labelColor={"#fff"} label="Complete Task" backgroundColor={'#00BFA5'
+                } onClick={this._completedTask}/> 
                   {/* {completed === 0 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>}  */}
               </CardActions> 
 

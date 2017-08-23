@@ -25,10 +25,10 @@ const muiTheme = getMuiTheme({
   spacing: spacing,
     fontFamily: 'Roboto, sans-serif',
     palette: {
-      primary1Color: cyan500,
+      primary1Color: grey900,
       primary2Color: cyan700,
-      primary3Color: grey400,
-      accent1Color: pinkA200,
+      primary3Color: cyan700,
+      accent1Color: orange300,
       accent2Color: grey100,
       accent3Color: grey500,
       textColor: grey900,
@@ -83,9 +83,13 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App row">
-          <AppBar title="MiddleWhere" className="appBar"
+          <AppBar title="WorkFlow" className="appBar"
             style={style}
-            titleStyle={{color:'#000'}}
+            titleStyle={{
+              color:'#000',
+              fontFamily: 'Advent Pro, sans-serif',
+              fontSize: '2em'
+          }}
             onLeftIconButtonTouchTap={this.handleToggle}
             iconElementRight={auth.isLoggedIn() ?
                <FlatButton label= "Logout" onClick={this._logOut}/>: <div><FlatButton label= "Login" onClick={this._login}/><FlatButton label="Signup" onClick={this._signUp}/></div> }
