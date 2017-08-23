@@ -20,46 +20,38 @@ import List from 'material-ui/List/List';
 import './TaskCard.css';
 import './ProjectCard.css';
 import '../App.css';
-
 export default class TaskCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
       editTask:false,
-      completed: 0,
+      completed: this.props.completed,
       open: false,
       dataSource:[],
-      searchText : '',
-
+      searchText : ''
     };
   }
-
   componentDidMount(){
-    this._fetchUsers();
+    this._fetchUsers()
   }
 
   fetchData = () => {
     api.getAutoComplete(this.state.searchText)
     .then(res => {
       this.setState({
-        dataSource:res.body,
+        dataSource:res.body
       })
     })
   }
-
-
+  
   _completedTask = () => {
-    if (this.state.completed) {
-      this.setState({
-        completed: 0
-      })
-    } else {
-      this.setState({
-        completed: 1
-      })
-    }
-    console.log(this.state.completed, "TaskCard.jssssssssssss 61")
-    api.completedTasks(this.props.id, this.state.completed, localStorage.token).catch(err=>console.log(err))
+    var newCompleted = this.state.completed ? 0 : 1;
+    
+    this.setState({
+      completed: newCompleted
+    })
+   
+    api.completedTasks(this.props.id, newCompleted, localStorage.token).catch(err=>console.log(err))
   }
 
   _editTaskForm = () =>{
@@ -67,7 +59,7 @@ export default class TaskCard extends Component {
         editTask: true
       })
     }
-
+    
     _closeTaskForm = () => {
       this.setState({
         editTask:false
@@ -106,9 +98,6 @@ export default class TaskCard extends Component {
         })
       })
     }
-
-
-
   render() {
     const dataSource = this.state.dataSource
     const newDataSource = dataSource.map(item => {
@@ -117,11 +106,8 @@ export default class TaskCard extends Component {
       text: 'fullName',
       value: 'userId'
   }
-
-
     let { id, title, description, deadline, priority} = this.props
     let { assignedUsers, count, completed } = this.state
-    console.log(this.state.assignedUsers, "assignedUsers, TaskCard.js 124")
     if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
@@ -145,7 +131,6 @@ export default class TaskCard extends Component {
                 <List
                 expandable={true}>
                 { assignedUsers ? assignedUsers.map(u =>
-
                     <AssignedList
                       key={u.id}
                       id={u.id}
@@ -154,14 +139,11 @@ export default class TaskCard extends Component {
                       email={u.email}
                       avatarUrl={u.avatarUrl}
                     />
-
                 ) : <h4>No assigned users </h4>}
                 </List>
                 <CardText expandable={true}> <strong> Task Description </strong>  <br/>  { description } </CardText>
                 {deadline ? <CardText expandable={true}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
-
                 {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
-
                 { this.props.isAdmin ? <AutoComplete
                     floatingLabelText="Team Members"
                     filter={AutoComplete.caseInsensitiveFilter}
@@ -174,22 +156,15 @@ export default class TaskCard extends Component {
                 /> : null
               }
                 <br/>
-
                 <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
-
               <CardActions>
-                  <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> 
-                  {/* {completed === 0 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>}  */}
-              </CardActions> 
-
+                  {/* <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> */}
+                  {completed === 1 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" primary={true} onClick={this._completedTask}/>}
+              </CardActions>
             </Card>
-
           {this.state.editTask ? <EditTask projectId={this.props.projectId} id={id} title={title}
           description={description} deadline={deadline} closeForm={this._closeTaskForm}/> : null}
       </div>
-
     );
   }
-
 }
-//  <FloatingActionButton className="editButton" mini={true} zDepth={0} onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}
