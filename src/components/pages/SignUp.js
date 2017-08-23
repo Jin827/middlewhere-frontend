@@ -58,7 +58,7 @@ export default class SignUp extends Component {
         console.log(firstName, lastName, email, password)
         api.requestSignup(firstName, lastName, email, password)
         .then(()=> {
-          
+
           console.log('signed up')
           this.props.router.push('/login')
         })
@@ -66,9 +66,9 @@ export default class SignUp extends Component {
           console.log('existing user email')
           this.setState({existingUser:true})
         })
-      }   
-  } 
-  
+      }
+  }
+
   _clearErrorState = () => {
     var firstName = this.refs.firstName.getValue()
     var lastName = this.refs.lastName.getValue()

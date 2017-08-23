@@ -6,9 +6,17 @@ import AddButton from '../elements/AddButton';
 import { Link } from 'react-router';
 import auth from '../../auth'
 import ReturnButton from './ReturnButton'
-import './Project.css';
+import Paper from 'material-ui/Paper';
 import Conversation from '../elements/Conversation'
+import './Project.css';
 
+const style = {
+  margin: '20% 35%',
+  textAlign: 'center',
+  display: 'inline-block',
+  padding: '2rem',
+  opacity: 0.8
+};
 
 export default class Project extends Component {
   constructor(props) {
@@ -90,13 +98,10 @@ export default class Project extends Component {
               ReRenderProject={this.fetchData}
             />
             </div>
-          ) : <h2>Add tasks</h2> }
+          ) : <Paper style={style} className="col-large-6" zDepth={2}><strong>NO TASKS YET</strong></Paper> }
 
-          <div className="single-proj col-large-3 col-medium-6 col-small-12">
-            <Conversation projectId={this.props.params.id} username={this.state.firstName} />
-          </div>
 
-          {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton projectTitle={projectTitle}/> </Link> : null}
+      
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
           projectId={this.props.params.id}
@@ -108,3 +113,6 @@ export default class Project extends Component {
   }
 
 }
+// <div className="single-proj col-large-3 col-medium-6 col-small-12">
+//   <Conversation projectId={this.props.params.id} username={this.state.firstName} />
+// </div>
