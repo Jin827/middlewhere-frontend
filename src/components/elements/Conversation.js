@@ -1,8 +1,14 @@
 import React from 'react';
-//import ReactDOM from 'react-dom'
 import io from 'socket.io-client';
 import { API_HOST } from '../../config';
 import api from '../../api';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import './TaskCard.css';
+import './Conversation.css';
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
+
 
 export default class Conversation extends React.Component {
   constructor (props) {
@@ -11,17 +17,16 @@ export default class Conversation extends React.Component {
   }
 
   componentDidMount () {
+    this.socket = io(API_HOST)
+    //this.socket = io(`https://69862b10.ngrok.io`) // https://69862b10.ngrok.io   // http://localhost:3000
 
-    this.socket = io(`https://69862b10.ngrok.io`) // https://69862b10.ngrok.io   // http://localhost:3000
-    console.log(">>>>>>>>>>>>>>>>>");
     this.socket.on('message', message => {
-      console.log(">>>>>>>>>>>>>>>>>", message);
+
       if ( parseInt(message.projectId) ===  parseInt(this.props.projectId) ) {
+        console.log('CONVERSATION' , this.state.messages);
         this.setState({ messages: [message, ...this.state.messages] })
 
       }
-
-
     })
     // api.conversationalize('stuff').catch(console.log('AN ERROR'));
     //console.log("Updates ___________________ ");
@@ -31,7 +36,7 @@ export default class Conversation extends React.Component {
     const body = {
       'text': event.target.value,
       'projectId': this.props.projectId,
-      'from': this.props.userId
+      'from': this.props.username
     }
     if (event.keyCode === 13 && body) {
       const message = {
@@ -47,14 +52,16 @@ export default class Conversation extends React.Component {
   render () {
     const messages = this.state.messages.map((message, index) => {
       const img = message.img ? <img src={message.img} width='200px' /> : null
-      return <li key={index}><b>{message.from}:</b>{message.text} {img}</li>
+      return <p align="center" key={index}><b>{message.from} : </b>{message.text} {img}</p>
     })
     return (
-      <div>
-        <h3>Start a conversation : </h3>
-        <input type='text' placeholder='Ask/Answer...' onKeyUp={this.handleSubmit} />
-        {messages}
-      </div>
+      <Card className="task-card">
+        <div>
+          <CardText color="#ef5350"> <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
+          {messages}</CardText>
+        </div>
+      </Card>
+
     )
   }
 }
