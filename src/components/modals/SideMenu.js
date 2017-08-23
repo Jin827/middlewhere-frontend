@@ -53,25 +53,17 @@ export default class DrawerUndockedExample extends React.Component {
       <div>
         <Drawer
           docked={false}
-          width={125}
           open={this.props.menuState}
+          containerStyle={{
+            textAlign: 'center'
+          }}
           onRequestChange={this.props.closeState}>
           <MenuItem onClick={this.props.closeState}>
             {this.state.me ? <Me firstName={this.state.me.users_firstName}
               lastName={this.state.me.users_lastName}
               avatarUrl={this.state.me.avatarUrl} /> : null}
           </MenuItem>
-
           { this.state.coworkers ? <CoworkerTab coworkers={this.state.coworkers} me={this.state.me.users_id}/> : null}
-
-
-          {/* { this.state.coworkers ? this.state.coworkers.map(b =>
-            <div className="coworkers">
-              <MenuItem>
-                <CoworkerTab coworkers={this.state.coworkers}/>
-              </MenuItem>
-             </div>
-           ) : <h4>No Coworkers <br/> to Show </h4> } */}
         </Drawer>
       </div>
     );
