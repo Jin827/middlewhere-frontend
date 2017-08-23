@@ -9,6 +9,7 @@
 
 .single-proj {
   padding:2%;
+
 }
 
 .project-card{
@@ -22,11 +23,12 @@
 
 .project-edit-button {
   position: absolute;
-  left: 0;
-  top: 20px;
+  right:2px;
+  bottom: -235px;
   padding:10px;
   z-index: 10;
 }
+
 
 .project-card-desc {
   display:flex;
@@ -38,7 +40,7 @@
 .desc-width {
   max-width: 100%;
   padding-top:0px!important;
-  padding-bottom:26px !important;
+  padding-bottom:40px !important;
 }
 
 .project-card-relative{
@@ -52,8 +54,3 @@
   right:20px;
   top: 5px;
 }*/
-
-.overlay-style {
-  padding-top:50px;
-
-}

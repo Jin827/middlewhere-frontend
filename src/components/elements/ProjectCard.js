@@ -82,24 +82,24 @@ export default class ProjectCard extends Component {
 
     if (rankPriority.length === 0) {
       this.setState({
-        priority:{background: 'linear-gradient(to right, rgb(188, 188, 188,0.9), rgb(122, 122, 122,0.9)'}
+        priority:'linear-gradient(140deg, rgba(188, 188, 188,0.7), rgba(122, 122, 122,0.7)'
       })
     }
       else if(filteredHigh.length >= filteredLow.length && filteredHigh.length >= filteredNormal.length ){
         this.setState({
-          priority:{background: 'linear-gradient(to right, #F76F64 , #FE5393)'}
+          priority:'linear-gradient(140deg, rgba(247, 111, 100,0.7) , rgba(254, 83, 147,0.7)'
         })
       }
 
       else if(filteredNormal.length >= filteredLow.length && filteredNormal.length > filteredHigh.length){
         this.setState({
-          priority: {background: 'linear-gradient(to right, #7EE89E , #A7D865)'}
+          priority:'linear-gradient(140deg, rgba(167, 216, 101,0.85), rgba(126, 232, 158,0.85)'
         })
       }
 
       else if(filteredLow.length > filteredNormal.length && filteredLow.length > filteredHigh.length ){
         this.setState({
-          priority:{background: 'linear-gradient(to right, #25BFD9 , #456CAD)'}
+          priority:'linear-gradient(140deg, rgba(37, 191, 217,0.7) , rgba(69, 108, 173,0.7))'
         })
       }
     }
@@ -113,25 +113,26 @@ export default class ProjectCard extends Component {
     let editProjectStyle = {
       height: '44px',
       width: '44px',
-      color:'rgba(100, 181, 246,0.4)',
-      cursor:'pointer'
+      color:'rgba(100, 181, 246,0.6)',
+      cursor:'pointer',
     }
-
 
     let { id, progress, title, deadline, description } = this.props
     if(deadline){
       var time = moment(deadline).format("DD-MM-YYYY")
     }
-
+//{this.state.priority}
     return (
       <div>
             <Card className='project-card'>
               <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
+                {this.props.isAdmin ? <EditorModeEdit hoverColor={'rgba(100, 181, 246,1)'} style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
               </CardActions>
               <Link to={`/projects/${id}`}>
-              <CardMedia overlayContentStyle={this.state.priority}
-                overlay={<CardTitle className="overlay-style" title={title} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}><div></div></CardMedia>
+
+              <CardMedia overlayContentStyle={{background:this.state.priority}} overlay={<CardTitle title={title} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}></CardMedia>
+
+
               <LinearProgress mode="determinate" value={progress} />
               <div className="project-card-relative">
                 <Avatar className='project-card-avatar' src={`${this.state.avatarUrl}`}/>
