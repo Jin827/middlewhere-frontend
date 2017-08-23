@@ -37,7 +37,6 @@ export default class DrawerUndockedExample extends React.Component {
       })
     })
     .then(() => {
-      console.log("MOMOMOMOMOMO SIDEMENU31");
       return api.getAll(localStorage.token)
     })
     .then((coworkers) => {
@@ -50,8 +49,6 @@ export default class DrawerUndockedExample extends React.Component {
   }
 
   render() {
-    console.log('SideMenu' , this.state);
-    console.log();
     return (
       <div>
         <Drawer

@@ -27,18 +27,7 @@ export default class Me extends React.Component {
     console.log("Me " , this.props);
     return (
       <div className="followers-page">
-      <p>Hello {this.props.firstName}</p>
-      <Avatar
-        src={this.props.avatarUrl}
-        icon={<FontIcon className="muidocs-icon-communication-voicemail" />}
-      />
-        {/* <figure className='user-info'>
-          <img
-            className='user-info__avatar'
-            src={this.props.avatarUrl}
-            alt="..."/>
-          <figcaption> Hello {this.props.firstName} </figcaption>
-        </figure> */}
+        <p>Hello <br/>{this.props.firstName}<hr/></p>
       </div>)
   }
 }
