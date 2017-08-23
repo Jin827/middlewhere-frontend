@@ -59,7 +59,7 @@ export default class TaskCard extends Component {
       })
     }
     console.log(this.state.completed)
-    api.completedTasks(this.props.id, this.state.completed, localStorage.token)
+    api.completedTasks(this.props.id, this.state.completed, localStorage.token).catch(err=>console.log(err))
   }
 
   _editTaskForm = () =>{
@@ -99,7 +99,7 @@ export default class TaskCard extends Component {
     _fetchUsers(taskId){
       api.getAssignedUsers(this.props.id)
       .then(data => {
-        console.log(data,"DDAATTA")
+        // console.log(data,"DDAATTA")
         this.setState({
           assignedUsers:data.body,
           count:data.body.length

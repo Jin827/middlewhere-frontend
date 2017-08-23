@@ -41,6 +41,7 @@ export default class Home extends Component {
     })
     .then(() => api.getProjectsList())
     .then(data => {
+      console.log(data.body[4].progressPct, "progressssssssssssssss")
       this.setState({
         projects:data.body
       })
