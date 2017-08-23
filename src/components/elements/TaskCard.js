@@ -178,7 +178,8 @@ export default class TaskCard extends Component {
                 <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
               <CardActions>
-                 {completed === 0 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>}
+                  <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> 
+                  {/* {completed === 0 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>}  */}
               </CardActions> 
 
             </Card>
