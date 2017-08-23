@@ -48,7 +48,6 @@ export default class ProjectCard extends Component {
     _fetchTasks = () => {
       api.getTasks(this.props.id)
       .then(res => {
-        console.log(res.body, "ressssbitch")
         this.setState({
           taskNum:res.body.length
         })
