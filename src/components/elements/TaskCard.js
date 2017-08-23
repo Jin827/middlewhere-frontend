@@ -131,7 +131,7 @@ export default class TaskCard extends Component {
     let editTaskStyle = {
       height: '44px',
       width: '44px',
-      color:'rgba(100, 181, 246,0.4)',
+      color:'#80CBC4',
       cursor:'pointer'
     }
 
@@ -139,7 +139,7 @@ export default class TaskCard extends Component {
       <div>
             <Card className="task-card">
               <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle}hoverColor={'rgba(100, 181, 246,1)'} className="task-edit-button" onClick={this._editTaskForm}/>:null}
+                {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle} hoverColor={'#00BFA5'} className="task-edit-button" onClick={this._editTaskForm}/>:null}
               </CardActions>
                 <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
                 <List
@@ -177,8 +177,9 @@ export default class TaskCard extends Component {
 
                 <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
-              <CardActions className="task-width">
-                  <RaisedButton labelColor={"#fff"} label="Complete Task" backgroundColor={'#2ecc71'} onClick={this._completedTask}/>
+
+              <CardActions>
+                  <RaisedButton  labelColor={"#fff"} label="Complete Task" backgroundColor={'#00BFA5'} onClick={this._completedTask}/>
                   {/* {completed === 0 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>}  */}
               </CardActions>
 

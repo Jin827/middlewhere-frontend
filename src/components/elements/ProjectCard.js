@@ -82,24 +82,24 @@ export default class ProjectCard extends Component {
 
     if (rankPriority.length === 0) {
       this.setState({
-        priority:'linear-gradient(140deg, rgba(188, 188, 188,0.7), rgba(122, 122, 122,0.7)'
+        priority:'linear-gradient(140deg, rgba(188, 188, 188,1), rgba(122, 122, 122,1)'
       })
     }
       else if(filteredHigh.length >= filteredLow.length && filteredHigh.length >= filteredNormal.length ){
         this.setState({
-          priority:'linear-gradient(140deg, rgba(247, 111, 100,0.7) , rgba(254, 83, 147,0.7)'
+          priority:'linear-gradient(140deg, rgba(247, 111, 100,1) , rgba(254, 83, 147,1)'
         })
       }
 
       else if(filteredNormal.length >= filteredLow.length && filteredNormal.length > filteredHigh.length){
         this.setState({
-          priority:'linear-gradient(140deg, rgba(167, 216, 101,0.85), rgba(126, 232, 158,0.85)'
+          priority:'linear-gradient(140deg, rgba(37, 191, 217,1) , rgba(69, 108, 173,1)'
         })
       }
 
       else if(filteredLow.length > filteredNormal.length && filteredLow.length > filteredHigh.length ){
         this.setState({
-          priority:'linear-gradient(140deg, rgba(37, 191, 217,0.7) , rgba(69, 108, 173,0.7))'
+          priority:'linear-gradient(140deg, rgba(255, 213, 79,1) , rgba(255, 152, 0,1))'
         })
       }
     }
@@ -113,7 +113,7 @@ export default class ProjectCard extends Component {
     let editProjectStyle = {
       height: '44px',
       width: '44px',
-      color:'rgba(100, 181, 246,0.6)',
+      color:'#80CBC4',
       cursor:'pointer',
     }
 
@@ -141,7 +141,7 @@ export default class ProjectCard extends Component {
               </div>
               </Link>
               <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit hoverColor={'rgba(100, 181, 246,1)'} style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
+                {this.props.isAdmin ? <EditorModeEdit hoverColor={'#00BFA5'}  style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
               </CardActions>
             </Card>
 
