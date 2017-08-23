@@ -2,7 +2,13 @@ import React from 'react';
 import io from 'socket.io-client';
 import { API_HOST } from '../../config';
 import api from '../../api';
-//import './Conversation.css';
+import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+import './TaskCard.css';
+import './Conversation.css';
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
+
 
 export default class Conversation extends React.Component {
   constructor (props) {
@@ -11,15 +17,13 @@ export default class Conversation extends React.Component {
   }
 
   componentDidMount () {
-<<<<<<< HEAD
     this.socket = io(API_HOST)
-=======
-    this.socket = io(`https://69862b10.ngrok.io`) // https://69862b10.ngrok.io   // http://localhost:3000
->>>>>>> 364bfd69fab984b608c72cf344572ff17ba75810
-    console.log(">>>>>>>>>>>>>>>>>");
+    //this.socket = io(`https://69862b10.ngrok.io`) // https://69862b10.ngrok.io   // http://localhost:3000
+
     this.socket.on('message', message => {
-      console.log(">>>>>>>>>>>>>>>>>", message);
+  
       if ( parseInt(message.projectId) ===  parseInt(this.props.projectId) ) {
+        console.log('CONVERSATION' , this.state.messages);
         this.setState({ messages: [message, ...this.state.messages] })
 
       }
@@ -32,7 +36,7 @@ export default class Conversation extends React.Component {
     const body = {
       'text': event.target.value,
       'projectId': this.props.projectId,
-      'from': this.props.userId
+      'from': this.props.username
     }
     if (event.keyCode === 13 && body) {
       const message = {
@@ -48,13 +52,16 @@ export default class Conversation extends React.Component {
   render () {
     const messages = this.state.messages.map((message, index) => {
       const img = message.img ? <img src={message.img} width='200px' /> : null
-      return <li key={index}><b>{message.from}:</b>{message.text} {img}</li>
+      return <p align="center" key={index}><b>{message.from} : </b>{message.text} {img}</p>
     })
     return (
-      <div>
-        <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
-        {messages}
-      </div>
+      <Card className="single-proj col-large-3 col-medium-6 col-small-12">
+        <div>
+          <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
+          {messages}
+        </div>
+      </Card>
+
     )
   }
 }

@@ -12,8 +12,11 @@ export default class Home extends Component {
     super(props);
     this.state = {
       projects: [],
+
       open:false,
-      me : null
+
+      me: null
+
     };
   }
 
@@ -42,6 +45,7 @@ export default class Home extends Component {
         projects:data.body
       })
     })
+
   }
 
   _createProjectForm = () => {
@@ -51,13 +55,15 @@ export default class Home extends Component {
   }
 
   render() {
-    let { projects } = this.state
+    let { projects } = this.state;
+    console.log(projects);
     return (
       <div className="home">
         { projects ? projects.map(p =>
-          <div className="single-proj col-large-3 col-medium-6 col-small-12">
+          <div className="single-proj col-large-4 col-medium-6 col-small-12">
             <ProjectCard
               isAdmin={p.adminUserId==this.state.me}
+              projectAdmin={p.adminUserId}
               key={p.id}
               id={p.id}
               progress={p.progressPct}

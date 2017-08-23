@@ -13,7 +13,8 @@ import AutoComplete from 'material-ui/AutoComplete';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import AssignedList from './AssignedList'
-import {pinkA200} from 'material-ui/styles/colors';
+import {pinkA200, cyan500} from 'material-ui/styles/colors';
+import {cyan800} from 'material-ui/styles/colors';
 import List from 'material-ui/List/List';
 import './TaskCard.css';
 import './ProjectCard.css';
@@ -123,11 +124,19 @@ export default class TaskCard extends Component {
     if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
+    let style = {
+      fontSize: '1.25rem',
+      // fontWeight:'bold'
+
+    }
 
     return (
       <div>
             <Card className="task-card">
-                <CardTitle title={ title }  actAsExpander={true} showExpandableButton={true}/>
+              <CardActions>
+                {this.props.isAdmin ? <EditorModeEdit cursor="pointer" color="rgba(100, 181, 246,0.4)" className="task-edit-button" onClick={this._editTaskForm}/>:null}
+              </CardActions>
+                <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
                 { assignedUsers ? assignedUsers.map(u =>
                   <List
                   expandable={true}>
@@ -159,10 +168,10 @@ export default class TaskCard extends Component {
               }
                 <br/>
 
-                <Face color={pinkA200} /><CardText color={pinkA200}> {count}</CardText>
+                <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
               <CardActions>
-               {this.props.isAdmin ? <FloatingActionButton mini={true} zDepth={0} onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}
+
                <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>
              </CardActions>
 
@@ -176,3 +185,4 @@ export default class TaskCard extends Component {
   }
 
 }
+//  <FloatingActionButton className="editButton" mini={true} zDepth={0} onClick={this._editTaskForm}><EditorModeEdit/></FloatingActionButton> :null}

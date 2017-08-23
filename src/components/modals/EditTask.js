@@ -6,6 +6,7 @@ import DatePicker from 'material-ui/DatePicker';
 import Dialog from 'material-ui/Dialog';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import './CreateTask.css';
 
 export default class EditTask extends Component {
   constructor(props) {
@@ -80,13 +81,14 @@ export default class EditTask extends Component {
         <div>
             <Dialog
               title="Edit Task"
+              paperClassName="dialogPaper"
               actions={actions}
               modal={false}
               open={true}
               onRequestClose={this._handleClose} >
               <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100' errorText= {this.state.titleError} onChange={this._clearErrorState}/>
               <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
-              <TextField floatingLabelText="Description: " defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
+              <TextField floatingLabelText="Description: " defaultValue={this.props.description}  multiLine={true} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
               {140 - this.state.inputValue.length}
               <SelectField
                   floatingLabelText="Priority"

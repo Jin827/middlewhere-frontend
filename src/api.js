@@ -16,6 +16,13 @@ class Api {
     .send({ email, password })
   )
 
+  resetStatus = (token) => (
+    superagent
+    .patch(`${API_HOST}/auth/resetStatus`)
+    .set('Authorization', `token ${token}`)
+    //.send({ email, password })
+  )
+
   requestLogout = (token) => (
     superagent
     .delete(`${API_HOST}/auth/sessions`)
@@ -115,7 +122,11 @@ class Api {
    .set('Authorization', `token ${localStorage.token}`)
  )
 
-
+ getUserAvatar = (userId) => (
+  superagent
+   .get(`${API_HOST}/auth/avatar/${userId}`)
+   .set('Authorization', `token ${localStorage.token}`)
+ )
 
 }
 

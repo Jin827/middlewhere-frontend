@@ -14,7 +14,7 @@ export default class Project extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tasks: [],   
+      tasks: [],
       open: false,
       isAdmin: false
     };
@@ -41,7 +41,6 @@ export default class Project extends Component {
   fetchData = () => {
       api.getTasks(this.props.params.id)
       .then(res => {
-        
         this.setState({
           tasks: res.body
         })
@@ -58,7 +57,8 @@ export default class Project extends Component {
         this.setState({
           isAdmin: user.users_id === project.adminUserId,
           userId: user.users_id,
-          projectTitle: project.title
+          projectTitle: project.title,
+          firstName: user.users_firstName
         })
       })
 
@@ -75,15 +75,7 @@ export default class Project extends Component {
 
     return (
       <div className="tasks">
-<<<<<<< HEAD
-        <div className="single-proj col-large-3 col-medium-6 col-small-12">
-          <Conversation projectId={this.props.params.id} userId={this.state.userId} />
-        </div>
-         { tasks ? tasks.map(b =>
-=======
-         <Conversation projectId={this.props.params.id} userId={this.state.userId} /> 
          { tasks.length !==0 ? tasks.map(b =>
->>>>>>> 364bfd69fab984b608c72cf344572ff17ba75810
            <div className="single-proj col-large-3 col-medium-6 col-small-12">
             <TaskCard
               projectId={this.props.params.id}
@@ -99,6 +91,7 @@ export default class Project extends Component {
             />
             </div>
           ) : <h2>Add tasks</h2> }
+          <Conversation projectId={this.props.params.id} username={this.state.firstName} />
           {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton projectTitle={projectTitle}/> </Link> : null}
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
