@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router';
 import moment from 'moment';
 import EditProject from '../modals/EditProject'
-import {Card, CardHeader, CardText, CardActions, LinearProgress} from 'material-ui';
+import {Card, CardHeader, CardText, CardActions, CardMedia, CardTitle, LinearProgress} from 'material-ui';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import './ProjectCard.css';
 import '../App.css';
@@ -27,6 +27,7 @@ export default class ProjectCard extends Component {
 
     componentDidMount() {
       this._fetchAvatar()
+      this._fetchTasks()
     }
 
     _editProjectForm = () =>{
@@ -44,6 +45,15 @@ export default class ProjectCard extends Component {
       })
     }
 
+    _fetchTasks = () => {
+      api.getTasks(this.props.id)
+      .then(res => {
+        console.log(res.body, "ressssbitch")
+        this.setState({
+          taskNum:res.body.length
+        })
+      })
+    }
 
     _handleFormSubmitted = () => {
       this.setState({editProject:false});
@@ -58,6 +68,7 @@ export default class ProjectCard extends Component {
       cursor:'pointer'
     }
 
+
     let { id, progress, title, deadline, description } = this.props
     if(deadline){
       var time = moment(deadline).format("DD-MM-YYYY")
@@ -66,24 +77,22 @@ export default class ProjectCard extends Component {
     return (
       <div>
             <Card className='project-card'>
-            <CardActions>
-              {this.props.isAdmin ? <EditorModeEdit style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
-            </CardActions>
+              <CardActions>
+                {this.props.isAdmin ? <EditorModeEdit style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
+              </CardActions>
               <Link to={`/projects/${id}`}>
-
+              <CardMedia overlayContentStyle={{background: '#000' }}overlay={<CardTitle className="overlay-style" title={title} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}><div></div></CardMedia>
+              <LinearProgress mode="determinate" value={progress} />
               <div className="project-card-relative">
                 <Avatar className='project-card-avatar' src={`${this.state.avatarUrl}`}/>
-                <CardHeader textStyle={{ paddingRight: 0}} title={title} />
-                {deadline ? <CardText>Deadline: {time}</CardText> : <CardText>Deadline: N/A </CardText>}
+                {deadline ? <CardText><strong>Deadline</strong><br/>{time}</CardText> : <CardText><strong>Deadline</strong><br/>N/A </CardText>}
               </div>
 
               <div className="project-card-desc">
                 <CardText className="desc-width">
-                  Description: {description}
+                  <strong>Description</strong><br/>{description}
                 </CardText>
               </div>
-
-              <LinearProgress mode="determinate" value={progress} />
 
               </Link>
             </Card>
