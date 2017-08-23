@@ -49,7 +49,6 @@ export default class ProjectCard extends Component {
     _fetchTasks = () => {
       api.getTasks(this.props.id)
       .then(res => {
-        console.log(res.body, "ressssbitch")
         this.setState({
           taskNum:res.body.length,
           lowPriorities:res.body
@@ -81,27 +80,26 @@ export default class ProjectCard extends Component {
       var filteredHigh = rankPriority.filter(highPriority)
 
 
-      if(filteredHigh.length >= filteredLow.length && filteredHigh.length >= filteredNormal.length ){
+    if (rankPriority.length === 0) {
+      this.setState({
+        priority:{background: 'linear-gradient(to right, rgb(188, 188, 188,0.9), rgb(122, 122, 122,0.9)'}
+      })
+    }
+      else if(filteredHigh.length >= filteredLow.length && filteredHigh.length >= filteredNormal.length ){
         this.setState({
-          priority:'high'
+          priority:{background: 'linear-gradient(to right, #F76F64 , #FE5393)'}
         })
       }
 
       else if(filteredNormal.length >= filteredLow.length && filteredNormal.length > filteredHigh.length){
         this.setState({
-          priority:'normal'
+          priority: {background: 'linear-gradient(to right, #7EE89E , #A7D865)'}
         })
       }
 
       else if(filteredLow.length > filteredNormal.length && filteredLow.length > filteredHigh.length ){
         this.setState({
-          priority:'low'
-        })
-      }
-
-      else {
-        this.setState({
-          priority:'low'
+          priority:{background: 'linear-gradient(to right, #25BFD9 , #456CAD)'}
         })
       }
     }
@@ -132,14 +130,7 @@ export default class ProjectCard extends Component {
                 {this.props.isAdmin ? <EditorModeEdit style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
               </CardActions>
               <Link to={`/projects/${id}`}>
-              <CardMedia overlayContentStyle={
-                this.state.priority == 'low' ?
-                  {background: 'linear-gradient(to right, red , yellow)'} :
-                (this.state.priority =='normal' ?
-                  {background: 'linear-gradient(to right, blue , green)'} :
-                (this.state.priority =='high' ?
-                  {background: 'linear-gradient(to right, purple , orange)'}: null)) }
-
+              <CardMedia overlayContentStyle={this.state.priority}
                 overlay={<CardTitle className="overlay-style" title={title} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}><div></div></CardMedia>
               <LinearProgress mode="determinate" value={progress} />
               <div className="project-card-relative">
@@ -160,7 +151,5 @@ export default class ProjectCard extends Component {
           description={description} deadline={deadline} closeForm={this._handleFormSubmitted}/> : null}
       </div>
     );
-
   }
-
 }
