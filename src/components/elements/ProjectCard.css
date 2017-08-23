@@ -9,11 +9,12 @@
 
 .single-proj {
   padding:2%;
+
 }
 
 .project-card{
   text-align: center;
-  padding-top:76px;
+  padding-top: 5.7rem;
 }
 
 .project-card-title {
@@ -22,11 +23,12 @@
 
 .project-edit-button {
   position: absolute;
-  left: 0;
-  top: 20px;
+  right:0px;
+  bottom: 0px;
   padding:10px;
   z-index: 10;
 }
+
 
 .project-card-desc {
   display:flex;
@@ -38,12 +40,17 @@
 .desc-width {
   max-width: 100%;
   padding-top:0px!important;
-  padding-bottom:26px !important;
+  padding-bottom:40px !important;
 }
 
 .project-card-relative{
   position:relative;
-  padding-top:20px;
+  padding-top:30px;
+}
+
+.overlay-style {
+  padding-top:50px;
+
 }
 
 
@@ -52,8 +59,3 @@
   right:20px;
   top: 5px;
 }*/
-
-.overlay-style {
-  padding-top:50px;
-
-}
