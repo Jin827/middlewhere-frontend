@@ -3,7 +3,7 @@ import auth from '../../auth'
 import api from '../../api'
 import './Login.css';
 import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper'
+import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 
 
@@ -28,10 +28,10 @@ export default class Login extends Component {
     // deep destructuring equivalent to (let email = this.refs.email.value;)
     let email = this.refs.email.getValue()
     let password = this.refs.password.getValue()
-    
+
 
     // this._clearErrorState();
-    
+
 
     if(!email){
       this.setState({
@@ -53,6 +53,7 @@ export default class Login extends Component {
       api.requestLogin(email, password)
       //process login and push it to the homepage
       auth.login(email, password)
+      .then(() => api.resetStatus(localStorage.token))
       .then(() => {
         this.setState({error:false})
         this.props.router.push('/projects')})

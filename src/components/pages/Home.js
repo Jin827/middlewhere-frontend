@@ -55,7 +55,8 @@ export default class Home extends Component {
   }
 
   render() {
-    let { projects } = this.state
+    let { projects } = this.state;
+    console.log(projects);
     return (
       <div className="home">
         { projects ? projects.map(p =>

@@ -16,11 +16,24 @@ class Api {
     .send({ email, password })
   )
 
+  resetStatus = (token) => (
+    superagent
+    .patch(`${API_HOST}/auth/resetStatus`)
+    .set('Authorization', `token ${token}`)
+    //.send({ email, password })
+  )
+
   requestLogout = (token) => (
     superagent
     .delete(`${API_HOST}/auth/sessions`)
     .set('Authorization', `token ${token}`)
   )
+
+  // setUserStatus = (email, password) => (
+  //   superagent
+  //   .patch(`${API_HOST}/auth/sessions`)
+  //   .send({ email, password })
+  // )
 
   getProjectsList = (page, count) => (
     superagent
@@ -68,7 +81,6 @@ class Api {
     superagent
     .get(`${API_HOST}/projects/${id}/tasks`)
     .set('Authorization', `token ${localStorage.token}`)
-
   )
 
   completedTasks = (id, completed, token) => (
