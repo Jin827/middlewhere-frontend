@@ -99,6 +99,7 @@ export default class TaskCard extends Component {
     _fetchUsers(taskId){
       api.getAssignedUsers(this.props.id)
       .then(data => {
+        console.log(data,"DDAATTA")
         this.setState({
           assignedUsers:data.body,
           count:data.body.length
@@ -126,20 +127,25 @@ export default class TaskCard extends Component {
     }
     let style = {
       fontSize: '1.25rem',
-      // fontWeight:'bold'
-
+    }
+    let editTaskStyle = {
+      height: '44px',
+      width: '44px',
+      color:'rgba(100, 181, 246,0.4)',
+      cursor:'pointer'
     }
 
     return (
       <div>
             <Card className="task-card">
               <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit cursor="pointer" color="rgba(100, 181, 246,0.4)" className="task-edit-button" onClick={this._editTaskForm}/>:null}
+                {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle} className="task-edit-button" onClick={this._editTaskForm}/>:null}
               </CardActions>
                 <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
+                <List
+                expandable={true}>
                 { assignedUsers ? assignedUsers.map(u =>
-                  <List
-                  expandable={true}>
+
                     <AssignedList
                       key={u.id}
                       id={u.id}
@@ -148,8 +154,9 @@ export default class TaskCard extends Component {
                       email={u.email}
                       avatarUrl={u.avatarUrl}
                     />
-                  </List>
+
                 ) : <h4>No assigned users </h4>}
+                </List>
                 <CardText expandable={true}> <strong> Task Description </strong>  <br/>  { description } </CardText>
                 {deadline ? <CardText expandable={true}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
 
