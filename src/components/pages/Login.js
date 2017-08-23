@@ -3,7 +3,7 @@ import auth from '../../auth'
 import api from '../../api'
 import './Login.css';
 import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper'
+import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 
 
@@ -28,10 +28,10 @@ export default class Login extends Component {
     // deep destructuring equivalent to (let email = this.refs.email.value;)
     let email = this.refs.email.getValue()
     let password = this.refs.password.getValue()
-    
+
 
     // this._clearErrorState();
-    
+
 
     if(!email){
       this.setState({
@@ -53,6 +53,7 @@ export default class Login extends Component {
       api.requestLogin(email, password)
       //process login and push it to the homepage
       auth.login(email, password)
+      .then(() => api.resetStatus(localStorage.token))
       .then(() => {
         this.setState({error:false})
         this.props.router.push('/projects')})
@@ -91,8 +92,8 @@ export default class Login extends Component {
     return (
       <div className="signup row">
         <Paper style={style} className="col-large-6 paper-frame" zDepth={2}>
-            <TextField className="col-large-6" floatingLabelText="Email" errorText= {this.state.emailError} onChange={this._clearErrorState} ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Password" errorText= {this.state.passwordError} onChange={this._clearErrorState}  ref="password" type="password" onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Email" errorText={this.state.emailError} onChange={this._clearErrorState} ref="email" maxLength="254" onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Password" errorText={this.state.passwordError} onChange={this._clearErrorState}  ref="password" type="password" onKeyUp={this._handleTyping}/>
             <br/>
             <RaisedButton className="button-pad" label="Let's Go" secondary={true} onClick={this._handleLogin} />
             {this.state.error? <div>Please enter an valid email and password</div> : null}

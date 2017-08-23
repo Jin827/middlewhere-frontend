@@ -13,9 +13,8 @@
 
 .project-card{
   text-align: center;
-  padding:0;
+  padding-top:76px;
 }
-
 
 .project-card-title {
   max-width: 80%;
@@ -23,9 +22,10 @@
 
 .project-edit-button {
   position: absolute;
-  left:15px;
-  top:10px;
-  color:rgba(100, 181, 246,0.1)
+  left: 0;
+  top: 20px;
+  padding:10px;
+  z-index: 10;
 }
 
 .project-card-desc {
@@ -37,14 +37,23 @@
 
 .desc-width {
   max-width: 100%;
+  padding-top:0px!important;
+  padding-bottom:26px !important;
 }
 
 .project-card-relative{
   position:relative;
+  padding-top:20px;
 }
 
-.project-card-avatar {
+
+/*.project-card-avatar {
   position: absolute;
   right:20px;
   top: 5px;
+}*/
+
+.overlay-style {
+  padding-top:50px;
+
 }

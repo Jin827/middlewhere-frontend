@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './CreateTask.css';
 import api from '../../api';
-import {browserHistory as history} from 'react-router';
 import TextField from 'material-ui/TextField'
 import FlatButton from 'material-ui/FlatButton';
 import DatePicker from 'material-ui/DatePicker';
@@ -132,7 +131,7 @@ export default class CreateTask extends Component {
          open={true}
          onRequestClose={this.props.closeForm}
        >
-          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='50' errorText= {this.state.titleError} onChange={this._clearErrorState}/>
+          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength='50' errorText={this.state.titleError} onChange={this._clearErrorState}/>
 
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e,date) => this._handleChange(e, date)}/>
 

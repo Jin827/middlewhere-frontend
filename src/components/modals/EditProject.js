@@ -79,7 +79,7 @@ export default class EditProject extends Component {
             modal={false}
             open={true}
             onRequestClose={this._handleClose} >
-            <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100' errorText= {this.state.titleError} onChange={this._clearErrorState}/>
+            <TextField floatingLabelText="Title: " defaultValue={this.props.title} type="text" ref="title" maxLength='100' errorText={this.state.titleError} onChange={this._clearErrorState}/>
             <DatePicker hintText="Deadline" mode="landscape" ref="deadline" onChange={(e, date) => this._handleChange(e, date)}/>
             <TextField floatingLabelText="Description: " multiLine={true} defaultValue={this.props.description} type="text" ref="description" maxLength="140" onInput={e => this._handleInput(e)} />
             {140 - this.state.inputValue.length}

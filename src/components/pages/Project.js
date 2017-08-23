@@ -57,7 +57,8 @@ export default class Project extends Component {
         this.setState({
           isAdmin: user.users_id === project.adminUserId,
           userId: user.users_id,
-          projectTitle: project.title
+          projectTitle: project.title,
+          firstName: user.users_firstName
         })
       })
 
@@ -74,12 +75,12 @@ export default class Project extends Component {
 
     return (
       <div className="tasks">
-
-        {
-          //<Conversation projectId={this.props.params.id} userId={this.state.userId} />
-         }
-
+<<<<<<< HEAD
          { tasks.length !==0 ? tasks.map(b =>
+=======
+
+         { tasks.length !== 0 ? tasks.map(b =>
+>>>>>>> hi
            <div className="single-proj col-large-3 col-medium-6 col-small-12">
             <TaskCard
               projectId={this.props.params.id}
@@ -95,6 +96,13 @@ export default class Project extends Component {
             />
             </div>
           ) : <h2>Add tasks</h2> }
+<<<<<<< HEAD
+          <div className="single-proj col-large-3 col-medium-6 col-small-12">
+            <Conversation projectId={this.props.params.id} username={this.state.firstName} />
+          </div>
+=======
+          {/* <Conversation projectId={this.props.params.id} userId={this.state.userId} /> */}
+>>>>>>> hi
           {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton projectTitle={projectTitle}/> </Link> : null}
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}

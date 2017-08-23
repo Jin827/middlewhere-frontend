@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import EditTask from '../modals/EditTask';
+// import CompleteButton from './CompleteButton'
 import api from '../../api';
 import './TaskCard.css';
 import {Card, CardHeader, CardTitle, CardText, CardActions, LinearProgress, FlatButton} from 'material-ui';
@@ -25,7 +26,7 @@ export default class TaskCard extends Component {
     super(props);
     this.state = {
       editTask:false,
-      completed: 1,
+      completed: 0,
       open: false,
       dataSource:[],
       searchText : '',
@@ -40,7 +41,6 @@ export default class TaskCard extends Component {
   fetchData = () => {
     api.getAutoComplete(this.state.searchText)
     .then(res => {
-      console.log(res.body, 'resss')
       this.setState({
         dataSource:res.body,
       })
@@ -49,17 +49,17 @@ export default class TaskCard extends Component {
 
 
   _completedTask = () => {
-    if (!this.state.completed) {
-      this.setState({
-        completed: 1
-      })
-    } else {
+    if (this.state.completed) {
       this.setState({
         completed: 0
       })
+    } else {
+      this.setState({
+        completed: 1
+      })
     }
-    console.log(this.state.completed)
-    api.completedTasks(this.props.id, this.state.completed, localStorage.token)
+    console.log(this.state.completed, "TaskCard.jssssssssssss 61")
+    api.completedTasks(this.props.id, this.state.completed, localStorage.token).catch(err=>console.log(err))
   }
 
   _editTaskForm = () =>{
@@ -99,6 +99,7 @@ export default class TaskCard extends Component {
     _fetchUsers(taskId){
       api.getAssignedUsers(this.props.id)
       .then(data => {
+        // console.log(data,"DDAATTA")
         this.setState({
           assignedUsers:data.body,
           count:data.body.length
@@ -119,27 +120,32 @@ export default class TaskCard extends Component {
 
 
     let { id, title, description, deadline, priority} = this.props
-    let { assignedUsers, count } = this.state
-
+    let { assignedUsers, count, completed } = this.state
+    console.log(this.state.assignedUsers, "assignedUsers, TaskCard.js 124")
     if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
     let style = {
       fontSize: '1.25rem',
-      // fontWeight:'bold'
-
+    }
+    let editTaskStyle = {
+      height: '44px',
+      width: '44px',
+      color:'rgba(100, 181, 246,0.4)',
+      cursor:'pointer'
     }
 
     return (
       <div>
             <Card className="task-card">
               <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit cursor="pointer" color="rgba(100, 181, 246,0.4)" className="task-edit-button" onClick={this._editTaskForm}/>:null}
+                {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle} className="task-edit-button" onClick={this._editTaskForm}/>:null}
               </CardActions>
                 <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
+                <List
+                expandable={true}>
                 { assignedUsers ? assignedUsers.map(u =>
-                  <List
-                  expandable={true}>
+
                     <AssignedList
                       key={u.id}
                       id={u.id}
@@ -148,8 +154,9 @@ export default class TaskCard extends Component {
                       email={u.email}
                       avatarUrl={u.avatarUrl}
                     />
-                  </List>
+
                 ) : <h4>No assigned users </h4>}
+                </List>
                 <CardText expandable={true}> <strong> Task Description </strong>  <br/>  { description } </CardText>
                 {deadline ? <CardText expandable={true}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
 
@@ -171,9 +178,9 @@ export default class TaskCard extends Component {
                 <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
               <CardActions>
-
-               <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>
-             </CardActions>
+                  <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> 
+                  {/* {completed === 0 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/>}  */}
+              </CardActions> 
 
             </Card>
 

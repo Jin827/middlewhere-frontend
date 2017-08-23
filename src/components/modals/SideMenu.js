@@ -5,6 +5,15 @@ import Me from './Me';
 import CoworkerTab from './CoworkerTab'
 import api from '../../api';
 
+import {
+blue300,
+indigo900,
+orange200,
+deepOrange300,
+pink400,
+purple500,
+} from 'material-ui/styles/colors';
+
 
 export default class DrawerUndockedExample extends React.Component {
 
@@ -28,7 +37,6 @@ export default class DrawerUndockedExample extends React.Component {
       })
     })
     .then(() => {
-      console.log("MOMOMOMOMOMO SIDEMENU31");
       return api.getAll(localStorage.token)
     })
     .then((coworkers) => {
@@ -41,17 +49,16 @@ export default class DrawerUndockedExample extends React.Component {
   }
 
   render() {
-    console.log('SideMenu' , this.state);
     return (
       <div>
         <Drawer
           docked={false}
-          width={200}
+          width={125}
           open={this.props.menuState}
           onRequestChange={this.props.closeState}>
           <MenuItem onClick={this.props.closeState}>
-            {this.state.me ? <Me firstName={this.state.me.firstName}
-              lasteName={this.state.me.lasteName}
+            {this.state.me ? <Me firstName={this.state.me.users_firstName}
+              lastName={this.state.me.users_lastName}
               avatarUrl={this.state.me.avatarUrl} /> : null}
           </MenuItem>
 
