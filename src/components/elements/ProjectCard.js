@@ -125,9 +125,6 @@ export default class ProjectCard extends Component {
     return (
       <div>
             <Card className='project-card'>
-              <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit hoverColor={'rgba(100, 181, 246,1)'} style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
-              </CardActions>
               <Link to={`/projects/${id}`}>
 
               <CardMedia overlayContentStyle={{background:this.state.priority}} overlay={<CardTitle title={title} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}></CardMedia>
@@ -144,8 +141,10 @@ export default class ProjectCard extends Component {
                   <strong>Description</strong><br/>{description}
                 </CardText>
               </div>
-
               </Link>
+              <CardActions>
+                {this.props.isAdmin ? <EditorModeEdit hoverColor={'rgba(100, 181, 246,1)'} style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
+              </CardActions>
             </Card>
 
           {this.state.editProject ? <EditProject id={id} title={title}
