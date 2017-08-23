@@ -76,10 +76,6 @@ export default class Project extends Component {
     return (
       <div className="tasks">
          { tasks.length !== 0 ? tasks.map(b =>
-<<<<<<< HEAD
-
-=======
->>>>>>> projects-page-design
            <div className="single-proj col-large-3 col-medium-6 col-small-12">
             <TaskCard
               projectId={this.props.params.id}
@@ -100,10 +96,6 @@ export default class Project extends Component {
             <Conversation projectId={this.props.params.id} username={this.state.firstName} />
           </div>
 
-<<<<<<< HEAD
-=======
-
->>>>>>> projects-page-design
           {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton projectTitle={projectTitle}/> </Link> : null}
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
