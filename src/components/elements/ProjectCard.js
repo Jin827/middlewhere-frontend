@@ -21,13 +21,14 @@ export default class ProjectCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      open:false
+      open:false,
+      priority:0
     };
   }
 
     componentDidMount() {
-      this._fetchAvatar()
       this._fetchTasks()
+      this._fetchAvatar()
     }
 
     _editProjectForm = () =>{
@@ -49,9 +50,58 @@ export default class ProjectCard extends Component {
       api.getTasks(this.props.id)
       .then(res => {
         this.setState({
-          taskNum:res.body.length
-        })
+          taskNum:res.body.length,
+          lowPriorities:res.body
+          })
       })
+      .then(data => {
+        this._mappingPriorities()
+      })
+    }
+
+
+
+    _mappingPriorities = () => {
+      let rankPriority = this.state.lowPriorities
+
+      function lowPriority(item) {
+        return item.priority == "low";
+      }
+      var filteredLow = rankPriority.filter(lowPriority)
+
+      function normalPriority(item) {
+        return item.priority == "normal";
+      }
+      var filteredNormal = rankPriority.filter(normalPriority)
+
+      function highPriority(item) {
+        return item.priority == "high";
+      }
+      var filteredHigh = rankPriority.filter(highPriority)
+
+
+    if (rankPriority.length === 0) {
+      this.setState({
+        priority:'linear-gradient(140deg, rgba(188, 188, 188,0.7), rgba(122, 122, 122,0.7)'
+      })
+    }
+      else if(filteredHigh.length >= filteredLow.length && filteredHigh.length >= filteredNormal.length ){
+        this.setState({
+          priority:'linear-gradient(140deg, rgba(247, 111, 100,0.7) , rgba(254, 83, 147,0.7)'
+        })
+      }
+
+      else if(filteredNormal.length >= filteredLow.length && filteredNormal.length > filteredHigh.length){
+        this.setState({
+          priority:'linear-gradient(140deg, rgba(167, 216, 101,0.85), rgba(126, 232, 158,0.85)'
+        })
+      }
+
+      else if(filteredLow.length > filteredNormal.length && filteredLow.length > filteredHigh.length ){
+        this.setState({
+          priority:'linear-gradient(140deg, rgba(37, 191, 217,0.7) , rgba(69, 108, 173,0.7))'
+        })
+      }
     }
 
     _handleFormSubmitted = () => {
@@ -63,24 +113,23 @@ export default class ProjectCard extends Component {
     let editProjectStyle = {
       height: '44px',
       width: '44px',
-      color:'rgba(100, 181, 246,0.4)',
-      cursor:'pointer'
+      color:'rgba(100, 181, 246,0.6)',
+      cursor:'pointer',
     }
-
 
     let { id, progress, title, deadline, description } = this.props
     if(deadline){
       var time = moment(deadline).format("DD-MM-YYYY")
     }
-
+//{this.state.priority}
     return (
       <div>
             <Card className='project-card'>
-              <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
-              </CardActions>
               <Link to={`/projects/${id}`}>
-              <CardMedia overlayContentStyle={{background: '#000' }}overlay={<CardTitle className="overlay-style" title={title} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}><div></div></CardMedia>
+
+              <CardMedia overlayContentStyle={{background:this.state.priority}} overlay={<CardTitle title={title} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}></CardMedia>
+
+
               <LinearProgress mode="determinate" value={progress} />
               <div className="project-card-relative">
                 <Avatar className='project-card-avatar' src={`${this.state.avatarUrl}`}/>
@@ -92,15 +141,15 @@ export default class ProjectCard extends Component {
                   <strong>Description</strong><br/>{description}
                 </CardText>
               </div>
-
               </Link>
+              <CardActions>
+                {this.props.isAdmin ? <EditorModeEdit hoverColor={'rgba(100, 181, 246,1)'} style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
+              </CardActions>
             </Card>
 
           {this.state.editProject ? <EditProject id={id} title={title}
           description={description} deadline={deadline} closeForm={this._handleFormSubmitted}/> : null}
       </div>
     );
-
   }
-
 }
