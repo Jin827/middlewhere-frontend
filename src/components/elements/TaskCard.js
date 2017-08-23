@@ -40,7 +40,6 @@ export default class TaskCard extends Component {
   fetchData = () => {
     api.getAutoComplete(this.state.searchText)
     .then(res => {
-      console.log(res.body, 'resss')
       this.setState({
         dataSource:res.body,
       })
@@ -58,7 +57,7 @@ export default class TaskCard extends Component {
         completed: 0
       })
     }
-    console.log(this.state.completed)
+    console.log(this.state.completed, "TaskCard.js 61")
     api.completedTasks(this.props.id, this.state.completed, localStorage.token).catch(err=>console.log(err))
   }
 
@@ -121,7 +120,7 @@ export default class TaskCard extends Component {
 
     let { id, title, description, deadline, priority} = this.props
     let { assignedUsers, count } = this.state
-
+    console.log(this.state.assignedUsers, "assignedUsers")
     if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
@@ -139,7 +138,7 @@ export default class TaskCard extends Component {
       <div>
             <Card className="task-card">
               <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle} className="task-edit-button" onClick={this._editTaskForm}/>:null}
+                {this.props.isAdmin != 0 ? <EditorModeEdit style={editTaskStyle} className="task-edit-button" onClick={this._editTaskForm}/>:null}
               </CardActions>
                 <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
                 <List
