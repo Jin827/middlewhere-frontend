@@ -109,10 +109,10 @@ export default class SignUp extends Component {
     return (
       <div className="signup row">
         <Paper style={style} className="col-large-6 paper-frame" zDepth={2}>
-            <TextField className="col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" errorText= {this.state.firstNameError} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" errorText= {this.state.lastNameError} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" errorText= {this.state.emailError} hintText={this.state.emailHint} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
-            <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" errorText= {this.state.passwordError} hintText={this.state.passwordHint} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="First Name" ref="firstName" maxLength="100" errorText={this.state.firstNameError} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Last Name" ref="lastName" maxLength="100" errorText={this.state.lastNameError} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Email" ref="email" maxLength="254" errorText={this.state.emailError} hintText={this.state.emailHint} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
+            <TextField className="col-large-6" floatingLabelText="Password" ref="password" type="password" errorText={this.state.passwordError} hintText={this.state.passwordHint} onChange={this._clearErrorState} onKeyUp={this._handleTyping}/>
             <br/>
           <RaisedButton className="button-pad" label="SignUp" secondary={true} onClick={this._handleSignup}/>
           {this.state.error ? <div>Please fill out the form completely</div> : null}

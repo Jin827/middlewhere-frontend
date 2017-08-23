@@ -53,13 +53,14 @@ export default class Home extends Component {
   }
 
   render() {
-    let { projects } = this.state
+    let { projects } = this.state;
+    console.log(projects);
     return (
       <div className="home">
         { projects ? projects.map(p =>
           <div className="single-proj col-large-4 col-medium-6 col-small-12">
             <ProjectCard
-              isAdmin={p.adminUserId==this.state.me}
+              isAdmin={p.adminUserId===this.state.me}
               projectAdmin={p.adminUserId}
               key={p.id}
               id={p.id}
@@ -80,5 +81,3 @@ export default class Home extends Component {
   }
 
 }
-
-//addButtonClick={this._createProjectForm}

@@ -76,7 +76,7 @@ export default class CreateProject extends Component {
         title="Create Project"
         paperClassName="dialogPaper"
         actions={actions} modal={false} open={this.props.openState} onRequestClose={this.props.closeState}>
-          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength="50" errorText= {this.state.titleError} onChange={this._clearErrorState}/>
+          <TextField floatingLabelText="Title: " type="text" ref="title" maxLength="50" errorText={this.state.titleError} onChange={this._clearErrorState}/>
 
           <DatePicker hintText="Deadline" mode="landscape" ref="deadline" autoOk={true} onChange={(e, date) => this._handleChange(e, date)}/>
 
