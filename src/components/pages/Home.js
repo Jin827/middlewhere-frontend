@@ -4,8 +4,18 @@ import ProjectCard from '../elements/ProjectCard';
 import AddButton from '../elements/AddButton';
 import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
+import TextField from 'material-ui/TextField';
+import Paper from 'material-ui/Paper';
 import './Home.css';
 import '../App.css'
+
+const noProjStyle = {
+  margin: '20% 35%',
+  textAlign: 'center',
+  display: 'inline-block',
+  padding: '2rem',
+  opacity: 0.8
+};
 
 export default class Home extends Component {
   constructor(props) {
@@ -52,12 +62,13 @@ export default class Home extends Component {
     })
   }
 
+
   render() {
     let { projects } = this.state;
-    // console.log(projects);
+
     return (
       <div className="home">
-        { projects ? projects.map(p =>
+        { projects.length !== 0 ? projects.map(p =>
           <div className="single-proj col-large-4 col-medium-6 col-small-12">
             <ProjectCard
               isAdmin={p.adminUserId===this.state.me}
@@ -71,7 +82,7 @@ export default class Home extends Component {
               editProject={this._fetchData}
             />
           </div>
-        ) : <h1>No projects yet</h1>}
+        ) : <Paper style={noProjStyle} className="col-large-6 paper-frame" zDepth={2}><strong>NO PROJECTS YET</strong></Paper>}
 
         {auth.isLoggedIn() ?  <AddButton buttonClick={this.handleOpen}  /> : null}
         {this.state.open ? <CreateProject onCreate={() => {this._fetchData(); this.handleClose()}} openState={this.handleOpen} closeState={this.handleClose}/> : null}

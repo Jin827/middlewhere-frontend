@@ -117,7 +117,7 @@ export default class TaskCard extends Component {
     let editTaskStyle = {
       height: '44px',
       width: '44px',
-      color:'rgba(100, 181, 246,0.4)',
+      color:'#80CBC4',
       cursor:'pointer'
     }
 
@@ -125,7 +125,7 @@ export default class TaskCard extends Component {
       <div>
             <Card className="task-card">
               <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle} className="task-edit-button" onClick={this._editTaskForm}/>:null}
+                {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle} hoverColor={'#00BFA5'} className="task-edit-button" onClick={this._editTaskForm}/>:null}
               </CardActions>
                 <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
                 <List
@@ -157,10 +157,15 @@ export default class TaskCard extends Component {
               }
                 <br/>
                 <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
+
               <CardActions>
                   {/* <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> */}
                   {completed === 1 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" primary={true} onClick={this._completedTask}/>}
               </CardActions>
+
+
+
+          
             </Card>
           {this.state.editTask ? <EditTask projectId={this.props.projectId} id={id} title={title}
           description={description} deadline={deadline} closeForm={this._closeTaskForm}/> : null}
