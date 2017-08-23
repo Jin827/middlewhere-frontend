@@ -11,10 +11,8 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: [],
-
+      projects:[],
       open:false,
-
       me: null
 
     };
@@ -41,6 +39,7 @@ export default class Home extends Component {
     })
     .then(() => api.getProjectsList())
     .then(data => {
+      console.log(data.body[4].progressPct, "progressssssssssssssss, Home.js 44")
       this.setState({
         projects:data.body
       })
@@ -62,7 +61,7 @@ export default class Home extends Component {
         { projects ? projects.map(p =>
           <div className="single-proj col-large-4 col-medium-6 col-small-12">
             <ProjectCard
-              isAdmin={p.adminUserId==this.state.me}
+              isAdmin={p.adminUserId===this.state.me}
               projectAdmin={p.adminUserId}
               key={p.id}
               id={p.id}
