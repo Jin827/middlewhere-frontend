@@ -66,7 +66,6 @@ export default class Home extends Component {
   render() {
     let { projects } = this.state;
 
-
     return (
       <div className="home">
         { projects.length !== 0 ? projects.map(p =>
