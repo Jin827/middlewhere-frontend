@@ -27,7 +27,7 @@ const muiTheme = getMuiTheme({
     palette: {
       primary1Color: grey900,
       primary2Color: cyan700,
-      primary3Color: cyan700,
+      primary3Color: grey400,
       accent1Color: orange300,
       accent2Color: grey100,
       accent3Color: grey500,
@@ -83,7 +83,8 @@ class App extends Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App row">
-          <AppBar title="WorkFlow" className="appBar"
+
+          <AppBar title={<Link to='/projects'>MiddleWhere</Link>} className="appBar"
             style={style}
             titleStyle={{
               color:'#000',
