@@ -14,7 +14,7 @@
 
 .project-card{
   text-align: center;
-  padding-top:76px;
+  padding-top: 5.7rem;
 }
 
 .project-card-title {
@@ -45,7 +45,12 @@
 
 .project-card-relative{
   position:relative;
-  padding-top:20px;
+  padding-top:30px;
+}
+
+.overlay-style {
+  padding-top:50px;
+
 }
 
 
