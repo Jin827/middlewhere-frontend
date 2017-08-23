@@ -11,7 +11,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects:[],
+      projects: [],
       open:false,
       me: null
 
@@ -39,7 +39,6 @@ export default class Home extends Component {
     })
     .then(() => api.getProjectsList())
     .then(data => {
-      console.log(data.body[4].progressPct, "progressssssssssssssss, Home.js 44")
       this.setState({
         projects:data.body
       })
@@ -82,5 +81,3 @@ export default class Home extends Component {
   }
 
 }
-
-//addButtonClick={this._createProjectForm}
