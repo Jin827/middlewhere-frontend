@@ -68,7 +68,6 @@ class Api {
     superagent
     .get(`${API_HOST}/projects/${id}/tasks`)
     .set('Authorization', `token ${localStorage.token}`)
-
   )
 
   completedTasks = (id, completed, token) => (

@@ -15,6 +15,7 @@ export default class AssignedList extends Component {
 
   render() {
     let { id, firstName, lastName, email, avatarUrl } = this.props
+    console.log(id)
 
     return (
       <div>
