@@ -6,7 +6,7 @@ import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
 import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
-import image from '../../images/overview.jpg'
+import image from '../../images/overview'
 import './IndexPage.css';
 
 
