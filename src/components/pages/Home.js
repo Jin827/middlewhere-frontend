@@ -83,7 +83,7 @@ export default class Home extends Component {
               editProject={this._fetchData}
             />
           </div>
-        ) : <IndexPage/>}
+        ) : <Paper style={noProjStyle} className="col-large-6 paper-frame" zDepth={2}><strong>NO PROJECTS YET</strong></Paper>}
 
         {auth.isLoggedIn() ?  <AddButton buttonClick={this.handleOpen}  /> : null}
         {this.state.open ? <CreateProject onCreate={() => {this._fetchData(); this.handleClose()}} openState={this.handleOpen} closeState={this.handleClose}/> : null}

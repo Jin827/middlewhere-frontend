@@ -6,7 +6,13 @@ import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
 import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
-import image from './overview.jpg'
+import image from './overview.jpg';
+import FontIcon from 'material-ui/FontIcon';
+import CreateProjects from 'material-ui/svg-icons/file/create-new-folder';
+import People from 'material-ui/svg-icons/social/people';
+import TrendingUp from 'material-ui/svg-icons/action/trending-up';
+import RaisedButton from 'material-ui/RaisedButton';
+
 import './IndexPage.css';
 import '../App.css'
 
@@ -26,6 +32,12 @@ export default class IndexPage extends Component {
       textAlign: 'center',
       display: 'inline-block',
     };
+    let featureIcons = {
+      height: '44px',
+      width: '44px',
+      color:'#00BFA5',
+
+    }
 
     return (
       <div className="whole">
@@ -35,30 +47,39 @@ export default class IndexPage extends Component {
 
 
 
-      <div className="section-one">
+      <div className="index-section-one">
         <div className="index-page-row">
-          <Paper className="feature " style={style} transitionEnabled={true} zDepth={2} circle={true}>
-
-            <p className="subtitle">Create Projects and Tasks</p>
-            <p className="paragraph">Organize your project into a set of tasks.</p>
+          <Paper className="feature col-large-4" style={style} transitionEnabled={true} zDepth={2} circle={true}>
+            <CreateProjects  style={featureIcons} hoverColor={'#80CBC4'}/>
+            <p className="feature-subtitle"><strong>Create Projects</strong></p>
+            <p className="feature-paragraph">Organize your project into a set of tasks.</p>
           </Paper>
           <Paper className="feature col-large-4" style={style} transitionEnabled={true} zDepth={2} circle={true}>
-            <p className="subtitle">Create Projects and Tasks</p>
-            <p className="paragraph">Organize your project into a set of tasks.</p>
+            <People  style={featureIcons} hoverColor={'#80CBC4'}/>
+            <p className="feature-subtitle"><strong>Assign Users</strong></p>
+            <p className="feature-paragraph">Select the right person for the job.</p>
           </Paper>
           <Paper className="feature col-large-4" style={style} transitionEnabled={true} zDepth={2} circle={true}>
-            <p className="subtitle">Create Projects and Tasks</p>
-            <p className="paragraph">Organize your project into a set of tasks.</p>
+            <TrendingUp style={featureIcons} hoverColor={'#80CBC4'}/>
+            <p className="feature-subtitle"><strong>Track Progress</strong></p>
+            <p className="feature-paragraph">Monitor your team's work with live updates.</p>
           </Paper>
         </div>
       </div>
 
+        <div className="index-section-two">
+          <div className="index-page-two-row" >
+            <div className="index-signup col-large-6"  style={style} >
+              <p className="signup-now"><strong>Stay on Track with Workflow</strong></p>
+              <RaisedButton label="Sign Up Now" primary={true}/>
+            </div>
+            <div className="col-large-6 teamwork-style">
+              <div className="teamwork-image"></div>
+            </div>
+        </div>
 
-        <div className="section-two"></div>
-        <div className="section-three"></div>
-        <div className="section-four"></div>
-        <div className="section-five"></div>
 
+      </div>
       </div>
     );
 
