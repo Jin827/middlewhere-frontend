@@ -102,9 +102,8 @@ export default class Project extends Component {
             </div>
 
           ) : <h2>Add tasks</h2> }
-          <Conversation projectId={this.props.params.id} userId={this.state.userId} /> 
+          <Conversation projectId={this.props.params.id} userId={this.state.userId} />
           {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton projectTitle={projectTitle}/> </Link> : null}
-
           ) : <Paper style={style} className="col-large-6" zDepth={2}><strong>NO TASKS YET</strong></Paper> }
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
