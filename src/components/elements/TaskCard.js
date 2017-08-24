@@ -44,14 +44,14 @@ export default class TaskCard extends Component {
     })
   }
 
-  
+
   _completedTask = () => {
     var newCompleted = this.state.completed ? 0 : 1;
-    
+
     this.setState({
       completed: newCompleted
     })
-   
+
     api.completedTasks(this.props.id, newCompleted, localStorage.token).catch(err=>console.log(err))
   }
 
@@ -60,7 +60,7 @@ export default class TaskCard extends Component {
         editTask: true
       })
     }
-    
+
     _closeTaskForm = () => {
       this.setState({
         editTask:false
@@ -172,4 +172,4 @@ export default class TaskCard extends Component {
       </div>
     );
   }
-
+}
