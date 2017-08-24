@@ -52,13 +52,14 @@ export default class Conversation extends React.Component {
   render () {
     const messages = this.state.messages.map((message, index) => {
       const img = message.img ? <img src={message.img} width='200px' /> : null
-      return <p align="center" key={index}><b>{message.from} : </b>{message.text} {img}</p>
+      return <p key={index}><b>{message.from} : </b>{message.text} {img}</p>
     })
     return (
       <Card className="task-card">
         <div>
-          <CardText color="#ef5350"> <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
-          {messages}</CardText>
+          <CardText color="#000"> <TextField hintText="Contribute..." onKeyUp={this.handleSubmit}/>
+          {messages}
+          </CardText>
         </div>
       </Card>
 

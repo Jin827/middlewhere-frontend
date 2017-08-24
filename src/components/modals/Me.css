@@ -46,6 +46,9 @@
 }
 
 .user-info__stat p {
-    margin: 0;
+    margin: 0px;
     white-space: nowrap;
+}
+p {
+    margin: 0px;
 }
