@@ -3,7 +3,7 @@ import {Card, CardHeader, CardText, CardActions, LinearProgress} from 'material-
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Avatar from 'material-ui/Avatar';
 import ListItem from 'material-ui/List/ListItem';
-import './ProjectCard.css';
+import './TaskCard.css';
 import '../App.css';
 
 export default class AssignedList extends Component {
@@ -18,9 +18,9 @@ export default class AssignedList extends Component {
 
 
     return (
-      <div>
+      <div className="col-small-3 task-assigned-text">
         <Avatar src={`${avatarUrl}`} />
-        <CardText>{firstName}</CardText>
+        <CardText style={{fontSize:"0.6rem", padding:"0.5rem"}}>{firstName}</CardText>
       </div>
     );
 
