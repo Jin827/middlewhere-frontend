@@ -119,6 +119,10 @@
   padding:2rem;
 }
 
+.conversationLog p {
+    margin: 1.5rem;
+  }
+
 body::-webkit-scrollbar {
     width: 12px;
 }
