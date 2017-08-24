@@ -101,7 +101,6 @@ export default class Project extends Component {
             />
             </div>
           ) : <Paper style={style} className="col-large-6" zDepth={2}><strong>NO TASKS YET</strong></Paper> }
-          <Conversation projectId={this.props.params.id} userId={this.state.userId} />
           {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton projectTitle={projectTitle}/> </Link> : null}
 
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
@@ -117,4 +116,4 @@ export default class Project extends Component {
 }
 // <div className="single-proj col-large-3 col-medium-6 col-small-12">
 //   <Conversation projectId={this.props.params.id} username={this.state.firstName} />
-// </div>
+// </div>          <Conversation projectId={this.props.params.id} userId={this.state.userId} />
