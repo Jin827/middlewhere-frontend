@@ -4,8 +4,11 @@ import ProjectCard from '../elements/ProjectCard';
 import AddButton from '../elements/AddButton';
 import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
-import './Home.css';
-import '../App.css'
+import Avatar from 'material-ui/Avatar';
+import Paper from 'material-ui/Paper';
+import image from '../../images/overview.jpg'
+import './IndexPage.css';
+
 
 export default class IndexPage extends Component {
   constructor(props) {
@@ -15,16 +18,48 @@ export default class IndexPage extends Component {
     };
   }
 
-  
-
-
-
   render() {
+    const style = {
+      height: 200,
+      width: 200,
+      margin: 20,
+      textAlign: 'center',
+      display: 'inline-block',
+    };
 
     return (
-      <div className="home">
+      <div className="whole">
+        <header>
+          <div className="header-image"></div>
+        </header>
 
-        <h2>My new index page</h2>
+
+
+      <div className="section-one">
+        <div className="index-page-row">
+          <p className="rocket-header">Rocket.</p>
+            <p>A work management app.</p>
+
+          <Paper className="feature col-large-4" style={style} transitionEnabled={true} zDepth={2} circle={true}>
+            <p className="subtitle">Create Projects and Tasks</p>
+            <p className="paragraph">Organize your project into a set of tasks.</p>
+          </Paper>
+          <Paper className="feature col-large-4" style={style} transitionEnabled={true} zDepth={2} circle={true}>
+            <p className="subtitle">Create Projects and Tasks</p>
+            <p className="paragraph">Organize your project into a set of tasks.</p>
+          </Paper>
+          <Paper className="feature col-large-4" style={style} transitionEnabled={true} zDepth={2} circle={true}>
+            <p className="subtitle">Create Projects and Tasks</p>
+            <p className="paragraph">Organize your project into a set of tasks.</p>
+          </Paper>
+        </div>
+      </div>
+
+
+        <div className="section-two"></div>
+        <div className="section-three"></div>
+        <div className="section-four"></div>
+        <div className="section-five"></div>
 
       </div>
     );

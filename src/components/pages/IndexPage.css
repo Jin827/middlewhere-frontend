@@ -1,4 +1,4 @@
-/*body {
+body {
   font-family: sans-serif;
   font-weight:bold;
   color:#424242;
@@ -20,7 +20,7 @@ header,  .section-one, .section-two, .section-three, .section-four, .section-fiv
   min-height:40vh;
   width:100%;
   display:flex;
-  background-image: url("overview.jpg");
+  background-image: url("'../../images/overview.jpg'");
   background-size:cover;
   background-repeat: space;
   padding:5%;
@@ -208,4 +208,4 @@ header,  .section-one, .section-two, .section-three, .section-four, .section-fiv
   .col-large-1 {
       width: 8.333%;
   }
-}*/
+}

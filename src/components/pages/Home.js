@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import api from '../../api';
 import ProjectCard from '../elements/ProjectCard';
+import IndexPage from './IndexPage';
 import AddButton from '../elements/AddButton';
 import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
@@ -82,7 +83,7 @@ export default class Home extends Component {
               editProject={this._fetchData}
             />
           </div>
-        ) : <Paper style={noProjStyle} className="col-large-6 paper-frame" zDepth={2}><strong>NO PROJECTS YET</strong></Paper>}
+        ) : <IndexPage/>}
 
         {auth.isLoggedIn() ?  <AddButton buttonClick={this.handleOpen}  /> : null}
         {this.state.open ? <CreateProject onCreate={() => {this._fetchData(); this.handleClose()}} openState={this.handleOpen} closeState={this.handleClose}/> : null}
