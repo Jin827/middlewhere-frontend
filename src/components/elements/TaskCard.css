@@ -46,3 +46,7 @@
 .desc-width {
   max-width: 100%;
 }
+
+CardText {
+  color:red;
+}
