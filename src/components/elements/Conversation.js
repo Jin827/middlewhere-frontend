@@ -83,7 +83,7 @@ export default class Conversation extends React.Component {
     })
     return (
       <div>
-        <FloatingActionButton style={style} backgroundColor={pinkA200} mini={true} onClick={this.handleToggle}>
+        <FloatingActionButton style={style} backgroundColor={pinkA200} onClick={this.handleToggle}>
           <ChatBubble style={{fontSize:'12rem'}}/>
         </FloatingActionButton>
 

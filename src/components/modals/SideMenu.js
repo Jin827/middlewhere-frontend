@@ -58,7 +58,7 @@ export default class DrawerUndockedExample extends React.Component {
             textAlign: 'center'
           }}
           onRequestChange={this.props.closeState}>
-          <MenuItem onClick={this.props.closeState}>
+          <MenuItem className="sideMenuItems" onClick={this.props.closeState}>
             {this.state.me ? 
               <Me firstName={this.state.me.users_firstName}
               lastName={this.state.me.users_lastName}

@@ -55,9 +55,8 @@
 }
 
 .task-assigned-text {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: block;
   align-items: center;
+  margin-bottom: 1.15em;
 
 }
