@@ -98,6 +98,23 @@ export default class TaskCard extends Component {
           count:data.body.length
         })
       })
+      .then(() => api.getMe(localStorage.token))
+      .then((me) => {
+        console.log("MEMEMEMEMEM" , me.body.users_id);
+        var assigned = this.state.assignedUsers;
+
+        assigned = assigned.map(function (user) {
+            return user.id;
+        });
+        for (var i = 0; i < assigned.length; i++) {
+            if (assigned[i]==me.body.users_id){
+              this.setState({
+                forMeToComplete:true
+              })
+            }
+        }
+        console.log("ALL USERS IDs ", assigned, "HERE");
+      })
     }
   render() {
     const dataSource = this.state.dataSource
@@ -108,7 +125,7 @@ export default class TaskCard extends Component {
       value: 'userId'
   }
     let { id, title, description, deadline, priority} = this.props
-    let { assignedUsers, count, completed } = this.state
+    let { assignedUsers, count, completed , forMeToComplete} = this.state
     if(deadline) {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
@@ -163,9 +180,12 @@ export default class TaskCard extends Component {
                 <br/>
                 <Face color="#ef5350" /><CardText style={{padding:'0', margin:'0'}} color="#ef5350"> {count}</CardText>
 
+
               <CardActions style={{padding:'1rem', fontWeight:'900'}}>
                   {/* <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> */}
-                  {completed === 1 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" primary={true} onClick={this._completedTask}/>}
+                  {(completed === 1 && forMeToComplete) ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/>
+                  : (completed === 0 && forMeToComplete) ? <RaisedButton label="Complete Task" primary={true} onClick={this._completedTask}/>
+                  : null}
               </CardActions>
 
 
