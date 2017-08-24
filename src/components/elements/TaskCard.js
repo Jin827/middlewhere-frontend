@@ -160,7 +160,7 @@ export default class TaskCard extends Component {
 
               <CardActions>
                   {/* <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> */}
-                  {completed === 1 ? <RaisedButton label="Task Completed" color={'#00BFA5'} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" primary={true} onClick={this._completedTask}/>}
+                  {completed === 1 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" primary={true} onClick={this._completedTask}/>}
               </CardActions>
 
 
