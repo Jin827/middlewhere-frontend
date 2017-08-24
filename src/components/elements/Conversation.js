@@ -4,16 +4,33 @@ import { API_HOST } from '../../config';
 import api from '../../api';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
-import './TaskCard.css';
-import './Conversation.css';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
+import Drawer from 'material-ui/Drawer';
+import RaisedButton from 'material-ui/RaisedButton';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
+import './TaskCard.css';
+import './Conversation.css';
+import {
+  cyan500, cyan700,
+  pinkA200, orange300,
+  grey100, grey300, grey400, grey500,grey900,grey700,
+  white, darkBlack, fullBlack,
+} from 'material-ui/styles/colors';
+
+const style = {
+  marginRight: 20,
+};
 
 
 export default class Conversation extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { messages: [] }
+    this.state = {
+      messages: [],
+      open: false
+     }
   }
 
   componentDidMount () {
@@ -49,19 +66,55 @@ export default class Conversation extends React.Component {
     }
   }
 
+  handleToggle = () => this.setState({open: !this.state.open});
+  handleClose = () => this.setState({open: false});
+
   render () {
+    const style = {
+        margin: 0,
+        right: 90,
+        bottom: 100,
+        position: 'fixed',
+    };
+
     const messages = this.state.messages.map((message, index) => {
       const img = message.img ? <img src={message.img} width='200px' /> : null
       return <p align="center" key={index}><b>{message.from} : </b>{message.text} {img}</p>
     })
     return (
-      <Card className="task-card">
-        <div>
-          <CardText color="#ef5350"> <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
-          {messages}</CardText>
-        </div>
-      </Card>
+      <div>
+        <FloatingActionButton style={style} backgroundColor={pinkA200} mini={true} onClick={this.handleToggle}>
+          <ChatBubble style={{fontSize:'12rem'}}/>
+        </FloatingActionButton>
+
+        <Drawer
+          className="conversationLog"
+          docked={false}
+          open={this.state.open}
+          onRequestChange={(open) => this.setState({open})}
+          openSecondary={true}
+          overlayStyle={{backgroundColor:'rgba(255,255,255,0)'}}
+          >
+          <TextField
+            hintText="Contribute..."
+            multiLine={true}
+            type='text'
+            onKeyUp={this.handleSubmit}
+          /><br />
+          {messages}
+        </Drawer>
+      </div>
 
     )
   }
 }
+
+// <Card className="task-card">
+//   <div>
+//     <CardText color="#ef5350"> <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
+//     {messages}</CardText>
+//   </div>
+// </Card>
+    //
+    // <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
+    // {messages}

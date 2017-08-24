@@ -23,9 +23,9 @@
 
 .task-edit-button {
   position: absolute;
-  left:0rem;
-  top:0rem;
-  padding:10px;
+  left:0.2rem;
+  top:1.7rem;
+  padding:10.5px;
   z-index: 10;
 
 }
@@ -45,4 +45,19 @@
 
 .desc-width {
   max-width: 100%;
+}
+
+.task-assigned {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.task-assigned-text {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
 }

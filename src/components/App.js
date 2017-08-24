@@ -14,7 +14,7 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
   cyan500, cyan700,
   pinkA200, orange300,
-  grey100, grey300, grey400, grey500,grey900,
+  grey100, grey300, grey400, grey500,grey900,grey700,
   white, darkBlack, fullBlack,
 } from 'material-ui/styles/colors';
 import {fade} from 'material-ui/utils/colorManipulator';
@@ -25,7 +25,7 @@ const muiTheme = getMuiTheme({
   spacing: spacing,
     fontFamily: 'Roboto, sans-serif',
     palette: {
-      primary1Color: grey900,
+      primary1Color: '#00BFA5',
       primary2Color: cyan700,
       primary3Color: grey400,
       accent1Color: orange300,

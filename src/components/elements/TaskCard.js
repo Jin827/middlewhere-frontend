@@ -43,14 +43,15 @@ export default class TaskCard extends Component {
       })
     })
   }
-  
+
+
   _completedTask = () => {
     var newCompleted = this.state.completed ? 0 : 1;
-    
+
     this.setState({
       completed: newCompleted
     })
-   
+
     api.completedTasks(this.props.id, newCompleted, localStorage.token).catch(err=>console.log(err))
   }
 
@@ -59,7 +60,7 @@ export default class TaskCard extends Component {
         editTask: true
       })
     }
-    
+
     _closeTaskForm = () => {
       this.setState({
         editTask:false
@@ -112,23 +113,24 @@ export default class TaskCard extends Component {
       var time = moment(deadline).format("DD-MM-YYYY")
     }
     let style = {
-      fontSize: '1.25rem',
+      fontSize: '1.5rem',
+      padding: '0 1.2rem'
     }
     let editTaskStyle = {
       height: '44px',
       width: '44px',
       color:'#80CBC4',
-      cursor:'pointer'
+      cursor:'pointer',
     }
 
     return (
       <div>
-            <Card className="task-card">
+            <Card style={style} className="task-card">
               <CardActions>
                 {this.props.isAdmin ? <EditorModeEdit style={editTaskStyle} hoverColor={'#00BFA5'} className="task-edit-button" onClick={this._editTaskForm}/>:null}
               </CardActions>
                 <CardTitle title={ title } titleStyle={style} actAsExpander={true} showExpandableButton={true}/>
-                <List
+                <List className="task-assigned"
                 expandable={true}>
                 { assignedUsers ? assignedUsers.map(u =>
                     <AssignedList
@@ -144,28 +146,30 @@ export default class TaskCard extends Component {
                 <CardText expandable={true}> <strong> Task Description </strong>  <br/>  { description } </CardText>
                 {deadline ? <CardText expandable={true}> <strong>Deadline </strong> <br/> { time } </CardText> : null}
                 {priority ? <CardText expandable={true} > {priority} priority </CardText> : null}
-                { this.props.isAdmin ? <AutoComplete
-                    floatingLabelText="Team Members"
-                    filter={AutoComplete.caseInsensitiveFilter}
-                    openOnFocus={false}
-                    dataSource={newDataSource}
-                    dataSourceConfig={dataSourceConfig}
-                    searchText={this.state.searchText}
-                    onUpdateInput={this.handleUpdateInput.bind(this)}
-                    onNewRequest={this.handleRequest}
-                /> : null
-              }
-                <br/>
-                <Face color="#ef5350" /><CardText color="#ef5350"> {count}</CardText>
 
-              <CardActions>
+                  { this.props.isAdmin ? <AutoComplete
+                      floatingLabelText="Assign a Task"
+                      filter={AutoComplete.caseInsensitiveFilter}
+                      fullWidth={true}
+                      openOnFocus={false}
+                      dataSource={newDataSource}
+                      dataSourceConfig={dataSourceConfig}
+                      searchText={this.state.searchText}
+                      onUpdateInput={this.handleUpdateInput.bind(this)}
+                      onNewRequest={this.handleRequest}
+                  /> : null
+                }
+
+                <br/>
+                <Face color="#ef5350" /><CardText style={{padding:'0', margin:'0'}} color="#ef5350"> {count}</CardText>
+
+              <CardActions style={{padding:'1rem', fontWeight:'900'}}>
                   {/* <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> */}
                   {completed === 1 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" primary={true} onClick={this._completedTask}/>}
               </CardActions>
 
 
 
-          
             </Card>
           {this.state.editTask ? <EditTask projectId={this.props.projectId} id={id} title={title}
           description={description} deadline={deadline} closeForm={this._closeTaskForm}/> : null}
