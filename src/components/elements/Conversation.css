@@ -115,6 +115,9 @@
     border-bottom: 1px solid #ddd;
 }
 
+.conversationLog {
+  padding:2rem;
+}
 
 body::-webkit-scrollbar {
     width: 12px;

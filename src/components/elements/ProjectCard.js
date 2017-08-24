@@ -9,7 +9,7 @@ import '../App.css';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 
 import api from '../../api';
-import {pinkA200, cyan500} from 'material-ui/styles/colors';
+import {pinkA200, cyan500, grey900} from 'material-ui/styles/colors';
 import Avatar from 'material-ui/Avatar';
 
 import {deepOrange900,orange300} from 'material-ui/styles/colors';
@@ -113,7 +113,7 @@ export default class ProjectCard extends Component {
     let editProjectStyle = {
       height: '44px',
       width: '44px',
-      color:'rgba(100, 181, 246,0.6)',
+      color:'#80CBC4',
       cursor:'pointer',
     }
 
@@ -127,13 +127,11 @@ export default class ProjectCard extends Component {
             <Card className='project-card'>
               <Link to={`/projects/${id}`}>
 
-              <CardMedia overlayContentStyle={{background:this.state.priority}} overlay={<CardTitle title={title} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}></CardMedia>
-
-
-              <LinearProgress mode="determinate" value={progress} />
+              <CardMedia overlayContentStyle={{background:this.state.priority}} overlay={<CardTitle title={title} subtitleStyle={{color:"#fff",fontWeight:"500",'text-shadow':"1.5px 1.5px rgba(0,0,0,0.1)", fontSize:'1rem'}} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}></CardMedia>
+              <LinearProgress color={'#00BFA5'} mode="determinate" value={progress} />
               <div className="project-card-relative">
                 <Avatar className='project-card-avatar' src={`${this.state.avatarUrl}`}/>
-                {deadline ? <CardText><strong>Deadline</strong><br/>{time}</CardText> : <CardText><strong>Deadline</strong><br/>N/A </CardText>}
+                {deadline ? <CardText><strong>Deadline</strong><br/>{time}</CardText> : <CardText><strong>Deadline</strong><br/>No Deadline Set </CardText>}
               </div>
 
               <div className="project-card-desc">
@@ -143,7 +141,7 @@ export default class ProjectCard extends Component {
               </div>
               </Link>
               <CardActions>
-                {this.props.isAdmin ? <EditorModeEdit hoverColor={'rgba(100, 181, 246,1)'} style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
+                {this.props.isAdmin ? <EditorModeEdit hoverColor={'#00BFA5'}  style={editProjectStyle} className="project-edit-button" onClick={this._editProjectForm}/>:null}
               </CardActions>
             </Card>
 
