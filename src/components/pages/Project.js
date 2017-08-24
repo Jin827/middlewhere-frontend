@@ -103,6 +103,10 @@ export default class Project extends Component {
           ) : <Paper style={style} className="col-large-6" zDepth={2}><strong>NO TASKS YET</strong></Paper> }
           {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton projectTitle={projectTitle}/> </Link> : null}
 
+          <div className="single-proj col-large-3 col-medium-6 col-small-12">
+            <Conversation projectId={this.props.params.id} username={this.state.firstName} />
+          </div>
+          
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
           projectId={this.props.params.id}
@@ -114,6 +118,4 @@ export default class Project extends Component {
   }
 
 }
-// <div className="single-proj col-large-3 col-medium-6 col-small-12">
-//   <Conversation projectId={this.props.params.id} username={this.state.firstName} />
-// </div>          <Conversation projectId={this.props.params.id} userId={this.state.userId} />
+//        <Conversation projectId={this.props.params.id} userId={this.state.userId} />
