@@ -72,8 +72,8 @@ export default class Conversation extends React.Component {
   render () {
     const style = {
         margin: 0,
-        right: 90,
-        bottom: 100,
+        right: 41.25,
+        bottom: 130,
         position: 'fixed',
     };
 
