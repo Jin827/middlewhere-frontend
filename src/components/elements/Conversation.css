@@ -119,6 +119,10 @@
   padding:2rem;
 }
 
+.conversationLog p {
+    margin: 1.5rem;
+  }
+
 body::-webkit-scrollbar {
     width: 12px;
 }
@@ -145,8 +149,4 @@ body::-webkit-scrollbar {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
     background: #ddd;
-}
-p{
-    text-align: left;
-    margin: 2em;
 }
