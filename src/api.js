@@ -90,6 +90,12 @@ class Api {
     .send({id, completed})
   )
 
+  updateCompletion = (id, token) => (
+    superagent
+    .get(`${API_HOST}/tasks/${id}/completed`)
+    .set('Authorization', `token ${token}`)
+  )
+
   assignTask = (id, assigneeId) => (
     superagent
     .post(`${API_HOST}/tasks/${id}/assigned`)
