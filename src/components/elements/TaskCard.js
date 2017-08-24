@@ -43,6 +43,7 @@ export default class TaskCard extends Component {
       })
     })
   }
+
   
   _completedTask = () => {
     var newCompleted = this.state.completed ? 0 : 1;
@@ -165,11 +166,10 @@ export default class TaskCard extends Component {
 
 
 
-          
             </Card>
           {this.state.editTask ? <EditTask projectId={this.props.projectId} id={id} title={title}
           description={description} deadline={deadline} closeForm={this._closeTaskForm}/> : null}
       </div>
     );
   }
-}
+
