@@ -27,7 +27,9 @@ export default class Me extends React.Component {
     console.log("Me " , this.props);
     return (
       <div className="followers-page">
-        <p>Hello <br/>{this.props.firstName}<hr/></p>
+        <p>Hello <br/>{this.props.firstName}
+        </p>
+        <hr/>
       </div>)
   }
 }
