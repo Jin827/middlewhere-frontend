@@ -5,8 +5,8 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 
 const style = {
     margin: 0,
-    right: 50,
-    bottom: 50,
+    right: 40,
+    bottom: 45,
     position: 'fixed',
 };
 

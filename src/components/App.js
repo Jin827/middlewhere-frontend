@@ -25,7 +25,7 @@ const muiTheme = getMuiTheme({
   spacing: spacing,
     fontFamily: 'Roboto, sans-serif',
     palette: {
-      primary1Color: grey700,
+      primary1Color: '#00BFA5',
       primary2Color: cyan700,
       primary3Color: grey400,
       accent1Color: orange300,
