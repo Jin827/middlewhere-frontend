@@ -75,6 +75,7 @@ export default class Conversation extends React.Component {
         right: 90,
         bottom: 100,
         position: 'fixed',
+        zIndex: 2000
     };
 
     const messages = this.state.messages.map((message, index) => {
