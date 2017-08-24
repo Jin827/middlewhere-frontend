@@ -79,7 +79,7 @@ export default class Conversation extends React.Component {
 
     const messages = this.state.messages.map((message, index) => {
       const img = message.img ? <img src={message.img} width='200px' /> : null
-      return <p align="center" key={index}><b>{message.from} : </b>{message.text} {img}</p>
+      return <p key={index}><b>{message.from} : </b>{message.text} {img}</p>
     })
     return (
       <div>
