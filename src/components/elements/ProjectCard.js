@@ -128,7 +128,7 @@ export default class ProjectCard extends Component {
               <Link to={`/projects/${id}`}>
 
               <CardMedia overlayContentStyle={{background:this.state.priority}} overlay={<CardTitle title={title} subtitleStyle={{color:"#fff",fontWeight:"500",'text-shadow':"1.5px 1.5px rgba(0,0,0,0.1)", fontSize:'1rem'}} subtitle={this.state.taskNum >= 0 ? `${this.state.taskNum} Tasks`:`${this.state.taskNum} Task`} />}></CardMedia>
-              <LinearProgress mode="determinate" value={progress} />
+              <LinearProgress color={'#00BFA5'} mode="determinate" value={progress} />
               <div className="project-card-relative">
                 <Avatar className='project-card-avatar' src={`${this.state.avatarUrl}`}/>
                 {deadline ? <CardText><strong>Deadline</strong><br/>{time}</CardText> : <CardText><strong>Deadline</strong><br/>No Deadline Set </CardText>}
