@@ -44,13 +44,14 @@ export default class TaskCard extends Component {
     })
   }
 
+  
   _completedTask = () => {
     var newCompleted = this.state.completed ? 0 : 1;
-
+    
     this.setState({
       completed: newCompleted
     })
-
+   
     api.completedTasks(this.props.id, newCompleted, localStorage.token).catch(err=>console.log(err))
   }
 
@@ -59,7 +60,7 @@ export default class TaskCard extends Component {
         editTask: true
       })
     }
-
+    
     _closeTaskForm = () => {
       this.setState({
         editTask:false
@@ -160,9 +161,8 @@ export default class TaskCard extends Component {
 
               <CardActions>
                   {/* <RaisedButton label="Complete Task" secondary={true} onClick={this._completedTask}/> */}
-                  {completed === 1 ? <RaisedButton label="Task Completed" color={'#00BFA5'} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" primary={true} onClick={this._completedTask}/>}
+                  {completed === 1 ? <RaisedButton label="Task Completed" secondary={true} onClick={this._completedTask}/> : <RaisedButton label="Complete Task" primary={true} onClick={this._completedTask}/>}
               </CardActions>
-
 
 
 
@@ -172,4 +172,4 @@ export default class TaskCard extends Component {
       </div>
     );
   }
-}
+
