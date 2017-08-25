@@ -45,7 +45,6 @@ export default class Coworkers extends Component {
     return (
         <div>
           {coworkers.map(coworker => {
-            console.log(coworker);
             var colorForStatus='black';
             if (coworker.status=='ONLINE'){
               colorForStatus='green';

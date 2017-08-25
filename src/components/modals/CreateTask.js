@@ -73,13 +73,12 @@ export default class CreateTask extends Component {
           this.props.onCreate();
         })
         .then(data => {
-          console.log('WILL CLOSE TASK FORM');
           this.props.closeState();
         })
         .then(data => {
           this.props.closeForm();
         })
-        .catch(error=> console.log(error)) 
+        .catch(error=> console.log(error))
     )
   }
 

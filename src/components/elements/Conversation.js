@@ -40,7 +40,6 @@ export default class Conversation extends React.Component {
     this.socket.on('message', message => {
 
       if ( parseInt(message.projectId) ===  parseInt(this.props.projectId) ) {
-        console.log('CONVERSATION' , this.state.messages);
         this.setState({ messages: [message, ...this.state.messages] })
 
       }
