@@ -8,6 +8,7 @@ const style = {
     right: 40,
     bottom: 45,
     position: 'fixed',
+    zIndex:20
 };
 
 export default class AddButton extends Component {

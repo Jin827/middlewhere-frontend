@@ -84,7 +84,7 @@ class App extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
         <div className="App row">
 
-          <AppBar title={<Link to='/projects'>WorkFlow</Link>} className="appBar"
+          <AppBar title={auth.isLoggedIn() ? <Link to='/projects'>WorkFlow</Link> : <Link to='/'>WorkFlow</Link> } className="appBar"
             style={style}
             titleStyle={{
               color:'#000',

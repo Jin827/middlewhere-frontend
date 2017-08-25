@@ -12,7 +12,8 @@ import CreateProjects from 'material-ui/svg-icons/file/create-new-folder';
 import People from 'material-ui/svg-icons/social/people';
 import TrendingUp from 'material-ui/svg-icons/action/trending-up';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import IconButton from 'material-ui/IconButton';
+import { Link } from 'react-router';
 import './IndexPage.css';
 import '../App.css'
 
@@ -42,44 +43,63 @@ export default class IndexPage extends Component {
     return (
       <div className="whole">
         <header>
-          <div className="header-image"></div>
+          <div className="header-image"><img src="./WorkFlowTitle.png"/></div>
         </header>
 
 
 
       <div className="index-section-one">
         <div className="index-page-row">
-          <Paper className="feature col-large-4" style={style} transitionEnabled={true} zDepth={2} circle={true}>
+          <div className="index-properties">
+          <Paper className="feature col-large-4 col-medium-6 col-small-12" style={style} transitionEnabled={true} zDepth={2} circle={true}>
             <CreateProjects  style={featureIcons} hoverColor={'#80CBC4'}/>
             <p className="feature-subtitle"><strong>Create Projects</strong></p>
             <p className="feature-paragraph">Organize your project into a set of tasks.</p>
           </Paper>
-          <Paper className="feature col-large-4" style={style} transitionEnabled={true} zDepth={2} circle={true}>
+          </div>
+          <div className="index-properties">
+          <Paper className="feature col-large-4 col-medium-6 col-small-12"  style={style} transitionEnabled={true} zDepth={2} circle={true}>
             <People  style={featureIcons} hoverColor={'#80CBC4'}/>
             <p className="feature-subtitle"><strong>Assign Users</strong></p>
             <p className="feature-paragraph">Select the right person for the job.</p>
           </Paper>
-          <Paper className="feature col-large-4" style={style} transitionEnabled={true} zDepth={2} circle={true}>
+          </div>
+          <div className="index-properties">
+          <Paper className="feature col-large-4 col-medium-6 col-small-12"  style={style} transitionEnabled={true} zDepth={2} circle={true}>
             <TrendingUp style={featureIcons} hoverColor={'#80CBC4'}/>
             <p className="feature-subtitle"><strong>Track Progress</strong></p>
             <p className="feature-paragraph">Monitor your team's work with live updates.</p>
           </Paper>
+          </div>
         </div>
       </div>
 
         <div className="index-section-two">
           <div className="index-page-two-row" >
-            <div className="index-signup col-large-6"  style={style} >
+            <div className="index-signup col-large-6 col-medium-6 col-small-12"  style={style} >
               <p className="signup-now"><strong>Stay on Track with Workflow</strong></p>
-              <RaisedButton label="Sign Up Now" primary={true}/>
+              <Link to='/signup'> <RaisedButton label="Sign Up Now" primary={true}/></Link>
             </div>
-            <div className="col-large-6 teamwork-style">
-              <div className="teamwork-image"></div>
-            </div>
+          </div>
         </div>
 
-
-      </div>
+        <div className="index-section-three">
+          <div className="index-page-three-row" >
+              <p className="middlewhere"><strong>The Team</strong></p>
+          </div>
+            <div className="best-team col-large-3 col-medium-3 col-small-12">
+              <a href="https://github.com/armelchiza"><p className="team-images">Armel Chiza</p></a>
+            </div>
+            <div className="best-team col-large-3 col-medium-3 col-small-12">
+              <a href="https://github.com/candicecz"><p className="team-images">Candice Czech</p></a>
+            </div>
+            <div className="best-team col-large-3 col-medium-3 col-small-12">
+                <a href="https://github.com/rckmnz"><p className="team-images">Erick Munoz</p></a>
+            </div>
+            <div className="best-team col-large-3 col-medium-3 col-small-12">
+              <a href="https://github.com/Jin827"><p className="team-images">Hyojin Lee</p></a>
+            </div>
+        </div>
       </div>
     );
 
