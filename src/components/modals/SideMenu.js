@@ -40,7 +40,6 @@ export default class DrawerUndockedExample extends React.Component {
       return api.getAll(localStorage.token)
     })
     .then((coworkers) => {
-      console.log(coworkers);
       if (coworkers) {
         this.setState({coworkers : coworkers.body});
       }
@@ -59,7 +58,7 @@ export default class DrawerUndockedExample extends React.Component {
           }}
           onRequestChange={this.props.closeState}>
           <MenuItem className="sideMenuItems" onClick={this.props.closeState}>
-            {this.state.me ? 
+            {this.state.me ?
               <Me firstName={this.state.me.users_firstName}
               lastName={this.state.me.users_lastName}
               avatarUrl={this.state.me.avatarUrl} /> : null}

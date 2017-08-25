@@ -55,15 +55,11 @@ export default class SignUp extends Component {
 
       //User Email validation
       if(firstName && lastName && email && password){
-        console.log(firstName, lastName, email, password)
         api.requestSignup(firstName, lastName, email, password)
         .then(()=> {
-
-          console.log('signed up')
           this.props.router.push('/login')
         })
         .catch((existingUser)=> {
-          console.log('existing user email')
           this.setState({existingUser:true})
         })
       }
