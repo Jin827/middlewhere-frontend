@@ -93,13 +93,14 @@ export default class ProjectCard extends Component {
 
       else if(filteredNormal.length >= filteredLow.length && filteredNormal.length > filteredHigh.length){
         this.setState({
-          priority:'linear-gradient(140deg, rgba(37, 191, 217,1) , rgba(69, 108, 173,1)'
+          priority:'linear-gradient(140deg, rgba(255, 213, 79,1) , rgba(255, 152, 0,1))'
         })
       }
 
       else if(filteredLow.length > filteredNormal.length && filteredLow.length > filteredHigh.length ){
         this.setState({
-          priority:'linear-gradient(140deg, rgba(255, 213, 79,1) , rgba(255, 152, 0,1))'
+          priority:'linear-gradient(140deg, rgba(37, 191, 217,1) , rgba(69, 108, 173,1)'
+
         })
       }
     }

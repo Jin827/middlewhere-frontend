@@ -3,9 +3,6 @@ import api from '../../api';
 import TaskCard from '../elements/TaskCard';
 import CreateTask from '../modals/CreateTask';
 import AddButton from '../elements/AddButton';
-import { Link } from 'react-router';
-import auth from '../../auth'
-import ReturnButton from './ReturnButton'
 import Paper from 'material-ui/Paper';
 import Conversation from '../elements/Conversation'
 import './Project.css';
@@ -101,10 +98,10 @@ export default class Project extends Component {
             />
             </div>
           ) : <Paper style={style} className="col-large-6" zDepth={2}><strong>NO TASKS YET</strong></Paper> }
-         
-          
+
+
           <Conversation projectId={this.props.params.id} username={this.state.firstName} />
-        
+
         {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
         {this.state.createTask ? <CreateTask onCreate={this.fetchData}
           projectId={this.props.params.id}
