@@ -100,7 +100,6 @@ export default class TaskCard extends Component {
       })
       .then(() => api.getMe(localStorage.token))
       .then((me) => {
-        console.log("MEMEMEMEMEM" , me.body.users_id);
         var assigned = this.state.assignedUsers;
 
         assigned = assigned.map(function (user) {
@@ -113,7 +112,7 @@ export default class TaskCard extends Component {
               })
             }
         }
-        console.log("ALL USERS IDs ", assigned, "HERE");
+
       })
     }
   render() {

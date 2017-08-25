@@ -1,4 +1,7 @@
 module.exports = {
+
   API_HOST: "http//localhost:3000"
-//  API_HOST: "https://3687459b.ngrok.io"
+
+  // API_HOST: "https://whispering-garden-22441.herokuapp.com/"
+
 }
