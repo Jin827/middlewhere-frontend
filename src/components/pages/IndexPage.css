@@ -7,27 +7,24 @@ header,  .index-section-one, .index-section-two, .section-three, .section-four, 
   display: flex;
   font-family: Roboto;
 }
-/*.whole{
-  margin-top: 4rem;
-}*/
 
-.title-image {
-  z-index:3000;
-  width:200px;
-  position: absolute;
-	top: 1000px;
-	right: 80px;
-}
 
 .header-image {
   display:flex;
   min-height:45vh;
   width:100%;
-  background-image: url("./overview.jpg");
+  background-image: url("./overview2.jpg");
   background-size:cover;
   background-repeat: space;
-  padding:5%;
-  position:relative;
+  padding:1rem;
+  justify-content: center;
+}
+
+.workflow-title {
+  width:20rem;
+  align-self: center;
+  padding:5rem 0rem 0rem 0rem;
+  margin-top: 1rem;
 }
 
 .index-section-one {
@@ -38,8 +35,6 @@ header,  .index-section-one, .index-section-two, .section-three, .section-four, 
   padding:2%;
   background-color:#f5f5f6;
 }
-
-
 
 .index-page-row {
   display:flex;

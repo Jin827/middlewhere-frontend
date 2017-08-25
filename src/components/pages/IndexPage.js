@@ -1,18 +1,10 @@
 import React, {Component} from 'react';
-import api from '../../api';
-import ProjectCard from '../elements/ProjectCard';
-import AddButton from '../elements/AddButton';
-import auth from '../../auth';
-import CreateProject from '../modals/CreateProject';
-import Avatar from 'material-ui/Avatar';
 import Paper from 'material-ui/Paper';
-import image from './overview.jpg';
-import FontIcon from 'material-ui/FontIcon';
 import CreateProjects from 'material-ui/svg-icons/file/create-new-folder';
 import People from 'material-ui/svg-icons/social/people';
 import TrendingUp from 'material-ui/svg-icons/action/trending-up';
 import RaisedButton from 'material-ui/RaisedButton';
-import IconButton from 'material-ui/IconButton';
+import ImageTitle from './WorkFlowTitle.png'
 import { Link } from 'react-router';
 import './IndexPage.css';
 import '../App.css'
@@ -43,7 +35,9 @@ export default class IndexPage extends Component {
     return (
       <div className="whole">
         <header>
-          <div className="header-image"><img src="./WorkFlowTitle.png"/></div>
+          <div className="header-image">
+            <div><img className="workflow-title" src={ImageTitle} alt={"workflow"}/></div>
+            </div>
         </header>
 
 

@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
 import api from '../../api';
 import ProjectCard from '../elements/ProjectCard';
-import IndexPage from './IndexPage';
 import AddButton from '../elements/AddButton';
 import auth from '../../auth';
 import CreateProject from '../modals/CreateProject';
-import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import './Home.css';
 import '../App.css'

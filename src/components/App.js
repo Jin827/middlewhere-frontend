@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
-import Menu from './modals/Menu';
-import './App.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
-import IconButton from 'material-ui/IconButton';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import auth from '../auth';
 import FlatButton from 'material-ui/FlatButton';
 import {browserHistory as history} from 'react-router';
@@ -19,6 +15,7 @@ import {
 } from 'material-ui/styles/colors';
 import {fade} from 'material-ui/utils/colorManipulator';
 import spacing from 'material-ui/styles/spacing';
+import './App.css';
 
 
 const muiTheme = getMuiTheme({
@@ -93,7 +90,7 @@ class App extends Component {
           }}
             onLeftIconButtonTouchTap={this.handleToggle}
             iconElementRight={auth.isLoggedIn() ?
-               <FlatButton label= "Logout" onClick={this._logOut}/>: <div><FlatButton label= "Login" onClick={this._login}/><FlatButton label="Signup" onClick={this._signUp}/></div> }
+               <FlatButton label="Logout" onClick={this._logOut}/>: <div><FlatButton label="Login" onClick={this._login}/><FlatButton label="Signup" onClick={this._signUp}/></div> }
           />
           {this.state.open ? <SideMenu menuState={this.state.open} closeState={this.handleClose}/> : null}
           {this.props.children}

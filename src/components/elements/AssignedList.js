@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {Card, CardHeader, CardText, CardActions, LinearProgress} from 'material-ui';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import {CardText} from 'material-ui';
 import Avatar from 'material-ui/Avatar';
-import ListItem from 'material-ui/List/ListItem';
 import './TaskCard.css';
 import '../App.css';
 
@@ -14,7 +12,7 @@ export default class AssignedList extends Component {
   }
 
   render() {
-    let { id, firstName, lastName, email, avatarUrl } = this.props
+    let { firstName, avatarUrl } = this.props
 
 
     return (
