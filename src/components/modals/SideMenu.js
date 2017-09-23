@@ -5,15 +5,6 @@ import Me from './Me';
 import CoworkerTab from './CoworkerTab'
 import api from '../../api';
 
-import {
-blue300,
-indigo900,
-orange200,
-deepOrange300,
-pink400,
-purple500,
-} from 'material-ui/styles/colors';
-
 
 export default class DrawerUndockedExample extends React.Component {
 
@@ -31,20 +22,18 @@ export default class DrawerUndockedExample extends React.Component {
 
   _fetchData = () => {
     api.getMe(localStorage.token)
-    .then(yoSoy => {
+    .then(me => {
       this.setState({
-        me : yoSoy.body
+        me : me.body
       })
     })
-    .then(() => {
-      return api.getAll(localStorage.token)
-    })
+    
+    api.getAll(localStorage.token)
     .then((coworkers) => {
       if (coworkers) {
         this.setState({coworkers : coworkers.body});
       }
-    }
-  )
+    })  
   }
 
   render() {
