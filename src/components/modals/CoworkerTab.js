@@ -1,14 +1,8 @@
 import React, {Component} from 'react';
-
-
 import MenuItem from 'material-ui/MenuItem';
 import './Me.css';
-
 import Avatar from 'material-ui/Avatar';
-
 import FontIcon from 'material-ui/FontIcon';
-
-
 import {
 deepOrange300,
 } from 'material-ui/styles/colors';
