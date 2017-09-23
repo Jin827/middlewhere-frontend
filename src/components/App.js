@@ -44,11 +44,11 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      open: false,
+      open: false
      }
   }
 
-
+  //browserHistory.push() ; to manually redirect the user in any of the code
 
   _login = () => {
     history.push(`login`)
@@ -64,8 +64,6 @@ class App extends Component {
     history.push(`/signup`)
   }
 
-
-
   handleToggle=() => this.setState({open: !this.state.open});
 
   handleClose=() => this.setState({open: false});
@@ -73,7 +71,7 @@ class App extends Component {
 
     let style = {
       position:'fixed',
-      top:0,
+      top:0
     }
 
 
@@ -88,18 +86,15 @@ class App extends Component {
               fontFamily: 'Advent Pro, sans-serif',
               fontSize: '2em'
           }}
-            onLeftIconButtonTouchTap={this.handleToggle}
+            onLeftIconButtonTouchTap = {this.handleToggle}
             iconElementRight={auth.isLoggedIn() ?
                <FlatButton label="Logout" onClick={this._logOut}/>: <div><FlatButton label="Login" onClick={this._login}/><FlatButton label="Signup" onClick={this._signUp}/></div> }
           />
-          {this.state.open ? <SideMenu menuState={this.state.open} closeState={this.handleClose}/> : null}
+          {this.state.open ? (auth.isLoggedIn() ? <SideMenu menuState={this.state.open} closeState={this.handleClose}/> : null) : null}
           {this.props.children}
           </div>
       </MuiThemeProvider>
     );
   }
 }
-
-
 export default App;
-// iconStyleLeft={{color: '#000', fill:'rgb(0,0,0)'}}
