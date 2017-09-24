@@ -13,7 +13,7 @@ export default class Coworkers extends Component {
     let coworkers = this.props.coworkers
     .filter(coworker => coworker.id!==this.props.me);
     var colorForStatus;
-
+    
     return (
         <div>
           {coworkers.map(coworker => {
@@ -23,7 +23,7 @@ export default class Coworkers extends Component {
               colorForStatus='grey';
             }
             return (
-              <MenuItem className="row">
+              <MenuItem className="row" key={coworker.id}>
                 <p style={{color:colorForStatus}}>{coworker.firstName}</p>
                 <Avatar
                   src={coworker.avatarUrl} color={deepOrange300}

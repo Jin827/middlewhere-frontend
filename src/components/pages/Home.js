@@ -68,11 +68,10 @@ export default class Home extends Component {
     return (
       <div className="home">
         { projects.length !== 0 ? projects.map(p =>
-          <div className="single-proj col-large-4 col-medium-6 col-small-12">
+          <div className="single-proj col-large-4 col-medium-6 col-small-12" key={p.id}>
             <ProjectCard
               isAdmin={p.adminUserId===this.state.me}
               projectAdmin={p.adminUserId}
-              key={p.id}
               id={p.id}
               progress={p.progressPct}
               title={p.title}

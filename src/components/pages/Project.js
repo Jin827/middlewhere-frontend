@@ -82,12 +82,11 @@ export default class Project extends Component {
       <div className="tasks">
 
          { tasks.length !== 0 ? tasks.map(b =>
-           <div className="single-proj col-large-3 col-medium-6 col-small-12">
+           <div className="single-proj col-large-3 col-medium-6 col-small-12" key={b.id}>
             <TaskCard
               projectId={this.props.params.id}
               isAdmin={this.state.isAdmin}
               userId={this.state.userId}
-              key={b.id}
               id={b.id}
               title={b.title}
               description={b.description}
