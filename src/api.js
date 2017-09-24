@@ -1,7 +1,5 @@
 import superagent from 'superagent'
 import { API_HOST } from './config'
-//need get all users api call
-
 
 class Api {
   requestSignup = (firstName, lastName, email, password) => (
@@ -16,28 +14,30 @@ class Api {
     .send({ email, password })
   )
 
-  resetStatus = (token) => (
+  resetStatus = () => (
     superagent
     .patch(`${API_HOST}/auth/resetStatus`)
-    .set('Authorization', `token ${token}`)
-    //.send({ email, password })
+    .set('Authorization', `token ${localStorage.token}`)
   )
 
-  requestLogout = (token) => (
+  requestLogout = () => (
     superagent
     .delete(`${API_HOST}/auth/sessions`)
-    .set('Authorization', `token ${token}`)
+    .set('Authorization', `token ${localStorage.token}`)
   )
 
-  // setUserStatus = (email, password) => (
-  //   superagent
-  //   .patch(`${API_HOST}/auth/sessions`)
-  //   .send({ email, password })
-  // )
 
+  // GET ALL THE PROJECTS FOR THE USER WITH ProgressPct FOR CURRENT USER
   getProjectsList = (page, count) => (
     superagent
     .get(`${API_HOST}/projects`)
+    .set('Authorization', `token ${localStorage.token}`)
+  )
+
+  // RETRIEVE THE DATA OF A SINNGLE PROJECT
+  getProjects = (projectId) => (
+    superagent
+    .get(`${API_HOST}/projects/${projectId}`)
     .set('Authorization', `token ${localStorage.token}`)
   )
 
@@ -48,52 +48,47 @@ class Api {
     .send({title, deadline, description})
   )
 
-  editProjects = (id, title, description, deadline, token) => (
+  editProjects = (projectId, title, description, deadline) => (
     superagent
-    .patch(`${API_HOST}/projects/${id}`)
-    .set('Authorization', `token ${token}`)
-    .send({title,description,deadline, token})
+    .patch(`${API_HOST}/projects/${projectId}`)
+    .set('Authorization', `token ${localStorage.token}`)
+    .send({title,description,deadline})
 
   )
 
-  getProjects = (id) => (
+  // Retrieve all the tasks for a single project
+  getTasks = (projectId) => (
     superagent
-    .get(`${API_HOST}/projects/${id}`)
+    .get(`${API_HOST}/projects/${projectId}/tasks`)
     .set('Authorization', `token ${localStorage.token}`)
   )
 
-  createTasks = (id, title, description, deadline, priority) => (
+  createTasks = (projectId, title, description, deadline, priority) => (
     superagent
-    .post(`${API_HOST}/projects/${id}/tasks`)
+    .post(`${API_HOST}/projects/${projectId}/tasks`)
     .set('Authorization', `token ${localStorage.token}`)
-    .send({id,title, description, deadline, priority})
+    .send({projectId,title, description, deadline, priority})
 
   )
 
   editTasks = (projectId, id, title, description, deadline, priority, token) => (
     superagent
     .patch(`${API_HOST}/tasks/${id}`)
-    .set('Authorization', `token ${token}`)
-    .send({projectId, id, title, description, deadline, priority, token})
-  )
-
-  getTasks = (id) => (
-    superagent
-    .get(`${API_HOST}/projects/${id}/tasks`)
     .set('Authorization', `token ${localStorage.token}`)
+    .send({projectId, id, title, description, deadline, priority, token})
   )
 
   completedTasks = (id, completed, token) => (
     superagent
     .patch(`${API_HOST}/tasks/${id}/completed`)
-    .set('Authorization', `token ${token}`)
+    .set('Authorization', `token ${localStorage.token}`)
     .send({id, completed})
   )
 
   updateCompletion = (id, token) => (
     superagent
     .get(`${API_HOST}/tasks/${id}/completed`)
-    .set('Authorization', `token ${token}`)
+    .set('Authorization', `token ${localStorage.token}`)
   )
 
   assignTask = (id, assigneeId) => (
@@ -109,13 +104,13 @@ class Api {
     .set('Authorization', `token ${localStorage.token}`)
 
   )
-   getMe = (token) => (
+   getMe = () => (
     superagent
     .get(`${API_HOST}/auth/me`)
-    .set('Authorization', `token ${token}`)
+    .set('Authorization', `token ${localStorage.token}`)
   )
 
-  getAll = (token) => (
+  getAll = () => (
    superagent
    .get(`${API_HOST}/auth/all`)
    .set('Authorization', `token ${localStorage.token}`)

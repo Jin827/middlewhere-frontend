@@ -1,3 +1,11 @@
+{/* 
+< Parents-child Relationship > 
+App.js - SideMenu.js - Me.js
+                       CoworkerTab.js
+*/}
+
+//SignUp/Login/Logout Links on the top bar
+
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -49,6 +57,7 @@ class App extends Component {
   }
 
   //browserHistory.push() ; to manually redirect the user in any of the code
+  //Link to '/login' -> Login.js
   _login = () => {
     history.push(`login`)
   }
@@ -64,8 +73,8 @@ class App extends Component {
   }
 
   handleToggle=() => this.setState({open: !this.state.open});
-
   handleClose=() => this.setState({open: false});
+  
   render() {
 
     let style = {

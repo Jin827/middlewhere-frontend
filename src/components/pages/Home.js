@@ -1,3 +1,11 @@
+/*
+< Parents-child Relationship >
+Home.js - ProjectCard.js   - EditProject.js
+          AddButton.js
+          CreateProject.js         
+*/
+
+//LIST OF PROJECTS PAGE OF THE USER
 import React, {Component} from 'react';
 import api from '../../api';
 import ProjectCard from '../elements/ProjectCard';
@@ -21,29 +29,25 @@ export default class Home extends Component {
     super(props);
     this.state = {
       projects: [],
-      open:false,
-      me: null
-
+      me: null,
+      isAdmin: false,
+      open:false
     };
   }
 
-  handleOpen = () => {
-    this.setState({open: true});
-  };
-
-  handleClose = () => {
-    this.setState({open: false});
-  };
+  handleOpen = () => this.setState({open: true});
+  handleClose = () => this.setState({open: false});
 
   componentDidMount() {
     this._fetchData();
   }
 
+  //to check if users_id===project.adminUserId & get the list of all the projects of the user
   _fetchData = () => {
     api.getMe(localStorage.token)
-    .then(yoSoy => {
+    .then(data => {
       this.setState({
-        me : yoSoy.body.users_id
+        me: data.body.users_id,
       })
     })
     .then(() => api.getProjectsList())
@@ -52,25 +56,18 @@ export default class Home extends Component {
         projects:data.body
       })
     })
-
-  }
-
-  _createProjectForm = () => {
-    this.setState({
-      createProject: true
-    })
   }
 
 
   render() {
-    let { projects } = this.state;
-
+    let { projects, me } = this.state;
+    
     return (
       <div className="home">
         { projects.length !== 0 ? projects.map(p =>
           <div className="single-proj col-large-4 col-medium-6 col-small-12" key={p.id}>
             <ProjectCard
-              isAdmin={p.adminUserId===this.state.me}
+              isAdmin={p.adminUserId===me}
               projectAdmin={p.adminUserId}
               id={p.id}
               progress={p.progressPct}
@@ -82,9 +79,9 @@ export default class Home extends Component {
           </div>
         ) : <Paper style={noProjStyle} className="col-large-6 paper-frame" zDepth={2}><strong>NO PROJECTS YET</strong></Paper>}
 
-        {auth.isLoggedIn() ?  <AddButton buttonClick={this.handleOpen}  /> : null}
-        {this.state.open ? <CreateProject onCreate={() => {this._fetchData(); this.handleClose()}} openState={this.handleOpen} closeState={this.handleClose}/> : null}
-
+        {auth.isLoggedIn() ? <AddButton buttonClick={this.handleOpen}/> : null}
+            {/*In Material-UI, open prop for Dialog should be a boolean value -> pass 'this.state.open' Not the function 'handleOpen'*/}
+        {this.state.open ? <CreateProject onCreate={() => {this._fetchData(); this.handleClose()}} openState={this.state.open} closeState={this.handleClose}/> : null}
       </div>
     );
   }

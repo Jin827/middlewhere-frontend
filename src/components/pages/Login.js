@@ -53,7 +53,7 @@ export default class Login extends Component {
       api.requestLogin(email, password)
       //process login and push it to the homepage
       auth.login(email, password)
-      .then(() => api.resetStatus(localStorage.token))
+      .then(() => api.resetStatus())
       .then(() => {
         this.setState({error:false})
         this.props.router.push('/projects')})
