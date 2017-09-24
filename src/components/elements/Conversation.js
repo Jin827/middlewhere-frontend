@@ -1,27 +1,13 @@
 import React from 'react';
 import io from 'socket.io-client';
 import { API_HOST } from '../../config';
-import api from '../../api';
-import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
-import Paper from 'material-ui/Paper';
 import Drawer from 'material-ui/Drawer';
-import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ChatBubble from 'material-ui/svg-icons/communication/chat-bubble';
 import './TaskCard.css';
 import './Conversation.css';
-import {
-  cyan500, cyan700,
-  pinkA200, orange300,
-  grey100, grey300, grey400, grey500,grey900,grey700,
-  white, darkBlack, fullBlack,
-} from 'material-ui/styles/colors';
-
-const style = {
-  marginRight: 20,
-};
+import {pinkA200} from 'material-ui/styles/colors';
 
 
 export default class Conversation extends React.Component {
@@ -39,13 +25,12 @@ export default class Conversation extends React.Component {
 
     this.socket.on('message', message => {
 
-      if ( parseInt(message.projectId) ===  parseInt(this.props.projectId) ) {
+      if ( parseInt(message.projectId,8) ===  parseInt(this.props.projectId,8) ) {
         this.setState({ messages: [message, ...this.state.messages] })
 
       }
     })
-    // api.conversationalize('stuff').catch(console.log('AN ERROR'));
-    //console.log("Updates ___________________ ");
+    
   }
 
   handleSubmit = event => {
@@ -55,11 +40,6 @@ export default class Conversation extends React.Component {
       'from': this.props.username
     }
     if (event.keyCode === 13 && body) {
-      const message = {
-        body: body.text,
-        from: 'Me'
-      }
-      // this.setState({ messages: [message, ...this.state.messages] })
       this.socket.emit('message', body)
       event.target.value = ''
     }
@@ -77,7 +57,7 @@ export default class Conversation extends React.Component {
     };
 
     const messages = this.state.messages.map((message, index) => {
-      const img = message.img ? <img src={message.img} width='200px' /> : null
+      const img = message.img ? <img src={message.img} alt='img' width='200px' /> : null
       return <p key={index}><b>{message.from} : </b>{message.text} {img}</p>
     })
     return (
@@ -107,13 +87,3 @@ export default class Conversation extends React.Component {
     )
   }
 }
-
-// <Card className="task-card">
-//   <div>
-//     <CardText color="#ef5350"> <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
-//     {messages}</CardText>
-//   </div>
-// </Card>
-    //
-    // <input type='text' placeholder='Contribute...' onKeyUp={this.handleSubmit} />
-    // {messages}

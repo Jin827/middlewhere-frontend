@@ -1,8 +1,8 @@
-{/* 
+/* 
 < Parents-child Relationship > 
 App.js - SideMenu.js - Me.js
                        CoworkerTab.js
-*/}
+*/
 
 //SignUp/Login/Logout Links on the top bar
 
