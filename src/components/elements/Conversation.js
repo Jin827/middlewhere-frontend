@@ -24,8 +24,8 @@ export default class Conversation extends React.Component {
     //this.socket = io(`https://69862b10.ngrok.io`) // https://69862b10.ngrok.io   // http://localhost:3000
 
     this.socket.on('message', message => {
-
-      if ( parseInt(message.projectId,8) ===  parseInt(this.props.projectId,8) ) {
+      //put radix parameter 8 w/ParseInt ?
+      if ( parseInt(message.projectId) ===  parseInt(this.props.projectId) ) {
         this.setState({ messages: [message, ...this.state.messages] })
 
       }

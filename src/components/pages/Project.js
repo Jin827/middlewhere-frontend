@@ -27,23 +27,19 @@ export default class Project extends Component {
 
 
   componentDidMount() {
-    this.fetchData()
+    this._fetchData()
   }
 
-  handleOpen = () => {
+  _handleOpen = () => {
     this.setState({open: true});
   };
 
-  handleClose = () => {
+  _handleClose = () => {
     this.setState({open: false});
   };
 
-  _handleFormSubmitted = () => {
-    this.setState({createTask : false})
-  }
 
-
-  fetchData = () => {
+  _fetchData = () => {
       api.getTasks(this.props.params.id)
       .then(res => {
         this.setState({
@@ -54,7 +50,7 @@ export default class Project extends Component {
 
       Promise.all([
         api.getProjects(this.props.params.id),
-        api.getMe(localStorage.token)
+        api.getMe()
       ])
       .then(data => {
         var project = data[0].body[0];
@@ -62,21 +58,15 @@ export default class Project extends Component {
         this.setState({
           isAdmin: user.users_id === project.adminUserId,
           userId: user.users_id,
-          projectTitle: project.title,
           firstName: user.users_firstName
         })
       })
 
   }
 
-  _createTaskForm = () =>{
-    this.setState({
-      createTask: true
-    })
-  }
 
   render() {
-    let { tasks, projectTitle } = this.state;
+    let { tasks } = this.state;
 
     return (
       <div className="tasks">
@@ -93,26 +83,20 @@ export default class Project extends Component {
               deadline={b.deadline}
               priority={b.priority}
               completed={b.completed}
-              ReRenderProject={this.fetchData}
+              ReRenderProject={this._fetchData}
             />
             </div>
           ) : <Paper style={style} className="col-large-6" zDepth={2}><strong>NO TASKS YET</strong></Paper> }
 
+        <Conversation projectId={this.props.params.id} username={this.state.firstName} />
 
-          <Conversation projectId={this.props.params.id} username={this.state.firstName} />
-
-        {this.state.isAdmin?  <AddButton buttonClick={this._createTaskForm} /> : null}
-        {this.state.createTask ? <CreateTask onCreate={this.fetchData}
-          projectId={this.props.params.id}
-          openState={this.handleOpen} closeState={this.handleClose}
-          closeForm={this._handleFormSubmitted}/> : null}
+        {this.state.isAdmin? <AddButton buttonClick={this._handleOpen} /> : null}
+        {this.state.open ? <CreateTask projectId={this.props.params.id}
+          onCreate={() => {this._handleClose(); this._fetchData()}}
+          openState={this.state.open} closeState={this._handleClose}/> : null}
 
       </div>
     );
   }
 
 }
-//         <Conversation projectId={this.props.params.id} userId={this.state.userId} />
-
-
-// {auth.isLoggedIn() ? <Link to={`/projects`}> <ReturnButton projectTitle={projectTitle}/> </Link> : null}

@@ -1,11 +1,3 @@
-/* 
-< Parents-child Relationship > 
-App.js - SideMenu.js - Me.js
-                       CoworkerTab.js
-*/
-
-//SignUp/Login/Logout Links on the top bar
-
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

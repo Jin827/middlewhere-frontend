@@ -1,10 +1,3 @@
-/*
-< Parents-child Relationship >
-Home.js - ProjectCard.js   - EditProject.js
-          AddButton.js
-          CreateProject.js         
-*/
-
 //LIST OF PROJECTS PAGE OF THE USER
 import React, {Component} from 'react';
 import api from '../../api';
@@ -44,19 +37,17 @@ export default class Home extends Component {
 
   //to check if users_id===project.adminUserId & get the list of all the projects of the user
   _fetchData = () => {
-    api.getMe(localStorage.token)
+    Promise.all([
+      api.getMe(),
+      api.getProjectsList()
+    ])
     .then(data => {
       this.setState({
-        me: data.body.users_id,
+        me: data[0].body.users_id,
+        projects: data[1].body
       })
     })
-    .then(() => api.getProjectsList())
-    .then(data => {
-      this.setState({
-        projects:data.body
-      })
-    })
-  }
+  } 
 
 
   render() {
@@ -67,7 +58,7 @@ export default class Home extends Component {
         { projects.length !== 0 ? projects.map(p =>
           <div className="single-proj col-large-4 col-medium-6 col-small-12" key={p.id}>
             <ProjectCard
-              isAdmin={p.adminUserId===me}
+              isAdmin={p.adminUserId === me}
               projectAdmin={p.adminUserId}
               id={p.id}
               progress={p.progressPct}
