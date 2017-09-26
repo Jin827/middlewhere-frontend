@@ -2,19 +2,13 @@ import React, {Component} from 'react';
 import EditTask from '../modals/EditTask';
 import api from '../../api';
 import './TaskCard.css';
-import {Card, CardHeader, CardTitle, CardText, CardActions, LinearProgress, FlatButton} from 'material-ui';
-import FontIcon from 'material-ui/FontIcon';
+import {Card, CardTitle, CardText, CardActions} from 'material-ui';
 import EditorModeEdit from 'material-ui/svg-icons/editor/mode-edit';
 import Face from 'material-ui/svg-icons/action/face';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
 import moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
 import AutoComplete from 'material-ui/AutoComplete';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
 import AssignedList from './AssignedList'
-import {pinkA200, cyan500} from 'material-ui/styles/colors';
-import {cyan800} from 'material-ui/styles/colors';
 import List from 'material-ui/List/List';
 import './TaskCard.css';
 import './ProjectCard.css';
@@ -46,15 +40,14 @@ export default class TaskCard extends Component {
     })
     .then(() => {
       let { assignedUsers } = this.state;
-      assignedUsers.map( assignedUser => {
+      assignedUsers.forEach( assignedUser => {
         //Check if the user is an assignedUser to the task, if true -> show Complete button.
         if (assignedUser.id === this.props.userId){
-          this.setState({
-            forMeToComplete: true
-          })
-          
+          return this.setState({
+                  forMeToComplete: true
+                })
         }
-      }) 
+      })
     })
   }
 
@@ -202,7 +195,7 @@ export default class TaskCard extends Component {
           
           {/* Edit Task */}
           {this.state.editTask ? <EditTask projectId={this.props.projectId} id={id} title={title}
-          description={description} deadline={deadline} closeForm={this._closeTaskForm}/> : null}
+          description={description} deadline={deadline} openForm={this.state.editTask} closeForm={this._closeTaskForm}/> : null}
       </div>
     );
   }

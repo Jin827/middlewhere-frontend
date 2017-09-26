@@ -7,20 +7,21 @@ class Api {
     .post(`${API_HOST}/auth/users`)
     .send({firstName, lastName, email, password})
   )
-  // Create a new session (login) 
+  // Create a new session 
   requestLogin = (email, password) => (
     superagent
     .post(`${API_HOST}/auth/sessions`)
     .send({ email, password })
   )
 
+  //UPDATE users SET status='OFFLINE' to 'ONLINE'
   resetStatus = () => (
     superagent
     .patch(`${API_HOST}/auth/resetStatus`)
     .set('Authorization', `token ${localStorage.token}`)
   )
 
-  // Delete a session (logout)
+  // Delete a session
   requestLogout = () => (
     superagent
     .delete(`${API_HOST}/auth/sessions`)
@@ -83,7 +84,6 @@ class Api {
     .send({projectId, taskId, title, description, deadline, priority, token})
   )
 
-  // RETRIEVE COMPLETED TASK ?????????? OOOOOOOOOOOOOOOOOOOOO
   updateCompletion = (taskId, token) => (
     superagent
     .get(`${API_HOST}/tasks/${taskId}/completed`)

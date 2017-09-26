@@ -40,6 +40,7 @@ export default class Project extends Component {
 
 
   _fetchData = () => {
+      // Retrieve all the tasks for a single project
       api.getTasks(this.props.params.id)
       .then(res => {
         this.setState({
@@ -48,6 +49,7 @@ export default class Project extends Component {
       })
       .catch(console.error)
 
+      // Retrieve userId and adminUserId to check if user is adminUser, if true -> Add Button
       Promise.all([
         api.getProjects(this.props.params.id),
         api.getMe()
