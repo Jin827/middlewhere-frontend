@@ -43,9 +43,9 @@ export default class TaskCard extends Component {
       assignedUsers.forEach( assignedUser => {
         //Check if the user is an assignedUser to the task, if true -> show Complete button.
         if (assignedUser.id === this.props.userId){
-          return this.setState({
+          this.setState({
                   forMeToComplete: true
-                })
+            })
         }
       })
     })
