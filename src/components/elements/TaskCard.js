@@ -142,7 +142,7 @@ export default class TaskCard extends Component {
       color:'#80CBC4',
       cursor:'pointer',
     }
-
+console.log(this.props.isAdmin)
     return (
       <div>
             <Card style={style} className="task-card">
